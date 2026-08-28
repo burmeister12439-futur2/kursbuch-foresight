@@ -1,0 +1,534 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kursbuch Foresight · Karte 04 · Praxis & Güte</title>
+<style>
+  :root{
+    --ink:#0E1524; --ink2:#122744; --teal:#10C79E; --teald:#0C9670;
+    --coral:#FF6A4D; --corald:#E2542E; --violet:#7A6CF0; --violetd:#5b4fd0;
+    --sun:#FFC531; --sund:#B98900; --steel:#3A6EA5; --bg:#F4F2EA; --card:#fff; --line:#E7E3D9; --sur:#FCFBF8;
+    --ink-t:#1c2431; --sec:#454e5b; --mut:#8b93a1; --font:"Segoe UI",Roboto,-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink-t);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  main.wrap{padding-top:40px}
+
+  .knav{position:sticky;top:0;z-index:70;background:rgba(14,21,36,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .knav .kw{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:4px;height:46px;padding:0 14px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  .knav a{color:#c7d0da;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:999px;flex:none}
+  .knav a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .knav a.on{background:#fff;color:#0E1524}
+  .knav .kb{color:var(--teal);font-weight:800;margin-right:6px}
+
+  .hero{background:radial-gradient(1100px 460px at 84% -14%,var(--ink2) 0%,var(--ink) 62%);color:#fff;padding:40px 0 34px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:40px 40px;-webkit-mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%);mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%)}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .eyebrow .k{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#9cd2c4}
+  .step{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9cd2c4;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:2px 9px}
+  .mk{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#b7a9f5}
+  .mk::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--violet)}
+  h1{font-size:clamp(30px,4.6vw,48px);line-height:1.03;letter-spacing:-.02em;font-weight:850;margin:0 0 8px}
+  h1 em{font-style:normal;color:var(--teal)}
+  .leit{font-size:18px;font-weight:700;color:#fff;margin:0 0 8px}
+  .lede{font-size:15.5px;color:#aebccd;max-width:820px;margin:0 0 14px}
+  .betarow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .betabadge{font-size:12px;font-weight:800;letter-spacing:.04em;padding:4px 12px;border-radius:999px;color:#0E1524;background:var(--teal)}
+  .betasmall{font-size:12.5px;color:#9fb0c2}
+
+  main{padding:26px 0 0}
+  .intro{font-size:16px;color:var(--sec);max-width:820px;margin:0 0 26px}
+  .intro b{color:var(--ink)}
+
+  .sec{margin:0 0 34px;scroll-margin-top:60px}
+  .sechead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 6px}
+  h2{font-size:clamp(21px,2.6vw,27px);font-weight:850;letter-spacing:-.01em;color:var(--ink);margin:0}
+  .seclede{font-size:15px;color:var(--sec);max-width:820px;margin:2px 0 16px}
+
+  /* epistemic tag */
+  .etag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:3px 10px;white-space:nowrap}
+  .etag::before{content:"";width:8px;height:8px;border-radius:50%}
+  .etag.ev{color:var(--teald);background:#eafaf5;border:1px solid #bfe9db}
+  .etag.ev::before{background:var(--teal)}
+  .etag.kb{color:var(--violetd);background:#efedfd;border:1px solid #d5cffa}
+  .etag.kb::before{background:var(--violet)}
+  .etaghint{font-size:12.5px;color:var(--mut)}
+
+  /* kann / kann nicht */
+  .kk{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:720px){.kk{grid-template-columns:1fr}}
+  .kkbox{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 8px 20px rgba(20,26,36,.04)}
+  .kkbox h3{margin:0 0 10px;font-size:16px;font-weight:850}
+  .kkbox.kann h3{color:var(--teald)}
+  .kkbox.kannnicht h3{color:var(--corald)}
+  .kkbox ul{margin:0;padding:0;list-style:none}
+  .kkbox li{position:relative;padding:5px 0 5px 24px;font-size:14.5px;color:var(--ink-t);border-top:1px solid var(--line)}
+  .kkbox li:first-child{border-top:0}
+  .kkbox.kann li::before{content:"+";position:absolute;left:4px;top:5px;font-weight:900;color:var(--teald)}
+  .kkbox.kannnicht li::before{content:"–";position:absolute;left:4px;top:5px;font-weight:900;color:var(--corald)}
+
+  /* dimensions */
+  .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:820px){.dgrid{grid-template-columns:1fr}}
+  .dcard{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:17px 18px;box-shadow:0 8px 20px rgba(20,26,36,.04);border-top:4px solid var(--violet);display:flex;flex-direction:column}
+  .dk{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--violetd)}
+  .dcard h3{font-size:19px;font-weight:850;color:var(--ink);margin:3px 0 8px}
+  .dleit{font-size:14px;font-weight:700;color:var(--sec);margin:0 0 8px}
+  .dkern{font-size:14px;color:var(--sec);margin:0 0 14px}
+  .dhint{margin-top:auto}
+  .dhint a{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--violetd);text-decoration:none;border:1px solid #d5cffa;background:#efedfd;border-radius:999px;padding:6px 12px}
+  .dhint a:hover{background:var(--violet);color:#fff;border-color:var(--violet)}
+
+  /* selbstcheck */
+  .scnote{font-size:14px;color:var(--sec);max-width:820px;margin:0 0 14px}
+  .scbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 16px;padding:10px 14px;background:var(--sur);border:1px solid var(--line);border-radius:12px}
+  .scprog{font-size:13.5px;font-weight:700;color:var(--ink)}
+  .scprog span{color:var(--mut);font-weight:600}
+  .screset{margin-left:auto;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--sec);background:transparent;border:1px solid var(--line);border-radius:10px;padding:7px 13px;cursor:pointer}
+  .screset:hover{border-color:var(--violet);color:var(--violetd)}
+
+  .scdim{border:1px solid var(--line);background:var(--card);border-radius:16px;box-shadow:0 8px 20px rgba(20,26,36,.04);margin:0 0 14px;overflow:hidden;transition:box-shadow .25s ease,border-color .25s ease}
+  .scdim.flash{border-color:var(--violet);box-shadow:0 0 0 3px rgba(122,108,240,.35),0 8px 20px rgba(20,26,36,.04)}
+  .scdim.flash > .sdh{background:#efedfd}
+  /* Sprung-Offset unterhalb der sticky Navigation, damit die Überschrift mit Luft sichtbar bleibt */
+  .sdh{scroll-margin-top:66px}
+  .scdim > .sdh{padding:12px 17px;border-bottom:1px solid var(--line);background:#faf9f5}
+  .sdh .sdk{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--violetd)}
+  .sdh h3{font-size:17px;font-weight:850;color:var(--ink);margin:2px 0 0}
+  .q{padding:13px 17px;border-top:1px solid var(--line)}
+  .q:first-of-type{border-top:0}
+  .qtext{font-size:14.5px;color:var(--ink-t);margin:0 0 9px}
+  .qnum{color:var(--mut);font-weight:800;margin-right:7px}
+  .opts{display:flex;gap:8px;flex-wrap:wrap}
+  .opt{font-family:inherit;font-size:13px;font-weight:700;color:var(--sec);background:var(--sur);border:1.5px solid var(--line);border-radius:10px;padding:7px 15px;cursor:pointer;transition:.12s;min-width:96px;text-align:center}
+  .opt:hover{border-color:var(--ink);color:var(--ink)}
+  .opt[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .qstate{font-size:12px;font-weight:700;color:var(--mut);margin-top:7px}
+  .qstate.set{color:var(--ink)}
+
+  /* meanings */
+  .means{margin:16px 0 0;border:1px dashed var(--line);border-radius:12px;padding:12px 15px;background:var(--sur)}
+  .means dt{font-weight:800;color:var(--ink);font-size:13px;float:left;width:150px;clear:left}
+  .means dd{margin:0 0 6px 160px;font-size:13px;color:var(--sec)}
+  @media(max-width:560px){.means dt{float:none;width:auto}.means dd{margin:2px 0 10px}}
+  .means .neutral{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--sec)}
+  .means .neutral b{color:var(--ink)}
+
+  /* profile */
+  .profwrap{border:1px solid var(--line);background:var(--card);border-radius:16px;box-shadow:0 8px 20px rgba(20,26,36,.04);padding:16px 18px;border-top:4px solid var(--violet)}
+  .profempty{font-size:15px;color:var(--mut)}
+  .profrow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:11px 0;border-top:1px solid var(--line)}
+  .profrow:first-child{border-top:0}
+  .profname{font-size:15px;font-weight:850;color:var(--ink);min-width:210px}
+  .profcounts{font-size:15px;color:var(--sec);font-weight:600}
+  .profcounts .cdot{color:var(--mut);margin:0 5px}
+  .proflede{font-size:14px;color:var(--sec);max-width:820px;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+  .proflimit{font-size:12.5px;color:var(--mut);margin:10px 0 0}
+
+  /* spannungen */
+  .spgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:720px){.spgrid{grid-template-columns:1fr}}
+  .spidea{font-size:15px;font-weight:700;color:var(--ink);background:#efedfd;border:1px solid #d5cffa;border-radius:12px;padding:12px 15px;margin:0 0 16px}
+  .spcard{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:15px 17px;box-shadow:0 8px 20px rgba(20,26,36,.04);border-left:4px solid var(--violet)}
+  .sppair{font-size:15.5px;font-weight:850;color:var(--ink);display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:0 0 7px}
+  .sppair .arr{color:var(--violetd);font-weight:800}
+  .spdesc{font-size:14px;color:var(--sec);margin:0}
+
+  /* standards */
+  .stdtoggle{width:100%;text-align:left;font-family:inherit;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 20px rgba(20,26,36,.04);padding:15px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .stdtoggle:hover{border-color:var(--teal)}
+  .stdtoggle .stt{font-size:16px;font-weight:850;color:var(--ink)}
+  .stdtoggle .sts{font-size:12.5px;color:var(--mut);margin-top:2px}
+  .stdcaret{flex:none;color:var(--mut);font-size:13px;font-weight:800;transition:.15s}
+  .stdtoggle[aria-expanded="true"] .stdcaret{transform:rotate(180deg)}
+  .stdbody{display:none;margin-top:14px}
+  .stdbody.open{display:block}
+  .stdsep{font-size:14px;color:var(--sec);background:#eafaf5;border:1px solid #bfe9db;border-radius:12px;padding:12px 15px;margin:0 0 14px}
+  .stdgroups{font-size:13.5px;color:var(--sec);margin:0 0 16px}
+  .stdgroups b{color:var(--ink)}
+  .stdblock{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:14px 17px;margin:0 0 12px}
+  .stdblock .sbk{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--violetd)}
+  .stdblock h3{font-size:16px;font-weight:850;color:var(--ink);margin:2px 0 3px}
+  .stdblock .sbgrp{font-size:12.5px;color:var(--teald);font-weight:700;margin:0 0 10px;display:inline-flex;align-items:center;gap:6px}
+  .stdblock .sbgrp::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal)}
+  .stdblock ol{margin:0;padding-left:22px}
+  .stdblock li{font-size:14px;color:var(--ink-t);padding:4px 0}
+  .stdblock li .en{display:block;font-size:12px;font-weight:400;font-style:italic;color:var(--mut);margin-top:1px}
+  .stdsrc{font-size:12.5px;color:var(--mut);margin:14px 0 0;border-top:1px solid var(--line);padding-top:12px}
+  .stdsrc b{color:var(--sec)}
+
+  /* bridge */
+  .bridge{background:var(--ink);color:#dfe5ec;border-radius:18px;padding:24px 26px;margin:8px 0 40px}
+  .bridge p{font-size:16px;line-height:1.55;margin:0 0 14px;max-width:760px}
+  .bridge .bq{color:#fff;font-weight:700}
+  .bridge a{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:#0E1524;background:var(--teal);border-radius:999px;padding:9px 16px;text-decoration:none}
+  .bridge a:hover{background:#fff}
+
+  footer{margin-top:8px;background:var(--ink);color:#c7d0da;padding:30px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer .fnote{font-size:14px;max-width:680px}
+  footer b{color:#fff}
+  footer .fbrand{font-weight:800;color:var(--teal);line-height:1.3;text-align:right}
+  footer .fbrand span{display:block;font-weight:600;color:#9fb0c2;font-size:12.5px;margin-top:2px}
+  .draft{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#9fb0c2;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 10px;margin-top:10px}
+</style></head>
+<body>
+
+<nav class="knav"><div class="kw">
+  <a class="kb" href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html">Kursbuch</a>
+  <a href="../Karte01/2026-08-27_Kursbuch-Foresight_Karte01_Zeit_Rundgang-Integration-B.html">01 Zeit</a>
+  <a href="../Karte02/2026-08-27_Kursbuch-Foresight_Karte02_Begriffe_Rundgang-Integration-B.html">02 Begriffe</a>
+  <a href="../Karte03/2026-08-27_Kursbuch-Foresight_Karte03_DACH_Rundgang-Integration-B.html">03 Landschaft</a>
+  <a class="on" href="2026-08-27_Kursbuch-Foresight_Karte04_Praxis-Guete_Rundgang-Integration-B.html">04 Praxis &amp; Güte</a>
+  <a href="../Karte05/2026-08-27_Kursbuch-Foresight_Karte05_Ich-Wir_Rundgang-Integration-B.html">05 Ich / Wir</a>
+  <a href="../Karte06/2026-08-27_Kursbuch-Foresight_Karte06_Zukunft_Rundgang-Integration-B.html">06 Zukunft</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <a href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html" style="color:#9cd2c4;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.08em">← KURSBUCH</a>
+      <span class="k">Kursbuch Foresight · Karte 04 · Praxis &amp; Güte</span>
+      <span class="step">Schritt 4 von 6 · prüfen</span>
+      <a class="mk" href="#profil" style="color:#b7a9f5;text-decoration:none">Güte als Profil</a>
+    </div>
+    <h1>Was kann Foresight <em>und wann ist sie gut?</em></h1>
+    <p class="leit">Praxis &amp; Güte: Qualität als Profil, nicht als Note.</p>
+    <p class="lede">Foresight erzeugt keine Gewissheit über die Zukunft. Ihr Wert liegt darin, Alternativen sichtbar zu machen, Annahmen zu prüfen, Unsicherheit zu strukturieren und heutige Entscheidungen robuster zu machen. Gute Foresight muss deshalb nicht nur interessante Zukunftsbilder erzeugen, sondern auch sorgfältig arbeiten und für Entscheidungen, Lernen oder Gestaltung relevant werden.</p>
+    <div class="betarow">
+      <span class="betabadge">Implementierung 2026</span>
+      <span class="betasmall">Qualität als Profil, kein Gesamtscore.<!-- Provenienz (intern): Quellbuild K04-IMPL-20260823-C · Integration RGI-20260827-B-K04 --></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="intro">Diese Karte fragt nicht, ob Foresight richtig oder falsch war. Sie fragt, <b>woran sich Güte zeigt</b>. Qualität wird als Profil über drei Dimensionen sichtbar gemacht: Zukunftsangemessenheit, Sorgfalt und Handlungsbezug. Ein Prozess kann in einer Dimension stark und in einer anderen schwach sein. Deshalb gibt es hier keine Punkte, keine Prozente und keine Rangliste, sondern eine ehrliche Selbsteinschätzung entlang von zwölf Prüffragen.</p>
+
+  <!-- 1 · Was Foresight kann / nicht kann -->
+  <section class="sec" id="kannnicht">
+    <div class="sechead"><h2>Was Foresight kann und was nicht</h2><span class="etag kb">Kursbuch-Interpretation</span></div>
+    <p class="seclede">Synthese des Kursbuchs auf Basis der Recherche (OECD, UK Government Office for Science). Keine wörtliche Übernahme eines einzelnen Quellenmodells.</p>
+    <div class="kk">
+      <div class="kkbox kann">
+        <h3>Foresight kann</h3>
+        <ul>
+          <li>mögliche Zukünfte öffnen,</li>
+          <li>Annahmen und Unsicherheiten sichtbar machen,</li>
+          <li>Alternativen und Brüche erkunden,</li>
+          <li>Überraschungsfähigkeit erhöhen,</li>
+          <li>Handlungsoptionen und robuste Entscheidungen unterstützen.</li>
+        </ul>
+      </div>
+      <div class="kkbox kannnicht">
+        <h3>Foresight kann nicht</h3>
+        <ul>
+          <li>Zukunft sicher vorhersagen,</li>
+          <li>Unsicherheit abschaffen,</li>
+          <li>Entscheidungen oder Verantwortung ersetzen,</li>
+          <li>Wirkung oder Erfolg garantieren.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Drei Qualitätsdimensionen als Orientierung -->
+  <section class="sec" id="dimensionen">
+    <div class="sechead"><h2>Drei Qualitätsdimensionen als Orientierung</h2><span class="etag kb">Kursbuch-Interpretation</span></div>
+    <p class="seclede">Eine redaktionelle Verdichtung der Qualitätsliteratur durch das Kursbuch, kein Originalmodell eines einzelnen Standardwerks. Dieser Abschnitt führt die drei Dimensionen nur ein. Die konkrete Prüfung erfolgt im Selbstcheck.</p>
+    <div class="dgrid">
+      <div class="dcard">
+        <div class="dk">A · Dimension</div>
+        <h3>Zukunftsangemessenheit</h3>
+        <p class="dleit">Wird Zukunft wirklich als offen, plural und unsicher behandelt?</p>
+        <p class="dkern">Gute Foresight behandelt Zukunft nicht wie einen späteren Zustand, der nur entdeckt werden muss.</p>
+        <div class="dhint"><a href="#sc-A">Zum Selbstcheck dieser Dimension ↓</a></div>
+      </div>
+      <div class="dcard">
+        <div class="dk">B · Dimension</div>
+        <h3>Sorgfalt</h3>
+        <p class="dleit">Ist der Prozess nachvollziehbar, methodisch passend und intellektuell redlich?</p>
+        <p class="dkern">Methodische Vielfalt ist kein Qualitätsersatz. Entscheidend ist die begründete Passung von Frage, Evidenz, Methode und Interpretation.</p>
+        <div class="dhint"><a href="#sc-B">Zum Selbstcheck dieser Dimension ↓</a></div>
+      </div>
+      <div class="dcard">
+        <div class="dk">C · Dimension</div>
+        <h3>Handlungsbezug</h3>
+        <p class="dleit">Erzeugt die Arbeit Orientierung, Lernfähigkeit und nutzbare Entscheidungsräume?</p>
+        <p class="dkern">Gute Foresight endet nicht beim Zukunftsbild. Sie verändert im besten Fall die Qualität heutiger Entscheidungen.</p>
+        <div class="dhint"><a href="#sc-C">Zum Selbstcheck dieser Dimension ↓</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · Selbstcheck -->
+  <section class="sec" id="selbstcheck">
+    <div class="sechead"><h2>Selbstcheck</h2><span class="etag kb">Kursbuch-Werkzeug</span></div>
+    <p class="scnote">Zwölf Prüffragen, vier je Dimension. Schätze jede Frage ehrlich ein: es ist keine Prüfung mit richtig oder falsch. Für jede Frage stehen genau drei Bewertungszustände zur Wahl. Nicht gesetzte Fragen bleiben „nicht eingeschätzt" und fließen nicht als Bewertung ein.</p>
+    <div class="scbar">
+      <span class="scprog" id="scprog"><span>0 von 12 eingeschätzt</span></span>
+      <button class="screset" id="screset" type="button">Selbstcheck zurücksetzen</button>
+    </div>
+
+    <div class="scdim">
+      <div class="sdh" id="sc-A"><div class="sdk">A · Dimension</div><h3>Zukunftsangemessenheit</h3></div>
+      <div class="q" data-dim="A"><p class="qtext"><span class="qnum">1</span>Werden mehrere mögliche Zukünfte ernsthaft erkundet?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="A"><p class="qtext"><span class="qnum">2</span>Werden Unsicherheiten, Annahmen und mögliche Brüche sichtbar?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="A"><p class="qtext"><span class="qnum">3</span>Wird zwischen Möglichkeit, Wahrscheinlichkeit und Wünschbarkeit unterschieden?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="A"><p class="qtext"><span class="qnum">4</span>Werden Zukunftsbilder argumentativ begründet statt als Gewissheit präsentiert?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+    </div>
+
+    <div class="scdim">
+      <div class="sdh" id="sc-B"><div class="sdk">B · Dimension</div><h3>Sorgfalt</h3></div>
+      <div class="q" data-dim="B"><p class="qtext"><span class="qnum">1</span>Sind Ziel, Auftrag und Rahmenbedingungen klar?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="B"><p class="qtext"><span class="qnum">2</span>Sind Daten, Annahmen, Methoden und Auswahlentscheidungen nachvollziehbar?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="B"><p class="qtext"><span class="qnum">3</span>Passt die Methode zur Fragestellung und sind zentrale Begriffe geklärt?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="B"><p class="qtext"><span class="qnum">4</span>Werden unterschiedliche Perspektiven, Grenzen und blinde Flecken reflektiert?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+    </div>
+
+    <div class="scdim">
+      <div class="sdh" id="sc-C"><div class="sdk">C · Dimension</div><h3>Handlungsbezug</h3></div>
+      <div class="q" data-dim="C"><p class="qtext"><span class="qnum">1</span>Ist klar, für wen und wofür die Arbeit relevant sein soll?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="C"><p class="qtext"><span class="qnum">2</span>Entstehen neue Entscheidungsräume oder Handlungsoptionen?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="C"><p class="qtext"><span class="qnum">3</span>Werden Strategien auf Robustheit und Anpassungsfähigkeit geprüft?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+      <div class="q" data-dim="C"><p class="qtext"><span class="qnum">4</span>Sind Ergebnisse so kommuniziert und eingebettet, dass sie tatsächlich aufgegriffen werden können?</p><div class="opts"></div><div class="qstate">nicht eingeschätzt</div></div>
+    </div>
+
+    <dl class="means">
+      <dt>stark</dt><dd>gut erfüllt und belegbar.</dd>
+      <dt>teilweise</dt><dd>ansatzweise erfüllt, aber mit Lücken.</dd>
+      <dt>offen</dt><dd>bisher nicht eingelöst oder inhaltlich ungeklärt.</dd>
+      <div class="neutral"><b>nicht eingeschätzt</b> ist keine vierte Bewertung, sondern nur der neutrale Zustand vor der Auswahl. „offen" ist ausschließlich die inhaltliche Bewertung; unbeantwortet heißt immer „nicht eingeschätzt".</div>
+    </dl>
+  </section>
+
+  <!-- 4 · Qualitätsprofil -->
+  <section class="sec" id="profil">
+    <div class="sechead"><h2>Qualitätsprofil</h2><span class="etag kb">Kursbuch-Darstellung</span></div>
+    <p class="seclede">Die Auswertung deines Selbstchecks als Profil, nicht als Gesamtwert. „nicht eingeschätzt" wird getrennt gezählt und niemals als „offen" verbucht.</p>
+    <div class="profwrap" id="profwrap"></div>
+    <p class="proflimit">Aus diesem Profil wird kein Gesamtscore, kein Prozentwert, keine Note und keine Rangfolge gebildet. Die Zählungen sind qualitative Verteilungen, keine Punkte.</p>
+  </section>
+
+  <!-- 5 · Fünf Spannungsfelder -->
+  <section class="sec" id="spannungen">
+    <div class="sechead"><h2>Fünf Spannungsfelder</h2><span class="etag kb">Kursbuch-Interpretation</span></div>
+    <p class="seclede">Eine redaktionelle Heuristik des Kursbuchs, ausdrücklich kein Literaturstandard und kein Bestandteil der 18 Standards. Kein Slider, kein idealer Mittelpunkt.</p>
+    <div class="spidea">Gute Foresight maximiert nicht eine Seite, sondern macht legitime Spannungen sichtbar und bearbeitbar.</div>
+    <div class="spgrid">
+      <div class="spcard"><div class="sppair">Unabhängigkeit <span class="arr">↔</span> Entscheidungsnähe</div><p class="spdesc">Zu große Distanz kann folgenlos bleiben; zu große Nähe kann kritische Offenheit schwächen.</p></div>
+      <div class="spcard"><div class="sppair">Offenheit <span class="arr">↔</span> Verbindlichkeit</div><p class="spdesc">Foresight muss Möglichkeiten offenhalten und zugleich Orientierung für Entscheidungen ermöglichen.</p></div>
+      <div class="spcard"><div class="sppair">Beteiligung <span class="arr">↔</span> Handlungsfähigkeit</div><p class="spdesc">Mehr Perspektiven erhöhen Legitimität und Lernchancen, können Prozesse aber auch verlangsamen oder verwässern.</p></div>
+      <div class="spcard"><div class="sppair">Analyse <span class="arr">↔</span> Gestaltungswille</div><p class="spdesc">Zukunftsarbeit muss unterscheiden, was beobachtet, was interpretiert und was normativ gewollt wird.</p></div>
+      <div class="spcard"><div class="sppair">Komplexität <span class="arr">↔</span> Verständlichkeit</div><p class="spdesc">Eine differenzierte Zukunftsanalyse darf nicht durch Vereinfachung falsch werden; ohne Verständlichkeit bleibt sie wirkungslos.</p></div>
+    </div>
+  </section>
+
+  <!-- 6 · 18 Standards als Vertiefung -->
+  <section class="sec" id="standards">
+    <button class="stdtoggle" id="stdtoggle" type="button" aria-expanded="false" aria-controls="stdbody">
+      <span><span class="stt">Die 18 Standards als fachliche Vertiefung</span><br><span class="sts">Quelle: Standards of Futures Research. Klick zum Aufklappen.</span></span>
+      <span class="stdcaret">▼</span>
+    </button>
+    <div class="stdbody" id="stdbody">
+      <p class="stdsep">Das Standardwerk selbst gliedert seine 18 Standards in drei eigene Gruppen. Die Zuordnung dieser Gruppen zu den drei Qualitätsdimensionen des Kursbuchs ist eine redaktionelle Lesart des Kursbuchs und nicht das Originalmodell von Gerhold et al.</p>
+      <p class="stdgroups">Die drei Originalgruppen des Standardwerks: <b>1. The Future as a Subject of Inquiry</b> · <b>2. Good Research Practice</b> · <b>3. Practical Relevance and Effectiveness</b>. Die Standards und ihre Gruppen sind Evidenz aus der Fachliteratur (Teal). Die Überschriften „Fachliche Bezugspunkte für …" sind die Zuordnung durch das Kursbuch (Violet).</p>
+
+      <div class="stdblock">
+        <div class="sbk">Kursbuch-Zuordnung</div>
+        <h3>Fachliche Bezugspunkte für Zukunftsangemessenheit</h3>
+        <div class="sbgrp">Originalgruppe 1: The Future as a Subject of Inquiry</div>
+        <ol>
+          <li>Zukunftsbilder <span class="en">Images of the Future</span></li>
+          <li>Modalität <span class="en">Modality</span></li>
+          <li>Validierung durch Argumentation <span class="en">Validation by Argumentation</span></li>
+          <li>Ausrichtung der Forschung auf Handlungsabsichten <span class="en">Aligning the Research with Ambitions for Action</span></li>
+          <li>Interdisziplinarität <span class="en">Interdisciplinarity</span></li>
+          <li>Transdisziplinarität <span class="en">Transdisciplinarity</span></li>
+        </ol>
+      </div>
+
+      <div class="stdblock">
+        <div class="sbk">Kursbuch-Zuordnung</div>
+        <h3>Fachliche Bezugspunkte für Sorgfalt</h3>
+        <div class="sbgrp">Originalgruppe 2: Good Research Practice</div>
+        <ol start="7">
+          <li>Ziele und Rahmenbedingungen <span class="en">Objectives and Framework Conditions</span></li>
+          <li>Transparenz <span class="en">Transparency</span></li>
+          <li>Theoretische Grundlagen <span class="en">Theoretical Foundations</span></li>
+          <li>Methodenwahl <span class="en">Method Selection</span></li>
+          <li>Erzeugung qualitätsvoller Forschung <span class="en">Producing Quality Research</span></li>
+          <li>Wissenschaftliche Relevanz <span class="en">Scientific Relevance</span></li>
+          <li>Verhaltenskodizes und wissenschaftliche Integrität <span class="en">Codes of Conduct and Scientific Integrity</span></li>
+        </ol>
+      </div>
+
+      <div class="stdblock">
+        <div class="sbk">Kursbuch-Zuordnung</div>
+        <h3>Fachliche Bezugspunkte für Handlungsbezug</h3>
+        <div class="sbgrp">Originalgruppe 3: Practical Relevance and Effectiveness</div>
+        <ol start="14">
+          <li>Praktische Relevanz, Nutzen und Wirksamkeit <span class="en">Practical Relevance, Usefulness, and Effectiveness</span></li>
+          <li>Verständnis von Art, Rolle und Besonderheit des Zielpublikums <span class="en">Understanding the Type, Role, and Specificity of the Research Audience</span></li>
+          <li>Übertragbarkeit und Kommunikation der Ergebnisse <span class="en">Transferability and Communication of Results</span></li>
+          <li>Identifikation von Entscheidungsräumen und Optionen <span class="en">Identifying Decision-Making Spaces and Options</span></li>
+          <li>Projekt- und Prozessmanagement <span class="en">Project and Process Management</span></li>
+        </ol>
+      </div>
+
+      <p class="stdsrc"><b>Quellenbasis.</b> Die 18 Standards und ihre drei Originalgruppen stammen aus: Gerhold, Holtmannspötter, Neuhaus, Schüll, Schulz-Montag, Steinmüller und Zweck (Hrsg.), Standards of Futures Research: Guidelines for Practice and Evaluation, Springer VS, 2022, DOI 10.1007/978-3-658-35806-8. Die englische Fassung aktualisiert und internationalisiert den deutschsprachigen Band Standards und Gütekriterien der Zukunftsforschung. Ergänzend gestützt: OECD, Strategic Foresight Toolkit for Resilient Public Policy (2025), DOI 10.1787/bcdd9304-en; Futures Toolkit des UK Government Office for Science (2024); Georghiou und Keenan, Evaluation of national foresight activities, Technological Forecasting and Social Change 73(7), 2006, DOI 10.1016/j.techfore.2005.08.003.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Brücke zu Karte 05 -->
+  <div class="bridge">
+    <p><span class="bq">Qualität entsteht nicht im luftleeren Raum. Wer Foresight macht, bringt Erfahrungen, Interessen, Rollen und Perspektiven mit. Karte 05 fragt deshalb: Wer schaut eigentlich in die Zukunft – ich, wir oder beide?</span></p>
+    <a href="../Karte05/2026-08-27_Kursbuch-Foresight_Karte05_Ich-Wir_Rundgang-Integration-B.html">weiter zu Karte 05 · Ich / Wir <span>→</span></a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fnote">
+      <b>Kursbuch Foresight.</b> Karte 04 · Praxis &amp; Güte.
+      <!-- Provenienz (intern): Karte 04 · Praxis &amp; Güte · Quellbuild K04-IMPL-20260823-C · Integration RGI-20260827-B-K04 -->
+    </div>
+    <div class="fbrand">Konzept und Realisierung: Klaus Burmeister · foresightlab<span>als Beitrag zu foresight_D</span></div>
+    <div class="fmeta" style="flex-basis:100%;border-top:1px solid rgba(159,176,194,.22);margin-top:14px;padding-top:12px;font-size:12.5px;color:#9fb0c2"><a href="../Karte06/2026-08-27_Kursbuch-Foresight_Entstehung_Rundgang-Integration-B.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Entstehung</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Impressum.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Impressum</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Quellen.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Quellen</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/2026-08-27_Kursbuch-Foresight_KI-Transparenz.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">KI-Transparenz</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var STATES=["stark","teilweise","offen"];
+  var DIMS=[["A","Zukunftsangemessenheit"],["B","Sorgfalt"],["C","Handlungsbezug"]];
+  var qs=Array.prototype.slice.call(document.querySelectorAll(".q"));
+
+  // build option buttons
+  qs.forEach(function(q){
+    var opts=q.querySelector(".opts");
+    STATES.forEach(function(s){
+      var b=document.createElement("button");
+      b.type="button"; b.className="opt"; b.textContent=s;
+      b.setAttribute("data-state",s);
+      b.setAttribute("aria-pressed","false");
+      opts.appendChild(b);
+    });
+  });
+
+  function stateOf(q){
+    var a=q.querySelector('.opt[aria-pressed="true"]');
+    return a?a.getAttribute("data-state"):null;
+  }
+
+  function renderQstate(q){
+    var st=stateOf(q);
+    var el=q.querySelector(".qstate");
+    if(st){el.textContent="Bewertung: "+st;el.classList.add("set");}
+    else{el.textContent="nicht eingeschätzt";el.classList.remove("set");}
+  }
+
+  function counts(dim){
+    var c={stark:0,teilweise:0,offen:0,ne:0};
+    qs.filter(function(q){return q.getAttribute("data-dim")===dim;}).forEach(function(q){
+      var s=stateOf(q);
+      if(s){c[s]++;}else{c.ne++;}
+    });
+    return c;
+  }
+
+  function totalRated(){
+    return qs.filter(function(q){return stateOf(q);}).length;
+  }
+
+  function renderProfile(){
+    var wrap=document.getElementById("profwrap");
+    wrap.innerHTML="";
+    if(totalRated()===0){
+      var e=document.createElement("p");
+      e.className="profempty";
+      e.textContent="Noch keine Einschätzung. Fülle den Selbstcheck aus, um dein Profil zu sehen.";
+      wrap.appendChild(e);
+      return;
+    }
+    DIMS.forEach(function(d){
+      var c=counts(d[0]);
+      var parts=[];
+      if(c.stark)parts.push(c.stark+" stark");
+      if(c.teilweise)parts.push(c.teilweise+" teilweise");
+      if(c.offen)parts.push(c.offen+" offen");
+      if(c.ne)parts.push(c.ne+" nicht eingeschätzt");
+      var row=document.createElement("div");
+      row.className="profrow";
+      var name=document.createElement("div");
+      name.className="profname"; name.textContent=d[1];
+      var cnt=document.createElement("div");
+      cnt.className="profcounts";
+      cnt.innerHTML=parts.join('<span class="cdot">·</span>');
+      row.appendChild(name); row.appendChild(cnt);
+      wrap.appendChild(row);
+    });
+    var lede=document.createElement("p");
+    lede.className="proflede";
+    lede.textContent="Ein Prozess kann methodisch sehr sorgfältig sein, aber kaum Handlungsbezug erzeugen. Ein anderer kann hoch relevant sein, aber seine Annahmen und Evidenz nicht ausreichend transparent machen. Beides sind unterschiedliche Qualitätsprobleme, die ein einzelner Punktwert verdecken würde.";
+    wrap.appendChild(lede);
+  }
+
+  function renderProgress(){
+    var el=document.getElementById("scprog");
+    el.innerHTML='<span>'+totalRated()+" von 12 eingeschätzt</span>";
+  }
+
+  function onOptClick(e){
+    var b=e.target.closest(".opt"); if(!b)return;
+    var opts=b.parentNode;
+    var wasActive=b.getAttribute("aria-pressed")==="true";
+    Array.prototype.forEach.call(opts.querySelectorAll(".opt"),function(o){o.setAttribute("aria-pressed","false");});
+    if(!wasActive){b.setAttribute("aria-pressed","true");}
+    var q=b.closest(".q");
+    renderQstate(q); renderProgress(); renderProfile();
+  }
+
+  document.querySelectorAll(".opts").forEach(function(o){o.addEventListener("click",onOptClick);});
+
+  document.getElementById("screset").addEventListener("click",function(){
+    document.querySelectorAll('.opt[aria-pressed="true"]').forEach(function(o){o.setAttribute("aria-pressed","false");});
+    qs.forEach(renderQstate); renderProgress(); renderProfile();
+  });
+
+  // standards toggle
+  var st=document.getElementById("stdtoggle"), sb=document.getElementById("stdbody");
+  st.addEventListener("click",function(){
+    var open=st.getAttribute("aria-expanded")==="true";
+    st.setAttribute("aria-expanded",open?"false":"true");
+    sb.classList.toggle("open",!open);
+  });
+
+  // Sprung von den Dimensionen zum Selbstcheck: Offset unter sticky Nav plus kurze Hervorhebung der Gruppe
+  var flashTimer=null;
+  document.querySelectorAll('.dhint a[href^="#sc-"]').forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      var id=a.getAttribute("href").slice(1);
+      var el=document.getElementById(id);
+      if(!el)return;
+      var nav=document.querySelector(".knav");
+      var navH=nav?nav.getBoundingClientRect().height:46;
+      var y=el.getBoundingClientRect().top+window.pageYOffset-navH-18;
+      if(y<0)y=0;
+      window.scrollTo({top:y,behavior:"smooth"});
+      var grp=el.closest(".scdim");
+      if(grp){
+        grp.classList.remove("flash"); void grp.offsetWidth; grp.classList.add("flash");
+        if(flashTimer){clearTimeout(flashTimer);}
+        flashTimer=setTimeout(function(){grp.classList.remove("flash");},1800);
+      }
+    });
+  });
+
+  // init
+  qs.forEach(renderQstate); renderProgress(); renderProfile();
+})();
+</script>
+</body></html>

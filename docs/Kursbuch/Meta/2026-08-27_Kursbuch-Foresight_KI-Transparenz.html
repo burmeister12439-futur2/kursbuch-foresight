@@ -1,0 +1,89 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KI-Transparenz · Kursbuch Foresight</title>
+<style>
+  :root{
+    --ink:#0E1524; --ink2:#122744; --teal:#10C79E; --teald:#0C9670;
+    --violet:#7A6CF0; --violetd:#5b4fd0; --bg:#F4F2EA; --card:#fff; --line:#E7E3D9; --sur:#FCFBF8;
+    --ink-t:#1c2431; --sec:#454e5b; --mut:#8b93a1;
+    --font:"Segoe UI",Roboto,-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink-t);line-height:1.65}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+  .topbar{position:sticky;top:0;z-index:70;background:rgba(14,21,36,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topbar .tw{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;height:46px;padding:0 16px}
+  .topbar a{color:#c7d0da;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:999px}
+  .topbar a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .topbar .back{color:#b7a9f5}
+  .topbar .kb{color:var(--teal);font-weight:800}
+  .hero{background:radial-gradient(1000px 440px at 82% -20%,var(--ink2) 0%,var(--ink) 64%);color:#fff;padding:44px 0 38px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:44px 44px;-webkit-mask:radial-gradient(520px 280px at 84% 0%,#000,transparent 78%);mask:radial-gradient(520px 280px at 84% 0%,#000,transparent 78%)}
+  .hero .wrap{position:relative;z-index:1}
+  .hero .kicker{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea3c4;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 11px;margin:0 0 16px}
+  h1{font-size:clamp(28px,4.4vw,44px);line-height:1.06;letter-spacing:-.02em;font-weight:850;margin:0 0 14px}
+  .hero .lead-quote{font-size:clamp(16px,2.1vw,19px);font-weight:600;color:#e7eef6;max-width:740px;margin:0;border-left:3px solid var(--teal);padding-left:16px}
+  main{padding:34px 0 12px}
+  .intro{font-size:16.5px;color:var(--sec);max-width:740px;margin:0 0 26px}
+  .intro b{color:var(--ink)}
+  .rows{display:flex;flex-direction:column;gap:14px;margin:0 0 30px}
+  .row{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;max-width:760px}
+  .row .rk{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teald);margin:0 0 6px}
+  .row .rv{font-size:15.5px;color:var(--sec);margin:0}
+  .row .rv b{color:var(--ink)}
+  .note{font-size:13px;color:var(--mut);background:var(--sur);border:1px solid var(--line);border-radius:12px;padding:12px 15px;max-width:760px;margin:0 0 4px}
+  footer{margin-top:8px;background:var(--ink);color:#9fb0c2;padding:24px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline}
+  footer .fnote{font-size:13px;max-width:600px}
+  footer b{color:#e7edf3}
+  footer .fbrand{font-weight:800;color:var(--teal);line-height:1.3;text-align:right;font-size:13.5px}
+  footer .fbrand span{display:block;font-weight:600;color:#7f93a8;font-size:12px;margin-top:2px}
+  footer .bid{display:block;font-size:11px;color:#6f8199;margin-top:8px;letter-spacing:.04em}
+</style></head>
+<body>
+
+<nav class="topbar"><div class="tw">
+  <a class="back" href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html">← Kursbuch Foresight</a>
+  <a class="kb" href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html">Start</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Meta · Transparenz</span>
+    <h1>KI-Transparenz</h1>
+    <p class="lead-quote">„Das Kursbuch Foresight entsteht in einem ko-evolutionären Arbeitsprozess von Klaus Burmeister mit den KI-Systemen ChatGPT von OpenAI und Claude von Anthropic."</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="intro">Diese Seite legt offen, wie das Kursbuch Foresight entsteht und wie sich die Arbeit zwischen Mensch und KI verteilt.</p>
+
+  <div class="rows">
+    <div class="row">
+      <div class="rk">Rolle der KI</div>
+      <p class="rv">Recherche, kritische Prüfung, Strukturierung, Redaktion und technische Umsetzung.</p>
+    </div>
+    <div class="row">
+      <div class="rk">Auswahl und Verantwortung</div>
+      <p class="rv"><b>Auswahl, Bewertung, konzeptionelle Entscheidungen und inhaltliche Verantwortung liegen bei Klaus Burmeister.</b></p>
+    </div>
+    <div class="row">
+      <div class="rk">Verhältnis</div>
+      <p class="rv">Die KI ist dabei weder bloßes Werkzeug noch autonome Autorin.</p>
+    </div>
+  </div>
+
+  <p class="note">Impressum und Datenschutz folgen als eigene Seiten, sobald belastbare Fassungen vorliegen.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fnote">
+      <b>Kursbuch Foresight.</b> Meta · KI-Transparenz.<!-- Provenienz (intern): Meta-Seite · Integration RGI-20260827-B-META -->
+    </div>
+    <div class="fbrand">Konzept und Realisierung: Klaus Burmeister · foresightlab<span>als Beitrag zu foresight_D</span></div>
+    <div class="fmeta" style="flex-basis:100%;border-top:1px solid rgba(159,176,194,.22);margin-top:14px;padding-top:12px;font-size:12.5px;color:#9fb0c2"><a href="../Karte06/2026-08-27_Kursbuch-Foresight_Entstehung_Rundgang-Integration-B.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Entstehung</a><span style="opacity:.5;padding:0 9px">·</span><a href="Impressum.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Impressum</a><span style="opacity:.5;padding:0 9px">·</span><a href="Quellen.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Quellen</a><span style="opacity:.5;padding:0 9px">·</span><a href="2026-08-27_Kursbuch-Foresight_KI-Transparenz.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">KI-Transparenz</a></div>
+  </div>
+</footer>
+
+</body></html>

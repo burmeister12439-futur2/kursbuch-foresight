@@ -1,0 +1,517 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kursbuch Foresight · Karte 01 · Zeit</title>
+<style>
+  :root{
+    --ink:#0E1524; --ink2:#122744;
+    --teal:#10C79E; --teald:#0C9670; --coral:#FF6A4D; --corald:#E2542E;
+    --violet:#7A6CF0; --violetd:#5b4fd0; --sun:#FFC531; --sund:#B98900;
+    --steel:#3A6EA5;
+    --bg:#F4F2EA; --card:#ffffff; --line:#E7E3D9; --sur:#FCFBF8;
+    --ink-t:#1c2431; --sec:#454e5b; --mut:#8b93a1;
+    --font:"Segoe UI",Roboto,-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink-t);line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+  .hero{background:radial-gradient(1100px 460px at 84% -14%,var(--ink2) 0%,var(--ink) 62%);color:#fff;padding:44px 0 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:40px 40px;-webkit-mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%);mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%)}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .eyebrow .k{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#9cd2c4}
+  h1{font-size:clamp(32px,5vw,52px);line-height:1.02;letter-spacing:-.02em;font-weight:850;margin:0 0 10px}
+  h1 em{font-style:normal;color:var(--teal)}
+  .kern{font-size:19px;font-weight:700;color:#fff;margin:0 0 6px;max-width:820px}
+  .lede{font-size:15.5px;color:#aebccd;max-width:820px;margin:0}
+  .badge{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+  .badge.on{color:#0E1524;background:var(--sun)}
+  .mk{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#9cd2c4}
+  .mk::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--teal)}
+
+  .readnote{background:#eef7f3;border:1px solid #cfe9df;border-left:5px solid var(--teal);border-radius:14px;padding:14px 18px;margin:40px 0 18px;font-size:15.5px;color:#1c4d3f}
+  .readnote b{color:#0C5c48}
+
+  .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+  .controls .lbl{font-size:12.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin-right:4px}
+  .ltog{font-family:inherit;font-size:13px;font-weight:700;border:1.5px solid var(--line);background:var(--card);color:var(--ink-t);border-radius:999px;padding:6px 13px 6px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.12s}
+  .ltog .sw{width:11px;height:11px;border-radius:50%;background:var(--c)}
+  .ltog.off{background:var(--sur);color:var(--mut);border-color:#e9e5db}
+  .ltog.off .sw{background:transparent;box-shadow:inset 0 0 0 2px #c8ccd2}
+  .ltog-all{font-family:inherit;font-size:12.5px;font-weight:800;letter-spacing:.03em;border:1.5px solid var(--ink-t);background:var(--ink-t);color:#fff;border-radius:999px;padding:6px 14px;cursor:pointer}
+  .ltog-all[disabled]{opacity:.4;cursor:default}
+  .laneempty{display:none;padding:20px 18px;border:1px dashed #cdd3db;border-radius:14px;color:var(--sec);font-size:14px;background:var(--sur);margin:0 0 12px}
+
+  .tlbox{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px 0 6px;box-shadow:0 12px 30px rgba(20,26,36,.05);overflow:hidden}
+  .tlscroll{overflow-x:auto;overflow-y:hidden;padding:6px 16px 14px}
+  .tlinner{position:relative}
+  .eras{position:relative;height:46px}
+  .era{position:absolute;top:0;bottom:0;padding:6px 10px;border-left:1px dashed #d9d3c6;overflow:hidden}
+  .era .et{font-size:12.5px;font-weight:800;color:var(--ink);white-space:nowrap}
+  .era .es{font-size:11px;color:var(--mut);white-space:nowrap}
+  .erabg{position:absolute;top:46px;bottom:34px;z-index:0}
+  .axis{position:relative;height:22px;border-top:2px solid var(--line);margin-top:2px}
+  .tick{position:absolute;top:0;transform:translateX(-50%);font-size:11px;color:var(--mut);font-weight:700}
+  .tick::before{content:"";position:absolute;top:-8px;left:50%;width:1px;height:6px;background:var(--line)}
+
+  .thr{position:absolute;width:0;border-left:2px dashed var(--sund);z-index:3;pointer-events:none}
+  .thr .thrl{position:absolute;top:-1px;left:7px;font-size:10.5px;font-weight:800;color:#8a6500;background:#fff;padding:1px 7px;border:1px solid #f0e2b8;border-radius:999px;white-space:nowrap}
+  .thr2{position:absolute;width:0;border-left:1px dotted var(--sund);z-index:2;pointer-events:none;opacity:.75}
+  .zcap{position:absolute;top:25px;font-size:10px;font-weight:800;padding:0 8px;white-space:nowrap;overflow:hidden;letter-spacing:0}
+  .ev.st-beob .pt{border-color:var(--teald);background:#e2f4ee;box-shadow:0 0 0 3px rgba(16,199,158,.16)}
+  .ev.st-hyp .pt{border-color:var(--sund);border-style:dashed;background:#fffaf0}
+
+  .lane{position:relative;z-index:1;border-top:1px solid #f0ece2}
+  .lhead{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:var(--c);padding:8px 0 2px}
+  .lhead .d{width:10px;height:10px;border-radius:50%;background:var(--c)}
+  .ltrack{position:relative}
+  .lane .base{position:absolute;left:0;right:0;height:2px;background:repeating-linear-gradient(90deg,var(--cl) 0 6px,transparent 6px 12px)}
+  .ev{position:absolute;top:0;width:0;border:0;background:transparent;cursor:pointer;font-family:inherit;padding:0}
+  .ev .lab{position:absolute;left:50%;transform:translateX(-50%);width:112px;text-align:center;line-height:1.12}
+  .ev .cap{display:block;font-size:10.5px;font-weight:700;color:var(--sec)}
+  .ev .yr{display:block;font-size:10px;font-weight:800;color:var(--mut)}
+  .ev .pt{position:absolute;left:50%;transform:translateX(-50%);width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--c);transition:.12s}
+  .ev.fork .pt{background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 24%,transparent)}
+  .ev:hover .pt{transform:translateX(-50%) scale(1.25)}
+  .ev.sel .pt{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--ink);transform:translateX(-50%) scale(1.12)}
+  .ev.sel .cap{color:var(--ink)}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:12px 2px 0;font-size:12.5px;color:var(--sec)}
+  .legend .it{display:inline-flex;align-items:center;gap:7px}
+  .legend .fk{width:14px;height:14px;border-radius:50%;background:var(--corald);box-shadow:0 0 0 3px rgba(226,84,46,.22)}
+  .legend .nm{width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--mut)}
+
+  .detail{margin:18px 0 0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;min-height:150px;box-shadow:0 12px 30px rgba(20,26,36,.05)}
+  .detail .dl{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  .detag{display:inline-flex;flex-wrap:wrap;gap:7px;margin-bottom:8px}
+  .dtag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#fff;border-radius:999px;padding:3px 10px}
+  .stat{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;border-radius:999px;padding:3px 10px;border:1.5px solid transparent}
+  .stat.fakt{color:#0C5c48;background:#e2f4ee;border-color:#bfe6d9}
+  .stat.kontext{color:#455063;background:#eef1f5;border-color:#d7dee8}
+  .stat.lesart{color:#41369e;background:#efedfb;border-color:#ddd6f5}
+  .stat.beob{color:#8a6500;background:#fff3d3;border-color:#f0e2b8}
+  .stat.hyp{color:#8a6500;background:#fffaf0;border-color:#f0e2b8;border-style:dashed}
+  .detail h3{font-size:23px;font-weight:850;margin:2px 0 4px;color:var(--ink)}
+  .detail .yy{font-size:14px;font-weight:800;color:var(--mut);margin-bottom:10px}
+  .detail p{font-size:15.5px;color:var(--ink-t);margin:0 0 10px;max-width:820px}
+  .fork{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;margin:12px 0 6px}
+  .fork .fb{flex:1;min-width:220px;border-radius:12px;padding:12px 14px}
+  .fork .fa{background:#f3f1fa;border:1px solid #ddd6f5}
+  .fork .ff{background:#f3f1fa;border:1px solid #ddd6f5}
+  .fork .fk{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;color:var(--violetd)}
+  .fork .ft{font-size:15px;font-weight:700;color:var(--ink)}
+  .fork .arr{display:flex;align-items:center;font-size:22px;color:var(--violetd);font-weight:800}
+  .forkhint{font-size:12px;font-weight:700;color:var(--violetd);margin:2px 0 0}
+  .dsrc{font-size:12.5px;color:var(--mut);font-style:italic;border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
+  .ownnote{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#4a3fb0;background:#efedfb;border:1px solid #ddd6f5;border-radius:999px;padding:4px 11px;margin:0 0 10px}
+
+  .phasenote{font-size:13px;color:var(--sec);margin:14px 2px 0}
+  .phasenote b{color:var(--ink)}
+
+  .authnote{margin:22px 0 0;background:#f3f1fa;border:1px solid #ddd6f5;border-left:5px solid var(--violet);border-radius:14px;padding:14px 18px;font-size:14.5px;color:#3d3357}
+  .authnote b{color:#2f2652}
+  .authnote .three{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 2px}
+  .authnote .three span{font-size:13px;font-weight:700;color:#41369e;background:#fff;border:1px solid #ddd6f5;border-radius:999px;padding:5px 12px}
+
+.quellen{margin:26px 0 0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 12px 30px rgba(20,26,36,.05)}
+  .quellen h2{font-size:20px;font-weight:850;color:var(--ink);margin:0 0 4px}
+  .quellen .qhint{font-size:13px;color:var(--mut);margin:0 0 14px}
+  .qsrc{font-size:13.5px;color:var(--sec);padding:8px 0;border-top:1px solid #f0ece2;line-height:1.5}
+  .qsrc:first-of-type{border-top:0}
+  .qsrc .qk{font-weight:800;color:var(--ink)}
+  .qsrc a{color:var(--teald);font-weight:700;text-decoration:none}
+  .qsrc a:hover{text-decoration:underline}
+  .authnote .isrc{display:inline-block;font-size:12px;font-weight:800;color:#4a3fb0;background:#fff;border:1px solid #ddd6f5;border-radius:999px;padding:2px 9px;margin:0 6px 0 0}
+  .grundlage{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin-top:4px}
+  footer{margin-top:40px;background:var(--ink);color:#c7d0da;padding:30px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer .fnote{font-size:14px;max-width:700px}
+  footer b{color:#fff}
+  footer .fbrand{font-weight:800;color:var(--teal);line-height:1.3;text-align:right}
+  footer .fbrand span{display:block;font-weight:600;color:#9fb0c2;font-size:12.5px;margin-top:2px}
+  .draft{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#9fb0c2;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 10px;margin-top:10px}
+  .knav{position:sticky;top:0;z-index:70;background:rgba(14,21,36,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .knav .kw{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:4px;height:46px;padding:0 14px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  .knav a{color:#c7d0da;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:999px;flex:none}
+  .knav a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .knav a.on{background:#fff;color:#0E1524}
+  .knav .kb{color:var(--teal);font-weight:800;margin-right:6px}
+  .knav .soon{color:#6f8199;font-size:12.5px;font-weight:700;padding:6px 10px;flex:none;white-space:nowrap}
+
+  /* mobile stacked view */
+  #mstack{display:none}
+  .mphase{margin:0 0 14px;border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden;box-shadow:0 8px 20px rgba(20,26,36,.04)}
+  .mphead{padding:12px 14px;border-left:6px solid var(--pc,#d9d3c6)}
+  .mphead .mpt{font-size:15px;font-weight:850;color:var(--ink)}
+  .mphead .mps{font-size:12.5px;color:var(--mut)}
+  .mpev{display:flex;flex-wrap:wrap;gap:8px;padding:2px 14px 14px}
+  .mchip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--sur);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700;color:var(--ink-t);cursor:pointer;font-family:inherit;line-height:1.1}
+  .mchip .cd{width:10px;height:10px;border-radius:50%;background:var(--cc);flex:none}
+  .mchip .cy{color:var(--mut);font-weight:800;font-size:11.5px}
+  .mthr{margin:4px 0 16px;background:#fff7e6;border:1px solid #f0e2b8;border-left:6px solid var(--sund);border-radius:14px;padding:12px 14px}
+  .mthr .tt{font-size:14px;font-weight:850;color:#8a6500}
+  .mthr .ts{font-size:12.5px;color:#7a6a3a;margin-top:2px}
+  .msub{font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);padding:2px 14px 4px}
+  .mphase.ph5 .mphead{border-left-color:var(--sund)}
+  @media (max-width:720px){
+    .tlbox{display:none}
+    #controls{display:none}
+    .legend{display:none}
+    #mstack{display:block;margin-top:2px}
+    h1{font-size:34px}
+  }
+</style></head>
+<body>
+<nav class="knav"><div class="kw">
+  <a class="kb" href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html">Kursbuch</a>
+  <a class="on" href="2026-08-27_Kursbuch-Foresight_Karte01_Zeit_Rundgang-Integration-B.html">01 Zeit</a>
+  <a href="../Karte02/2026-08-27_Kursbuch-Foresight_Karte02_Begriffe_Rundgang-Integration-B.html">02 Begriffe</a>
+  <a href="../Karte03/2026-08-27_Kursbuch-Foresight_Karte03_DACH_Rundgang-Integration-B.html">03 Landschaft</a>
+  <a href="../Karte04/2026-08-27_Kursbuch-Foresight_Karte04_Praxis-Guete_Rundgang-Integration-B.html">04 Praxis &amp; Güte</a>
+  <a href="../Karte05/2026-08-27_Kursbuch-Foresight_Karte05_Ich-Wir_Rundgang-Integration-B.html">05 Ich / Wir</a>
+  <a href="../Karte06/2026-08-27_Kursbuch-Foresight_Karte06_Zukunft_Rundgang-Integration-B.html">06 Zukunft</a>
+</div></nav>
+
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <a href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html" style="color:#9cd2c4;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.08em">← KURSBUCH</a>
+      <span class="k">Kursbuch Foresight · Karte 01 · Zeit</span>
+      <span style="font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9cd2c4;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:2px 9px">Schritt 1 von 6 · verstehen</span>
+      <span class="mk">Kartierung</span>
+      <!-- Provenienz (intern): Quellbuild K01-IMPL-20260825-I · Integration RGI-20260827-B-K01-R1 -->
+    </div>
+    <h1>Die <em>Zeitkarte</em></h1>
+    <p class="kern">Wie hat sich moderne Zukunftsarbeit entwickelt, und wo stehen wir heute?</p>
+    <p class="lede">Moderne Zukunftsarbeit hat keinen einzigen Ursprung. Sie wächst aus Planung und Wissenschaft, aus politischen Umbrüchen, wirtschaftlicher Praxis und gesellschaftlicher Imagination. Keine gerade Fortschrittslinie: Ältere Formen verschwinden nicht, neue kommen hinzu und verändern ihre Bedeutung.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="readnote">
+    <b>Wie Du diese Karte liest.</b> Diese Karte erzählt keine Fortschrittsgeschichte. Sie folgt <b>fünf Entwicklungsspuren</b>, auf denen sich Zukunftsarbeit verändert. Das Jahr <b>2025</b> markiert die Schwelle vom Rückblick zum Vorausblick. Die fünf Phasen folgen einer Periodisierung des Feldes (Grundlage: Burmeister 2025). Jeder Punkt lässt sich anklicken und öffnet darunter Kurzbeschreibung, epistemischen Status und Quelle.
+  </div>
+
+  <div style="margin:18px 2px 8px">
+    <div style="font-size:16px;font-weight:850;color:var(--ink)">Entwicklung der modernen Zukunftsarbeit 1942–2050</div>
+    <div style="font-size:13px;color:var(--mut);font-weight:600">Fünf Entwicklungsspuren · historische Entwicklung bis 2025 · Vorausblick bis 2050</div>
+  </div>
+
+  <div class="controls" id="controls">
+    <span class="lbl">Spuren</span>
+  </div>
+
+  <div class="tlbox">
+    <div class="tlscroll">
+      <div class="tlinner" id="tlinner">
+        <div class="eras" id="eras"></div>
+        <div id="lanes"></div>
+        <div class="axis" id="axis"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mstack"></div>
+
+  <div class="detail" id="detail"></div>
+
+  <div class="legend">
+    <span class="it"><span class="fk"></span> Punkt mit Lesart (Anlass → Antwort)</span>
+    <span class="it"><span class="nm"></span> Meilenstein</span>
+    <span class="it">Tipp: Zum Blättern seitlich scrollen.</span>
+  </div>
+
+  <p class="phasenote"><b>Ein Vorlauf, vier historische Phasen und ein Vorausblick.</b> Vor den Phasen steht der Vorlauf 1942 bis 1950 (Neuformierung): Mitte der 1940er Jahre die Begriffsbildung „Futurologie" (Flechtheim, 1943/45) und „Teaching the Future" 1945, weitere Neuformierung bis 1950. Eine Periodisierung des Feldes (Grundlage: Burmeister 2025): Planung und Kontrolle, System und Krise, Trend und Markt, Beteiligung und Sinn. Die fünfte Phase, Daten und Simulation, ist ausdrücklich Vorausblick. Bis 2025 rekonstruieren wir Geschichte, danach beginnt eine bewusst offene Vorausschau.</p>
+
+  <div class="authnote"><b>Übergreifende Entwicklungslinien der Zukunftsarbeit</b>
+    <div style="font-size:19px;font-weight:850;color:#2f2652;margin:10px 0 4px">Vom Plan zur Lernarchitektur</div>
+    <div style="font-size:14px;color:#3d3357;margin:2px 0">Leitbewegung: Vom Modell zur Aushandlung</div>
+    <div style="font-size:14px;color:#3d3357;margin:2px 0">Übergreifendes Motiv: Zukunft als Lernform</div>
+    <div style="font-size:12.5px;color:#6b6385;margin-top:10px">Eine fachliche Verdichtung der Entwicklung des Feldes, keine historische Fortschrittslinie.</div>
+    <div style="font-size:12px;color:var(--mut);font-style:italic;margin-top:6px">Analyse: Burmeister 2025</div></div>
+
+  <section class="quellen" id="quellen">
+    <h2>Quellen zu Karte 01</h2>
+    <p class="qhint">Auf der Karte stehen Kurzbelege. Die vollständigen Angaben und Weblinks stehen hier.</p>
+    <div id="quellenlist"></div>
+  </section>
+
+</main>
+
+<div class="wrap" style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><p style="font-size:16px;color:#454e5b;max-width:760px;margin:34px 0 0">Zukunftsarbeit steht heute nicht am Ende einer Entwicklung, sondern an einer offenen Schwelle. Mit den Formen haben sich auch die Begriffe vervielfacht. Wovon reden wir heute eigentlich, wenn wir von Foresight sprechen?</p><a href="../Karte02/2026-08-27_Kursbuch-Foresight_Karte02_Begriffe_Rundgang-Integration-B.html" style="display:inline-flex;align-items:center;gap:10px;background:var(--sur);border:1px dashed #cdd3db;border-radius:14px;padding:14px 20px;color:#6f8199;font-weight:800;font-size:15px;text-decoration:none">weiter zu Karte 02 · Begriffe <span style="color:#8b93a1;font-size:13px;font-weight:700">→</span></a></div>
+
+<footer>
+  <div class="wrap">
+    <div class="fnote">
+      <b>Kursbuch Foresight.</b> Karte 01 · Zeit. Teil des Rundgangs Start → 01 → 02 → 03 → 04 → 05 → 06.
+      <!-- Provenienz (intern): Quellbuild K01-IMPL-20260825-I · Integration RGI-20260827-B-K01-R1 -->
+    </div>
+    <div class="fbrand">Konzept und Realisierung: Klaus Burmeister · foresightlab<span>als Beitrag zu foresight_D</span></div>
+    <div class="fmeta" style="flex-basis:100%;border-top:1px solid rgba(159,176,194,.22);margin-top:14px;padding-top:12px;font-size:12.5px;color:#9fb0c2"><a href="../Karte06/2026-08-27_Kursbuch-Foresight_Entstehung_Rundgang-Integration-B.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Entstehung</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Impressum.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Impressum</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Quellen.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Quellen</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/2026-08-27_Kursbuch-Foresight_KI-Transparenz.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">KI-Transparenz</a></div>
+  </div>
+</footer>
+
+<script>
+const Y0=1940, Y1=2050, SPAN=Y1-Y0, INNER_W=2600, PAD_PX=100;
+const xpx=y=>(PAD_PX+(y-Y0)/SPAN*(INNER_W-2*PAD_PX));
+
+const LANES=[
+  {id:'gp', label:'Gesellschaft & Politik',      color:'var(--corald)', cl:'#f2cfc2'},
+  {id:'wt', label:'Wissenschaft & Technologie',  color:'var(--teald)',  cl:'#c4e8db'},
+  {id:'ml', label:'Methoden & Leitbegriffe',     color:'var(--steel)',  cl:'#cfdcea'},
+  {id:'ip', label:'Institutionen & Programme',   color:'var(--violetd)',cl:'#d9d3f5'},
+  {id:'wp', label:'Wirtschaft & Praxis',         color:'var(--sund)',   cl:'#f0e2b8'}
+];
+
+const ERAS=[
+  {a:1942,b:1950,t:'Vorlauf 1942–1950 · Neuformierung',s:'Begriffsbildung 1943/45, ab 1945 neue Werkzeuge und staatlicher Bedarf',tint:'rgba(58,110,165,.05)'},
+  {a:1950,b:1970,t:'Phase 1 · Planung und Kontrolle',s:'Zukunft gilt als analysierbar und planbar',tint:'rgba(16,199,158,.05)'},
+  {a:1970,b:1990,t:'Phase 2 · System und Krise',s:'Grenzen, Wechselwirkungen, Unsicherheit',tint:'rgba(255,106,77,.05)'},
+  {a:1990,b:2010,t:'Phase 3 · Trend und Markt',s:'Zukunft wird Ressource von Wirtschaft und Politik',tint:'rgba(255,197,49,.07)'},
+  {a:2010,b:2025,t:'Phase 4 · Beteiligung und Sinn',s:'Zukunft als Fähigkeit',tint:'rgba(122,108,240,.06)'},
+  {a:2025,b:2050,t:'Phase 5 · Daten und Simulation',s:'Vorausblick · Arbeitshypothese',tint:'rgba(255,197,49,.10)',hatch:true}
+];
+
+const EV=[
+  // Vorlauf 1945-1950
+  {y:1946,l:'gp',k:'Atomzeitalter · Kalter Krieg',t:'Atomzeitalter und Kalter Krieg',d:'Kriegserfahrung, Atomwaffe und der beginnende Kalte Krieg lassen den staatlichen Bedarf an langfristiger, systematischer Vorausschau wachsen. Kein einzelner Ursprung, sondern ein Zusammentreffen mehrerer Entwicklungen.',src:'Kontext · Zeitgeschichte',stat:'kontext'},
+  {y:1947,l:'wt',k:'OR · Kybernetik',t:'Operations Research, Kybernetik, Systemanalyse',d:'Operations Research aus dem Krieg, frühe Kybernetik und Systemanalyse liefern neue Werkzeuge, um Entscheidungen unter Unsicherheit zu strukturieren. Die Methodengenese ist fachhistorisch bei Steinmüller 1997 dargestellt.',src:'Steinmüller 1997',stat:'fakt'},
+  {y:1948,l:'ip',k:'RAND',t:'RAND Corporation',d:'Aus dem Project RAND (1945) wird 1948 eine eigenständige Denkfabrik. Sie ist der institutionelle Ausgangspunkt der Delphi-Methode und ein Zentrum von Systemanalyse und Szenariodenken, nicht deren einziger Ursprung.',src:'RAND 1948',stat:'fakt'},
+  {y:1944,yl:'1943/45',l:'ml',k:'Flechtheim · Futurologie',t:'Flechtheim: „Futurologie" (1943/45)',d:'Ossip K. Flechtheim prägt Mitte der 1940er Jahre (1943/45) den Begriff „Futurologie" als Programm einer eigenständigen Beschäftigung mit Zukunft. Die Programmschrift „Teaching the Future" erscheint 1945. Die Datierung folgt der historischen Darstellung bei Steinmüller.',src:'Steinmüller 2012',stat:'fakt'},
+  // Phase 1 1950-1970
+  {y:1956,yl:'frühe 1950er',l:'wt',k:'Delphi',t:'Delphi-Methode',d:'Bei RAND in den frühen 1950er Jahren entwickelt (Dalkey, Helmer): die mehrrundige, anonyme Expertenbefragung mit Rückspiegelung. Breit publiziert 1963 (Dalkey und Helmer, Management Science).',src:'RAND 1963',stat:'fakt'},
+  {y:1960,yl:'1960er-Jahre',l:'ml',k:'Szenariodenken (Kahn)',t:'Kahn: Szenariodenken in den 1960er-Jahren',d:'Herman Kahn spielt mögliche Zukünfte systematisch durch. Szenariodenken entsteht nicht an einem einzigen Ort und nicht in einem einzigen Jahr, sondern über die 1960er Jahre in mehreren Linien: bei RAND, später am Hudson Institute, parallel in der französischen Futuribles-Schule.',src:'Kahn/Wiener 1967',stat:'fakt'},
+  {y:1963,l:'ml',k:'Gabor',t:'Gabor: „Inventing the Future"',d:'„Die Zukunft ist nicht vorhersehbar, aber gestaltbar." Ein Leitsatz, der das Feld bis heute prägt.',src:'Gabor 1963',stat:'fakt'},
+  {y:1966,l:'ip',k:'World Future Society',t:'World Future Society',d:'Öffentlichkeitswirksame US-amerikanische Vereinigung der Zukunftsforschung. Nicht die erste Vereinigung des Feldes.',src:'WFS 1966',stat:'fakt'},
+  {y:1968,l:'gp',k:'Zukunftswerkstätten',t:'Jungk: Zukunftswerkstätten',d:'Robert Jungk erweitert das Feld um eine kritische, auf Beteiligung zielende Perspektive: Zukunft als Sache vieler, nicht als Expertenmonopol. Jungk beschreibt die Zukunftswerkstatt als Methode in „Statt auf den großen Tag zu warten" (Kursbuch 53, 1978).',src:'Jungk 1978',stat:'fakt'},
+  // Phase 2 1970-1990
+  {y:1971,l:'wp',k:'Shell-Szenarien',t:'Shell: Group Planning',d:'Pierre Wack und die Group Planning setzen Szenarien in der Wirtschaft ein, mit Preiswarnungen bereits 1972.',src:'Wack · Shell',stat:'fakt'},
+  {y:1972,l:'wt',k:'Grenzen des Wachstums',t:'„Die Grenzen des Wachstums"',d:'Belegter Befund: Ein Weltmodell macht ökologische Grenzen sichtbar und verschiebt die öffentliche Perspektive vom Wachstum zur Endlichkeit (Meadows u.a. 1972). Die Deutung von Anlass und Antwort im Feld ist eine Interpretation von foresight_D.',fork:{a:'Ökologische Grenzen werden sichtbar',f:'System- und Zukunftsforschung gewinnen an Gewicht'},src:'Meadows u.a. 1972',stat:'fakt'},
+  {y:1973,l:'gp',k:'Ölpreisschock',t:'Ölpreisschock 1973',d:'Der Ölpreisschock 1973 verschärft die öffentliche Debatte über Wachstum und Grenzen. Er trifft auf ein Feld, das bereits über Szenarien und über die Grenzen des Wachstums nachdenkt, und erschüttert den Glauben an lineare Planbarkeit.',src:'Steinmüller 2013',stat:'fakt'},
+  {y:1973,l:'ip',k:'WFSF',t:'World Futures Studies Federation',d:'Akademisch, international und UNESCO-nah ausgerichtetes Netzwerk der Futures Studies.',src:'WFSF 1973',stat:'fakt'},
+  {y:1982,l:'wp',k:'Naisbitt · Megatrends',t:'Naisbitt: „Megatrends"',d:'„Megatrends" (1982, deutsch 1984) macht eine neue Zukunftssprache populär: weniger Systemkrise, mehr Trends, Wandel und Management. Ein Übergangsmarker, der bereits auf die Phase Trend und Markt vorausweist.',src:'Naisbitt 1982',stat:'fakt'},
+  // Phase 3 1990-2010
+  {y:1989,l:'gp',k:'Ende Kalter Krieg',t:'Ende des Kalten Krieges',d:'Globalisierung und Öffnung verschieben die Fragen von der Blockkonfrontation zu Markt und Vernetzung.',src:'Kontext · Zeitgeschichte',stat:'kontext'},
+  {y:1992,l:'ml',k:'SF & Imagination',t:'Science Fiction und Imagination',d:'Science Fiction und Zukunftsforschung werden als Verbindung ernst genommen. Diese imaginative Linie lässt sich als früher Anschluss an spätere Ansätze wie Design Fiction und Speculative Design lesen.',src:'Interpretation: foresight_D',stat:'lesart'},
+  {y:1993,l:'ip',k:'Technology Foresight',t:'Nationale Technology-Foresight-Programme',d:'Staaten institutionalisieren Vorausschau: das britische Technology Foresight Programme (angekündigt 1993 im Weißbuch „Realising Our Potential", Durchführung ab 1994, erste Berichte 1995) und der deutsche Delphi-Bericht (BMFT 1993, durchgeführt von Fraunhofer ISI nach japanischem NISTEP-Vorbild) verbinden Zukunftsarbeit mit Strategie und Innovationspolitik.',src:'Georghiou 1996; BMFT 1993',stat:'fakt'},
+  {y:1996,l:'ml',k:'Technology Foresight etabliert sich',t:'Technology Foresight etabliert sich als Instrument der Technologiepolitik',d:'In den 1990er Jahren etabliert sich Technology Foresight als Instrument der Technologiepolitik. Der angewandte, oft beteiligende Prozess verbindet sich mit Innovations- und Forschungspolitik und gewinnt an Sichtbarkeit neben der akademischen Zukunftsforschung. Keine Ablösung, ein Nebeneinander; kein Anspruch einer Begriffsprägung.',src:'Georghiou 1996',stat:'fakt'},
+  {y:2001,l:'ip',k:'EU-FOREN · Futur',t:'Europäische Foresight-Methodik',d:'Der FOREN-Leitfaden „A Practical Guide to Regional Foresight" (EU, 2001) und der deutsche BMBF-Futur-Prozess (Start 2001) verbreiten Foresight im europäischen Technologie- und Politikkontext.',src:'Europäische Kommission 2001; BMBF Futur',stat:'fakt'},
+  {y:1994,l:'wp',k:'Zukunft der Unternehmen (1994)',t:'1994 · Zukunft der Unternehmen in einer ökologischen Wirtschaft',d:'Belegter Befund: Leitschuh-Fecht / Burmeister (Hg.), „Die Zukunft der Unternehmen in einer ökologischen Wirtschaft" (1994), im Umfeld des SFZ-Projekts „Zukunftsforschung in Unternehmen"; darin u. a. Burmeister / Canzler. Interpretation: frühe Vorläuferlinie der späteren Corporate-Foresight-Praxis, ausdrücklich noch nicht der Begriff „Corporate Foresight".',src:'Leitschuh-Fecht/Burmeister 1994',stat:'fakt'},
+  {y:2002,l:'wp',k:'Zukunftsforschung und Unternehmen',t:'Zukunftsforschung und Unternehmen',d:'„Zukunftsforschung und Unternehmen. Praxis, Methoden, Perspektiven" (Z_dossier 02, Z_punkt, 2002): systematische Vertiefung, wie Unternehmen Zukunftswissen organisieren und für Entscheidungen nutzen. Nächste Stufe der bereits 1994 sichtbaren Entwicklung.',src:'Burmeister u.a. 2002',stat:'fakt'},
+  {y:2004,l:'wp',k:'Corporate Foresight (Begriff)',t:'Corporate Foresight wird explizit',d:'„Corporate Foresight. Unternehmen gestalten Zukunft" (Burmeister / Neef / Beyers, Murmann, 2004): hier wird Corporate Foresight ausdrücklich als Begriff und konzeptioneller Rahmen sichtbar. Internationale Stränge (Vorläufer Shell) laufen parallel.',src:'Burmeister/Neef/Beyers 2004',stat:'fakt'},
+  // Phase 4 2010-2025
+  {y:2012,l:'ml',k:'Futures Literacy',t:'Futures Literacy',d:'Der Umgang mit Zukunftsvorstellungen selbst rückt in den Mittelpunkt: Zukunft als Kompetenz. Über die 2000er wesentlich von Riel Miller geprägt, von der UNESCO getragen; Schlüsselpublikation „Transforming the Future" 2018, Futures Literacy Summit 2020. Der Marker 2012 steht für eine Entwicklungsspanne, nicht für ein Gründungsjahr.',src:'Miller/UNESCO 2018',stat:'fakt'},
+  {y:2013,l:'ip',k:'Strategische Vorausschau',t:'Strategische Vorausschau institutionell',d:'In Deutschland politisch sichtbar ab 2013; in der EU-Kommission ab 2019 und mit dem jährlichen Strategic Foresight Report ab 2020 institutionell verankert.',src:'Europäische Kommission 2020; Bundesregierung · Strategische Vorausschau',stat:'fakt'},
+  {y:2015,l:'gp',k:'Partizipation & Nachhaltigkeit',t:'Partizipative Ansätze und Nachhaltigkeitsorientierung',d:'Partizipative Ansätze und Nachhaltigkeitsorientierung gewinnen an Gewicht: Teilhabe, Dialog und die Ausrichtung auf langfristige Tragfähigkeit treten stärker hervor.',src:'Steinmüller 2014',stat:'fakt'},
+  {y:2010,yl:'Ende 2000er',l:'wp',k:'Corporate Foresight wiss.',t:'Corporate Foresight wird wissenschaftlich systematisiert',d:'Die bereits etablierte Corporate-Foresight-Praxis wird Ende der 2000er und Anfang der 2010er Jahre verstärkt wissenschaftlich systematisiert, einschließlich Capability- und Maturity-Perspektive (u. a. Köpernik 2009, Rohrbeck 2011). Rohrbeck ist nicht der Ursprung von Corporate Foresight, sondern eine spätere Stufe einer bereits vorhandenen Praxis.',src:'Rohrbeck 2011; Köpernik 2009; Steinmüller 2014',stat:'fakt'},
+  {y:2020,l:'gp',k:'Pandemie · Polykrise',t:'Pandemie und Polykrise',d:'Gleichzeitige, sich verstärkende Krisen überfordern lineare Planung und verstärken die Nachfrage nach robuster Vorausschau.',src:'Kontext · Zeitgeschichte',stat:'kontext'},
+  // Phase 5 2025-2050 (Vorausblick)
+  {y:2025,l:'wt',k:'Generative KI verändert Foresight',t:'Generative KI verändert Foresight',d:'2025 bezeichnet nicht den Beginn generativer KI, sondern ihren beobachtbaren Einfluss auf die Foresight-Praxis: KI-gestützte Recherche und Szenarioarbeit, schnellere Simulationen, neue Werkzeuge im Prozess, dazu neue Fragen nach Transparenz, Macht, Qualität und menschlicher Urteilskraft in der Zukunftsarbeit.',src:'Beobachtung: Kursbuch 2025/26',stat:'beob'},
+  {y:2043,yl:'bis 2050',l:'wt',k:'Vorausblick',t:'Daten und Simulation bis 2050',d:'Was bis 2050 daraus wird, bleibt Hypothese: weitergehende datenbasierte Simulation, neue Arbeitsteilungen zwischen Mensch und KI, vielleicht neue Formen kollektiver Zukunftsarbeit. Ohne Urteilskraft, Aushandlung und Imagination überflüssig zu machen.',src:'Arbeitshypothese: Kursbuch',stat:'hyp'}
+];
+
+const STAT={fakt:{c:'fakt',t:'Belegter Befund'},kontext:{c:'kontext',t:'Kontext'},lesart:{c:'lesart',t:'foresight_D-Deutung'},beob:{c:'beob',t:'Beobachtbar 2025/26'},hyp:{c:'hyp',t:'Arbeitshypothese'}};
+
+const SOURCES=[
+ {k:'Burmeister 2025',v:'Klaus Burmeister: 100 Jahre Zukunftsforschung – Back to Futures. Ein Rück- und Vorausblick, Szenario-Workshop „Foresight in Deutschland", Industriesalon Schöneweide, 16. Oktober 2025.'},
+ {k:'Kontext · Zeitgeschichte',v:'Allgemeiner zeitgeschichtlicher Kontext, keine Einzelquelle.'},
+ {k:'Steinmüller 1997',v:'Karlheinz Steinmüller: Grundlagen und Methoden der Zukunftsforschung. Szenarien, Delphi, Technikvorausschau, SFZ-WerkstattBericht 21, Gelsenkirchen 1997, ISBN 3-928635-21-2 (PDF-Fassung 2018). Grundlagenwerk, historische Sekundärquelle.'},
+ {k:'RAND 1948',v:'RAND Corporation, 1948 aus dem Project RAND (1945) verselbständigt.'},
+ {k:'Steinmüller 2012',v:'Karlheinz Steinmüller: Zukunftsforschung in Deutschland. Versuch eines historischen Abrisses, Teil 1. In: Zeitschrift für Zukunftsforschung, Bd. 1 Nr. 1, 2012. Historische Sekundärquelle, keine Periodisierungsautorität.',link:{t:'DOI · Zeitschrift für Zukunftsforschung',u:'https://doi.org/10.63370/zfz.v1i1.51'}},
+ {k:'RAND 1963',v:'Dalkey, N. C. / Helmer, O.: An Experimental Application of the Delphi Method to the Use of Experts, Management Science, 1963.'},
+ {k:'Kahn/Wiener 1967',v:'Herman Kahn / Anthony J. Wiener: The Year 2000, Hudson Institute, 1967.'},
+ {k:'Gabor 1963',v:'Dennis Gabor: Inventing the Future, 1963.'},
+ {k:'WFS 1966',v:'World Future Society, gegründet 1966 (USA).'},
+ {k:'Jungk 1978',v:'Robert Jungk: Statt auf den großen Tag zu warten … Über das Pläneschmieden von unten. Ein Bericht aus „Zukunftswerkstätten". Kursbuch 53, 1978, S. 1 bis 10.'},
+ {k:'Wack · Shell',v:'Pierre Wack: Scenarios: Uncharted Waters Ahead, Harvard Business Review, 1985 (Shell Group Planning).'},
+ {k:'Interpretation: foresight_D',v:'Interpretation des Kursbuchs / foresight_D; keine externe Einzelquelle.'},
+ {k:'Meadows u.a. 1972',v:'Donella H. Meadows u.a.: The Limits to Growth, Club of Rome, 1972 (deutsch: Die Grenzen des Wachstums, 1972).'},
+ {k:'Steinmüller 2013',v:'Karlheinz Steinmüller: Zukunftsforschung in Deutschland. Versuch eines historischen Abrisses, Teil 2. In: Zeitschrift für Zukunftsforschung, Bd. 2 Nr. 1, 2013. Historische Sekundärquelle, keine Periodisierungsautorität.',link:{t:'DOI · Zeitschrift für Zukunftsforschung',u:'https://doi.org/10.63370/zfz.v2i1.58'}},
+ {k:'WFSF 1973',v:'World Futures Studies Federation, gegründet 1973 in Paris (Vorläuferkonferenzen Oslo 1967, Kyoto 1970, Bukarest 1972).'},
+ {k:'Naisbitt 1982',v:'John Naisbitt: Megatrends, 1982 (deutsch 1984).'},
+ {k:'Georghiou 1996',v:'Luke Georghiou: The UK Technology Foresight Programme. In: Futures, Vol. 28, No. 4, May 1996, S. 359 bis 377.',link:{t:'DOI · Futures',u:'https://doi.org/10.1016/0016-3287(96)00013-4'}},
+ {k:'BMFT 1993',v:'BMFT (Hrsg.): Deutscher Delphi-Bericht zur Entwicklung von Wissenschaft und Technik, Bonn 1993.'},
+ {k:'Europäische Kommission 2001',v:'A Practical Guide to Regional Foresight (FOREN), Europäische Kommission, EUR 20128, 2001.'},
+ {k:'BMBF Futur',v:'BMBF (Hrsg.): Futur. Der deutsche Forschungsdialog. Eine erste Bilanz, Bonn 2003.',link:{t:'BMBF · Futur, Eine erste Bilanz',u:'https://www.bmftr.bund.de/SharedDocs/Downloads/DE/66/66bmbf_futur_eine_erste_bilanz.pdf'}},
+ {k:'Leitschuh-Fecht/Burmeister 1994',v:'Heike Leitschuh-Fecht / Klaus Burmeister (Hg.): Die Zukunft der Unternehmen in einer ökologischen Wirtschaft, Frankfurt a. M., Verlag der ökologischen Briefe, 1994, ISBN 3-928507-09-5 (darin Burmeister/Canzler).'},
+ {k:'Burmeister u.a. 2002',v:'Klaus Burmeister / Andreas Neef / Bert Albert / Holger Glockner: Zukunftsforschung und Unternehmen. Praxis, Methoden, Perspektiven, Z_dossier 02, Z_punkt, 2002.'},
+ {k:'Burmeister/Neef/Beyers 2004',v:'Klaus Burmeister / Andreas Neef / Bert Beyers: Corporate Foresight. Unternehmen gestalten Zukunft, Murmann, 2004, ISBN 978-3-938017-07-4.'},
+ {k:'Miller/UNESCO 2018',v:'Riel Miller (Hg.): Transforming the Future. Anticipation in the 21st Century, UNESCO/Routledge, 2018 (Open Access); Futures Literacy Summit 2020.'},
+ {k:'Europäische Kommission 2020',v:'Europäische Kommission: erster jährlicher Strategic Foresight Report, 2020 (Foresight-Zuständigkeit ab 2019).'},
+ {k:'Bundesregierung · Strategische Vorausschau',v:'Strategische Vorausschau in Deutschland, politisch sichtbar ab 2013; Beleg: Fraunhofer ISI (Warnke u.a.): Strategische Vorausschau, Studie für die Bundesregierung, 2022.'},
+ {k:'Steinmüller 2014',v:'Karlheinz Steinmüller: Zukunftsforschung in Deutschland. Versuch eines historischen Abrisses, Teil 3. In: Zeitschrift für Zukunftsforschung, Bd. 3 Nr. 1, 2014. Historische Sekundärquelle, keine Periodisierungsautorität.',link:{t:'DOI · Zeitschrift für Zukunftsforschung',u:'https://doi.org/10.63370/zfz.v3i1.63'}},
+ {k:'Rohrbeck 2011',v:'René Rohrbeck: Corporate Foresight. Towards a Maturity Model for the Future Orientation of a Firm. Berlin: Springer, 2011.'},
+ {k:'Köpernik 2009',v:'K. Köpernik: Corporate Foresight (Dissertation, FU Berlin), 2009.'},
+ {k:'Beobachtung: Kursbuch 2025/26',v:'Beobachtung des Kursbuchs zum aktuellen Einfluss generativer KI auf die Foresight-Praxis, 2025/26; keine externe Einzelquelle.'},
+ {k:'Arbeitshypothese: Kursbuch',v:'Arbeitshypothese des Kursbuchs zum Vorausblick bis 2050; keine externe Einzelquelle.'}
+];
+
+const eras=document.getElementById('eras');
+const inner=document.getElementById('tlinner');
+inner.style.width=INNER_W+'px';
+const P5MID=2030;
+ERAS.forEach(e=>{
+  const bg=document.createElement('div'); bg.className='erabg';
+  if(e.hatch){
+    // Phase 5 split into evidence zones: observed (solid teal) vs hypothesis (gold hatch)
+    const mid=xpx(P5MID);
+    bg.style.left=mid+'px'; bg.style.width=(xpx(e.b)-mid)+'px';
+    bg.style.backgroundColor='rgba(255,197,49,.10)';
+    bg.style.backgroundImage='repeating-linear-gradient(45deg,rgba(185,137,0,.12) 0 9px,rgba(185,137,0,0) 9px 18px)';
+    const ob=document.createElement('div'); ob.className='erabg';
+    ob.style.left=xpx(e.a)+'px'; ob.style.width=(mid-xpx(e.a))+'px'; ob.style.backgroundColor='rgba(16,199,158,.06)';
+    inner.insertBefore(ob, inner.firstChild);
+  } else {
+    bg.style.left=xpx(e.a)+'px'; bg.style.width=(xpx(e.b)-xpx(e.a))+'px'; bg.style.backgroundColor=e.tint;
+  }
+  inner.insertBefore(bg, inner.firstChild);
+  const lab=document.createElement('div'); lab.className='era';
+  lab.style.left=xpx(e.a)+'px'; lab.style.width=(xpx(e.b)-xpx(e.a))+'px';
+  lab.innerHTML='<div class="et">'+e.t+'</div>'+(e.hatch?'':'<div class="es">'+e.s+'</div>');
+  eras.appendChild(lab);
+});
+// Phase 5 evidence-zone captions (desktop)
+[[2025,P5MID,'Beobachtbar','#0C5c48'],[P5MID,2050,'Vorausblick bis 2050','#8a6500']].forEach(z=>{
+  const c=document.createElement('div'); c.className='zcap';
+  c.style.left=xpx(z[0])+'px'; c.style.width=(xpx(z[1])-xpx(z[0]))+'px'; c.style.color=z[3];
+  c.textContent=z[2]; eras.appendChild(c);
+});
+
+const axis=document.getElementById('axis');
+for(let y=1950;y<=2050;y+=10){
+  const tk=document.createElement('div'); tk.className='tick'; tk.style.left=xpx(y)+'px'; tk.textContent=y;
+  axis.appendChild(tk);
+}
+
+const lanesEl=document.getElementById('lanes');
+const laneColor={};
+const HALF=58, GAP=14, STEP=42, LABH=38, PADY=6;
+LANES.forEach(L=>{
+  laneColor[L.id]={color:L.color,cl:L.cl,label:L.label};
+  const evs=EV.filter(e=>e.l===L.id).map(e=>({e,i:EV.indexOf(e),x:xpx(e.y)})).sort((a,b)=>a.x-b.x);
+  const levelRight={};
+  evs.forEach(o=>{ const left=o.x-HALF; let lv=0; while(levelRight[lv]!==undefined && levelRight[lv]>left-8) lv++; levelRight[lv]=o.x+HALF; o.level=lv; });
+  let maxA=0,maxB=0;
+  evs.forEach(o=>{ const idx=Math.floor(o.level/2); if(o.level%2===0)maxA=Math.max(maxA,idx); else maxB=Math.max(maxB,idx); });
+  const lineY=GAP+maxA*STEP+LABH+PADY;
+  const H=lineY+GAP+maxB*STEP+LABH+PADY;
+  const lane=document.createElement('div'); lane.className='lane'; lane.dataset.lane=L.id;
+  lane.style.setProperty('--c',L.color); lane.style.setProperty('--cl',L.cl);
+  lane.innerHTML='<div class="lhead"><span class="d"></span>'+L.label+'</div><div class="ltrack"></div>';
+  const track=lane.querySelector('.ltrack'); track.style.height=H+'px';
+  const base=document.createElement('div'); base.className='base'; base.style.top=lineY+'px'; track.appendChild(base);
+  evs.forEach(o=>{
+    const up=o.level%2===0; const idx=Math.floor(o.level/2);
+    const labTop= up ? (lineY-GAP-LABH-idx*STEP) : (lineY+GAP+idx*STEP);
+    const yrTxt=o.e.yl||o.e.y;
+    const b=document.createElement('button'); b.className='ev'+(o.e.fork?' fork':'')+' st-'+o.e.stat; b.style.left=o.x+'px';
+    b.style.setProperty('--c',L.color); b.dataset.i=o.i; b.title=o.e.t+' ('+yrTxt+')';
+    b.innerHTML='<span class="lab" style="top:'+labTop+'px"><span class="cap">'+o.e.k+'</span><span class="yr">'+yrTxt+'</span></span><span class="pt" style="top:'+(lineY-7)+'px"></span>';
+    b.addEventListener('click',()=>toggleEv(o.i));
+    track.appendChild(b);
+  });
+  lanesEl.appendChild(lane);
+});
+
+// threshold divider at 2025
+const thr=document.createElement('div'); thr.className='thr';
+thr.style.left=xpx(2025)+'px'; thr.style.top='46px'; thr.style.height=lanesEl.offsetHeight+'px';
+thr.innerHTML='<span class="thrl">Schwelle 2025 · Rückblick → Vorausblick</span>';
+inner.appendChild(thr);
+// secondary divider inside Phase 5: observed vs hypothesis
+const thr2=document.createElement('div'); thr2.className='thr2';
+thr2.style.left=xpx(P5MID)+'px'; thr2.style.top='46px'; thr2.style.height=lanesEl.offsetHeight+'px';
+inner.appendChild(thr2);
+
+const ctr=document.getElementById('controls');
+const tlbox=document.querySelector('.tlbox');
+const laneEmpty=document.createElement('div'); laneEmpty.className='laneempty'; laneEmpty.id='laneempty';
+laneEmpty.textContent='Alle Spuren sind ausgeblendet. Wähle mindestens eine Spur oder „Alle anzeigen“, um die Zeitkarte wieder einzublenden.';
+tlbox.parentNode.insertBefore(laneEmpty, tlbox.nextSibling);
+const allBtn=document.createElement('button'); allBtn.type='button'; allBtn.className='ltog-all'; allBtn.textContent='Alle anzeigen';
+function updateLanes(){
+  const toggles=ctr.querySelectorAll('.ltog');
+  let vis=0; toggles.forEach(t=>{ if(!t.classList.contains('off')) vis++; });
+  laneEmpty.style.display = vis===0 ? 'block' : 'none';
+  tlbox.style.display = vis===0 ? 'none' : '';
+  allBtn.disabled = (vis===toggles.length);
+}
+LANES.forEach(L=>{
+  const t=document.createElement('button'); t.type='button'; t.className='ltog'; t.setAttribute('aria-pressed','true'); t.dataset.lane=L.id; t.style.setProperty('--c',L.color);
+  t.innerHTML='<span class="sw"></span>'+L.label;
+  t.addEventListener('click',()=>{
+    const off=t.classList.toggle('off');
+    t.setAttribute('aria-pressed', off?'false':'true');
+    const lane=document.querySelector('.lane[data-lane="'+L.id+'"]');
+    lane.style.display=off?'none':'';
+    updateLanes();
+  });
+  ctr.appendChild(t);
+});
+allBtn.addEventListener('click',()=>{
+  ctr.querySelectorAll('.ltog').forEach(t=>{
+    t.classList.remove('off'); t.setAttribute('aria-pressed','true');
+    const lane=document.querySelector('.lane[data-lane="'+t.dataset.lane+'"]'); if(lane) lane.style.display='';
+  });
+  updateLanes();
+});
+ctr.appendChild(allBtn);
+updateLanes();
+
+let CUR=-1;
+function neutralDetail(){
+  document.querySelectorAll('.ev').forEach(x=>x.classList.remove('sel'));
+  document.getElementById('detail').innerHTML='<div class="dl">Detail</div><p style="color:var(--sec)">Wähle ein Ereignis auf der Zeitachse, um Kurzbeschreibung, epistemischen Status und Quelle zu sehen.</p>';
+  CUR=-1;
+}
+function toggleEv(i){ if(i===CUR){ neutralDetail(); } else { showEv(i); CUR=i; } }
+function showEv(i){
+  const e=EV[i]; const lc=laneColor[e.l]; const st=STAT[e.stat]||STAT.fakt;
+  CUR=i;
+  document.querySelectorAll('.ev').forEach(x=>x.classList.toggle('sel',+x.dataset.i===i));
+  let forkHTML='';
+  if(e.fork){
+    forkHTML='<div class="forkhint">Interpretation: foresight_D, keine zwingende Kausalität:</div>'+
+      '<div class="fork"><div class="fb fa"><div class="fk">Anlass</div><div class="ft">'+e.fork.a+'</div></div>'+
+      '<div class="arr">→</div><div class="fb ff"><div class="fk">Antwort im Feld</div><div class="ft">'+e.fork.f+'</div></div></div>';
+  }
+  const yrTxt=e.yl||e.y;
+  document.getElementById('detail').innerHTML=
+    '<div class="detag"><span class="dtag" style="background:'+lc.color+'">'+lc.label+'</span>'+
+    '<span class="stat '+st.c+'">'+st.t+'</span></div>'+
+    '<h3>'+e.t+'</h3><div class="yy">'+yrTxt+'</div>'+
+    '<p>'+e.d+'</p>'+(e.own?'<div class="ownnote">Eigene Studie von D2030 · foresight_D</div>':'')+forkHTML+
+    '<div class="dsrc">'+(/^(Interpretation|Beobachtung|Arbeitshypothese):/.test(e.src)?'':'Quelle: ')+e.src+'</div>';
+}
+// mobile stacked view: phases as sections, events as tagged chips, no horizontal scroll
+const mstack=document.getElementById('mstack');
+const eraAccent=['#3A6EA5','#0C9670','#E2542E','#B98900','#7A6CF0','#B98900'];
+function mchip(i){ const L=laneColor[EV[i].l];
+  return '<button class="mchip" style="--cc:'+L.color+'" onclick="toggleEv('+i+');if(CUR==='+i+')document.getElementById(\'detail\').scrollIntoView({behavior:\'smooth\',block:\'center\'})"><span class="cd"></span>'+EV[i].k+' <span class="cy">'+(EV[i].yl||EV[i].y)+'</span></button>'; }
+ERAS.forEach((e,ei)=>{
+  if(e.a===2025){
+    mstack.insertAdjacentHTML('beforeend','<div class="mthr"><div class="tt">Schwelle 2025 · Rückblick → Vorausblick</div><div class="ts">Bis hier historische Rekonstruktion. Danach beginnt der offene Vorausblick.</div></div>');
+  }
+  const idxs=EV.map((ev,i)=>i).filter(i=>EV[i].y>=e.a && EV[i].y<e.b);
+  let body;
+  if(e.a===2025){
+    const beob=idxs.filter(i=>EV[i].stat!=='hyp');
+    const hyp=idxs.filter(i=>EV[i].stat==='hyp');
+    body='<div class="msub">Bereits beobachtbar · 2025/26</div><div class="mpev">'+beob.map(mchip).join('')+'</div>'+
+         '<div class="msub">Vorausblick · bis 2050</div><div class="mpev">'+hyp.map(mchip).join('')+'</div>';
+  } else {
+    body='<div class="mpev">'+idxs.map(mchip).join('')+'</div>';
+  }
+  mstack.insertAdjacentHTML('beforeend','<div class="mphase'+(e.a===2025?' ph5':'')+'"><div class="mphead" style="--pc:'+eraAccent[ei]+'"><div class="mpt">'+e.t+'</div><div class="mps">'+e.s+'</div></div>'+body+'</div>');
+});
+
+// neutraler Startzustand: kein Ereignis vorausgewählt, Detailbereich mit Leseaufforderung
+neutralDetail();
+// Timeline startet am frühen Ende
+(function(){var s=document.querySelector('.tlscroll'); if(s) s.scrollLeft=0;})();
+
+(function(){var el=document.getElementById('quellenlist');if(!el)return;el.innerHTML=SOURCES.map(function(s){var link=s.link?(' · <a href="'+s.link.u+'" target="_blank" rel="noopener">'+s.link.t+'</a>'):'';return '<div class="qsrc"><span class="qk">'+s.k+'</span> · <span class="qv">'+s.v+'</span>'+link+'</div>';}).join('');})();
+</script>
+</body></html>

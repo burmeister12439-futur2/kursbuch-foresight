@@ -1,0 +1,246 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kursbuch Foresight · Karte 02 · Begriffe</title>
+<style>
+  :root{
+    --ink:#0E1524; --ink2:#122744; --teal:#10C79E; --teald:#0C9670;
+    --coral:#FF6A4D; --corald:#E2542E; --violet:#7A6CF0; --violetd:#5b4fd0;
+    --sun:#FFC531; --sund:#B98900; --steel:#3A6EA5; --bg:#F4F2EA; --card:#fff; --line:#E7E3D9; --sur:#FCFBF8;
+    --ink-t:#1c2431; --sec:#454e5b; --mut:#8b93a1; --font:"Segoe UI",Roboto,-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink-t);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  .knav{position:sticky;top:0;z-index:70;background:rgba(14,21,36,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .knav .kw{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:4px;height:46px;padding:0 14px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  .knav a{color:#c7d0da;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:999px;flex:none}
+  .knav a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .knav a.on{background:#fff;color:#0E1524}
+  .knav .kb{color:var(--teal);font-weight:800;margin-right:6px}
+
+  .hero{background:radial-gradient(1100px 460px at 84% -14%,var(--ink2) 0%,var(--ink) 62%);color:#fff;padding:40px 0 34px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:40px 40px;-webkit-mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%);mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%)}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .eyebrow .k{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#9cd2c4}
+  .step{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9cd2c4;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:2px 9px}
+  h1{font-size:clamp(30px,4.6vw,48px);line-height:1.03;letter-spacing:-.02em;font-weight:850;margin:0 0 8px}
+  h1 em{font-style:normal;color:var(--teal)}
+  .leit{font-size:18px;font-weight:700;color:#fff;margin:0 0 8px}
+  .lede{font-size:15.5px;color:#aebccd;max-width:800px;margin:0}
+  .badge{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;color:#0E1524;background:var(--sun)}
+  .mk{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#9cd2c4}
+  .mk::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--teal)}
+
+  main{padding:24px 0 0}
+  .readnote{background:#eef7f3;border:1px solid #cfe9df;border-left:5px solid var(--teal);border-radius:14px;padding:13px 18px;margin:40px 0 20px;font-size:15px;color:#1c4d3f}
+  .readnote b{color:#0C5c48}
+
+  /* Atlas (desktop constellation) */
+  .atlas{position:relative;width:100%;max-width:1000px;margin:0 auto;aspect-ratio:1000/620;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 30px rgba(20,26,36,.05);overflow:hidden}
+  .zone{position:absolute;border:1px dashed #e4ded1;border-radius:16px;background:rgba(58,110,165,.035)}
+  .zone .zl{position:absolute;top:8px;left:12px;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+  .zone.feld{background:rgba(58,110,165,.05);border-left:3px solid rgba(58,110,165,.42)}
+  .zone.praxis{background:rgba(12,150,112,.05);border-left:3px solid rgba(12,150,112,.4)}
+  .zone.komp{background:rgba(69,78,91,.055);border-left:3px solid rgba(69,78,91,.34)}
+  .zone.meth{background:rgba(185,137,0,.055);border-left:3px solid rgba(185,137,0,.4)}
+  .zone.feld .zl{color:#3A6EA5} .zone.praxis .zl{color:var(--teald)} .zone.komp .zl{color:var(--sec)} .zone.meth .zl{color:var(--sund)}
+  svg.links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+  .rlabel{position:absolute;transform:translate(-50%,-50%);z-index:2;font-size:10.5px;font-weight:700;color:var(--teald);background:#eafaf5;border:1px solid #cdeee3;border-radius:999px;padding:2px 8px;white-space:nowrap;pointer-events:none;opacity:.9}
+  .nd{position:absolute;transform:translate(-50%,-50%);z-index:3;font-family:inherit;font-size:14px;font-weight:750;border:1.5px solid var(--line);background:#fff;color:var(--ink-t);border-radius:12px;padding:9px 15px;cursor:pointer;box-shadow:0 4px 12px rgba(20,26,36,.06);transition:.12s;white-space:nowrap}
+  .nd:hover{border-color:var(--teal);color:var(--teald)}
+  .nd.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .nd.hub{font-size:15.5px;font-weight:850;padding:12px 20px;border-color:var(--teal);box-shadow:0 8px 20px rgba(16,199,158,.16)}
+  .nd.meth{font-size:12.5px;font-weight:600;padding:6px 12px;color:var(--sec)}
+  .hint{font-size:12.5px;color:var(--mut);margin:10px 2px 0;text-align:center}
+
+  /* mobile stacked */
+  #mstack{display:none}
+  .mfam{margin:0 0 14px;border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden;box-shadow:0 8px 20px rgba(20,26,36,.04)}
+  .mfh{padding:11px 14px;border-left:6px solid var(--steel);font-size:13px;font-weight:850;color:var(--ink)}
+  .mfam.praxis .mfh{border-left-color:var(--teald)} .mfam.komp .mfh{border-left-color:var(--sec)} .mfam.meth .mfh{border-left-color:var(--sund)}
+  .mfe{display:flex;flex-wrap:wrap;gap:8px;padding:2px 14px 14px}
+  .mchip{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--sur);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:700;color:var(--ink-t);cursor:pointer;font-family:inherit}
+  .mchip.hub{border-color:var(--teal);color:var(--teald)}
+  .mchip.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* detail */
+  .bkdetail{margin:16px auto 0;max-width:1000px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 12px 30px rgba(20,26,36,.05);min-height:150px}
+  .bkdetail .dk{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .bkdetail h3{font-size:23px;font-weight:850;margin:3px 0 2px;color:var(--ink)}
+  .bkdetail .fam{font-size:12.5px;font-weight:700;color:var(--teald);margin-bottom:12px}
+  .bkdetail p{font-size:15.5px;color:var(--ink-t);margin:0 0 10px;max-width:820px}
+  .drow{display:flex;gap:10px;margin:0 0 7px;font-size:14px}
+  .drow .rk{flex:none;width:100px;color:var(--mut);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+  .drow .rv{color:var(--sec)}
+  .drow.synth .rk{color:var(--violetd)} .drow.synth .rv{color:var(--violetd)}
+  .drow .rv a.qref{color:var(--teald);text-decoration:none;font-weight:700;border-bottom:1px solid #cdeee3} .drow .rv a.qref:hover{background:#eafaf5}
+  .rel .rk{display:block;color:var(--mut);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin:8px 0 6px}
+  .chip{font-family:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line);background:var(--sur);color:var(--teald);border-radius:999px;padding:5px 11px;margin:0 6px 6px 0;cursor:pointer}
+  .chip:hover{border-color:var(--teal);background:#eafaf5}
+  .dq{font-size:12.5px;color:var(--mut);margin-top:10px;border-top:1px solid var(--line);padding-top:10px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+  .wblink{font-weight:700;color:var(--teald)}
+
+  /* five relationships */
+  .rels{max-width:1000px;margin:22px auto 0}
+  .rels h2{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:0 0 10px}
+  .relgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.relgrid{grid-template-columns:1fr}}
+  .relcard{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px}
+  .relcard .rt{font-size:14px;font-weight:800;color:var(--ink)}
+  .relcard .rl{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--teald);margin:3px 0 4px}
+  .relcard .rd{font-size:13.5px;color:var(--sec)}
+
+  .authnote{max-width:1000px;margin:22px auto 0;background:#f3f1fa;border:1px solid #ddd6f5;border-left:5px solid var(--violet);border-radius:14px;padding:13px 18px;font-size:14px;color:#3d3357}
+  .authnote b{color:#2f2652}
+  .bridge{max-width:1000px;margin:30px auto 0;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+  .bridge p{font-size:16px;color:var(--sec);max-width:760px;margin:0}
+  .bridge a{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 20px;text-decoration:none;color:#0E1524;font-weight:800;font-size:15px;box-shadow:0 10px 24px rgba(20,26,36,.05)}
+  .bridge a span{color:var(--teald);font-size:18px}
+
+  footer{margin-top:40px;background:var(--ink);color:#c7d0da;padding:30px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer .fnote{font-size:14px;max-width:680px}
+  footer b{color:#fff}
+  footer .fbrand{font-weight:800;color:var(--teal);line-height:1.3;text-align:right}
+  footer .fbrand span{display:block;font-weight:600;color:#9fb0c2;font-size:12.5px;margin-top:2px}
+  .draft{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#9fb0c2;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 10px;margin-top:10px}
+
+  @media(max-width:760px){
+    .atlas{display:none}
+    #mstack{display:block}
+    .hint{display:none}
+  }
+</style></head>
+<body>
+<nav class="knav"><div class="kw">
+  <a class="kb" href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html">Kursbuch</a>
+  <a href="../Karte01/2026-08-27_Kursbuch-Foresight_Karte01_Zeit_Rundgang-Integration-B.html">01 Zeit</a>
+  <a class="on" href="2026-08-27_Kursbuch-Foresight_Karte02_Begriffe_Rundgang-Integration-B.html">02 Begriffe</a>
+  <a href="../Karte03/2026-08-27_Kursbuch-Foresight_Karte03_DACH_Rundgang-Integration-B.html">03 Landschaft</a>
+  <a href="../Karte04/2026-08-27_Kursbuch-Foresight_Karte04_Praxis-Guete_Rundgang-Integration-B.html">04 Praxis &amp; Güte</a>
+  <a href="../Karte05/2026-08-27_Kursbuch-Foresight_Karte05_Ich-Wir_Rundgang-Integration-B.html">05 Ich / Wir</a>
+  <a href="../Karte06/2026-08-27_Kursbuch-Foresight_Karte06_Zukunft_Rundgang-Integration-B.html">06 Zukunft</a>
+</div></nav>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <a href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html" style="color:#9cd2c4;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.08em">← KURSBUCH</a>
+      <span class="k">Kursbuch Foresight · Karte 02 · Begriffe</span>
+      <span class="step">Schritt 2 von 6 · verstehen</span>
+      <a class="mk" href="#begriffskarte" style="color:#9cd2c4;text-decoration:none">Begriffskarte</a>
+    </div>
+    <h1>Die <em>Begriffskarte</em></h1>
+    <p class="leit">Wovon reden wir, wenn wir von Foresight sprechen, und wie hängen die Begriffe zusammen?</p>
+    <p class="lede">Zukunftsforschung, Futures Studies, Foresight, Strategic Foresight, Strategische Vorausschau und Corporate Foresight sind eng verbunden, stammen aber aus unterschiedlichen Sprach-, Wissenschafts- und Praxistraditionen. Diese Karte zeigt ihre Überschneidungen und Unterschiede, ohne daraus eine Hierarchie zu machen.</p>
+    <span class="betasmall" style="display:block;margin-top:12px;font-size:11.5px;color:#9fb0c2">Kuratierte Orientierung, keine kanonische Taxonomie.<!-- Provenienz (intern): Quellbuild K02-BEGRIFFE-20260826-A · Integration RGI-20260827-B-K02-R2 --></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="readnote">
+    <b>Von Karte 01 zu Karte 02.</b> Mit den Formen der Zukunftsarbeit haben sich auch die Begriffe vervielfacht; deshalb die Frage, wovon wir eigentlich reden. Die vier Gruppen dienen der Orientierung, nicht der Rangordnung. Ein Klick öffnet die Begriffe, ein erneuter Klick schließt sie.
+  </div>
+
+  <span id="begriffskarte" style="scroll-margin-top:64px"></span>
+  <div class="atlas" id="atlas">
+    <svg class="links" id="links" viewBox="0 0 1000 620" preserveAspectRatio="none"></svg>
+  </div>
+  <p class="hint">Zwölf Knoten, vier Gruppen, fünf zentrale Beziehungen. Nähe bedeutet Beziehung, nicht Rang.</p>
+
+  <div id="mstack"></div>
+
+  <div class="bkdetail" id="bkdetail"></div>
+
+  <div class="rels">
+    <h2>Die fünf zentralen Beziehungen</h2>
+    <div class="relgrid" id="relgrid"></div>
+  </div>
+
+  <div class="authnote"><b>Kursbuch-Interpretation.</b> Die vier Orientierungsgruppen und die fünf zentralen Beziehungen sind eine Kursbuch-Synthese zur Orientierung, keine kanonische Taxonomie des Feldes. Strategische Vorausschau wird als deutschsprachig und öffentlich-institutionell profilierte Variante von Strategic Foresight geführt.</div>
+
+  <div class="bridge">
+    <p>Begriffe ordnen das Feld. Als Nächstes stellt sich die Frage, wer mit ihnen arbeitet, in welchen Institutionen und Rollen.</p>
+    <a href="../Karte03/2026-08-27_Kursbuch-Foresight_Karte03_DACH_Rundgang-Integration-B.html">weiter zu Karte 03 · Landschaft <span>→</span></a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fnote">
+      <b>Kursbuch Foresight.</b> Der Projektpfad: D2030-Szenarien („Deutschland neu denken" 2018, „Neue Horizonte 2045" 2023–2024) → foresight_D → Kursbuch Foresight → update futures_02 auf der Futura Biennale 2027 → „Grundrisse" 2028.
+      <!-- Provenienz (intern): Karte 02 · Begriffskarte · Quellbuild K02-BEGRIFFE-20260826-A · Integration RGI-20260827-B-K02-R2 -->
+    </div>
+    <div class="fbrand">Konzept und Realisierung: Klaus Burmeister · foresightlab<span>als Beitrag zu foresight_D</span></div>
+    <div class="fmeta" style="flex-basis:100%;border-top:1px solid rgba(159,176,194,.22);margin-top:14px;padding-top:12px;font-size:12.5px;color:#9fb0c2"><a href="../Karte06/2026-08-27_Kursbuch-Foresight_Entstehung_Rundgang-Integration-B.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Entstehung</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Impressum.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Impressum</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Quellen.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Quellen</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/2026-08-27_Kursbuch-Foresight_KI-Transparenz.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">KI-Transparenz</a></div>
+  </div>
+</footer>
+<script>
+const NODES={"zf": {"t": "Zukunftsforschung", "quellen": "Kreibich 2006 (Q-0028, Definition); Steinmüller 1997 (Q-0001, methodische Systematisierung); Gerhold et al. 2022 (Q-0032, Güte-Standard)", "fam": "Feld- und Forschungsbegriffe", "x": 155, "y": 170, "d": "Wissenschaftliche Befassung mit möglichen, wahrscheinlichen und wünschbaren Zukünften und Gestaltungsoptionen (deutschsprachige Tradition).", "abgr": "Keine Vorhersage eines einzigen Zukunftsverlaufs.", "rolle": "Deutschsprachiger Feldname.", "rel": ["fs", "fo"], "wissensbasis": "Seefried 2015 (Q-0033, Historiografie 1945–1980); Radkau 2017 (Gesellschaftsgeschichte); Flechtheim (Q-0004), Jungk (Q-0026). Drei Ebenen getrennt halten: Feld-Selbstbeschreibung ≠ Historiografie ≠ Gesellschaftsgeschichte."}, "fs": {"t": "Futures Studies", "quellen": "Sardar 2010 (Q-0031, Namens-/Begriffsdebatte); Kreibich 2006 (Q-0028, Definition im deutschsprachigen Vergleich)", "fam": "Feld- und Forschungsbegriffe", "x": 155, "y": 268, "d": "International bevorzugte, bewusst pluralistische Bezeichnung des Feldes; betont mehrere mögliche Zukünfte.", "abgr": "Keine bloße Übersetzung von Zukunftsforschung; eigene Traditionen.", "rolle": "Internationaler Feldname.", "rel": ["zf"], "wissensbasis": "Bell 1997 (Q-0034, felddefinierendes Standardwerk, TEILGEPRÜFT — Volltext offen, keine sichtbare Definitionsquelle); WFSF History (Q-0020).", "synthese": "„Keine bloße Übersetzung, eigene Traditionen“ ist Kursbuch-Einordnung."}, "fo": {"t": "Foresight", "quellen": "Voros 2001 (Q-0029, Definition/Primärquelle); Georghiou 1996 (Q-0022, Feld-Systematisierung); Europäische Kommission 2020 (Q-0018, institutionelle Verwendung)", "fam": "Foresight-Praxis und strategische Anwendungen", "x": 500, "y": 250, "hub": true, "d": "Strukturierte Erkundung möglicher Zukünfte, die den Optionsraum erweitert und Strategie informiert.", "abgr": "Keine Vorhersage.", "rolle": "Zentraler Knoten des Feldes (Hub): Zentralität im Beziehungsgefüge, kein Rang.", "rel": ["zf", "sf", "fl"], "wissensbasis": "EU-FOREN 2001 (Q-0012); Handbook of Technology Foresight 2008 (nicht registriert).", "synthese": "Hub-Rolle „Zentralität, kein Rang“ ist Kursbuch-Synthese."}, "sf": {"t": "Strategic Foresight", "quellen": "Slaughter 1999 (Q-0035, Definition); Europäische Kommission 2020 (Q-0018, institutionelle Kopplung)", "fam": "Foresight-Praxis und strategische Anwendungen", "x": 720, "y": 150, "d": "Foresight, ausdrücklich an Strategie und Entscheidung gekoppelt.", "abgr": "Keine höhere Stufe von Foresight, nicht auf Unternehmen beschränkt.", "rolle": "Strategie- und entscheidungsgekoppelter Einsatz von Foresight.", "rel": ["fo", "cf"], "wissensbasis": "Voros 2003 (Q-0036, Prozesslogik — definiert den Begriff nicht); van der Laan/Slaughter (Q-0044, kritische Absicherung).", "synthese": "Die Kopplung an Strategie/Entscheidung ist Quellenbefund (Slaughter, EK); die Zuspitzung „keine höhere Stufe, keine neue Methode“ ist Kursbuch-Synthese (gestützt, kein Primärzitat)."}, "sv": {"t": "Strategische Vorausschau", "quellen": "Fraunhofer ISI 2022 (Q-0019, fachliche Definition); Europäische Kommission 2020 (Q-0018, institutionelle Verwendung DE/EU)", "fam": "Foresight-Praxis und strategische Anwendungen", "x": 828, "y": 250, "d": "Deutschsprachig und öffentlich-institutionell profilierte Variante von Strategic Foresight.", "abgr": "An den geprüften EU- und Fraunhofer-Fundstellen keine abweichende fachliche Definition; besonders im öffentlichen Sektor institutionalisiert.", "rolle": "Eigener sichtbarer Knoten, geführt als Variante von Strategic Foresight.", "rel": [], "wissensbasis": "Datierungsanker DE 2013 / EU 2019–2020.", "synthese": "Die Einordnung als „Variante von Strategic Foresight“ ist Kursbuch-Synthese (an den geprüften Quellen keine abweichende fachliche Definition)."}, "cf": {"t": "Corporate Foresight", "quellen": "Burmeister/Neef/Beyers 2004 (Q-0015, früher deutschsprachiger Corporate-Foresight-Anker); Rohrbeck/Battistella/Huizingh 2015 (Q-0030, methodische Systematisierung)", "fam": "Foresight-Praxis und strategische Anwendungen", "x": 720, "y": 350, "d": "Systematische, organisatorisch verankerte Zukunftsarbeit in Unternehmen.", "abgr": "Eigene Unternehmensgenealogie; kein bloßer Unterbegriff, aber nicht losgelöst von Strategic Foresight.", "rolle": "Organisationsbezogener Strang von Strategic Foresight.", "rel": ["sf"], "wissensbasis": "Genealogie: Leitschuh-Fecht/Burmeister 1994 (Q-0013) → „Zukunftsforschung und Unternehmen“ Burmeister u.a. 2002 (Q-0014) → 2004 (Q-0015); Köpernik 2009 (Q-0016); Rohrbeck 2011 (Q-0027). Pionier-Formulierung belegt (kein „Erfinder“, keine internationale Erstprägung)."}, "fl": {"t": "Futures Literacy", "quellen": "Miller/UNESCO 2018 (Q-0017, Definition); Poli 2017 (Q-0037, theoretische Fundierung/Anticipation)", "fam": "Kompetenz", "x": 230, "y": 450, "d": "Fähigkeit (Capability), zu verstehen und zu nutzen, wie Zukunftsvorstellungen Wahrnehmung und Handeln in der Gegenwart prägen.", "abgr": "Kompetenz, keine Methode; nicht Voraussetzung von Foresight.", "rolle": "Eigene Kompetenzdimension.", "rel": ["fo"], "wissensbasis": "deutsch „Zukunftskompetenz“ (Konsistenz zu Karte 03).", "synthese": "„Nicht Voraussetzung von Foresight“ ist Kursbuch-Einordnung."}, "fc": {"t": "Forecasting / Prognostik", "quellen": "Steinmüller 1997 (Q-0001, Definition/Abgrenzung Prognostik); Voros 2001 (Q-0029, Kontrast Forecasting↔Foresight)", "fam": "Methoden, quer eingesetzt", "x": 150, "y": 560, "meth": true, "d": "Abschätzung wahrscheinlicher Entwicklungen auf Basis von Daten, Modellen und Annahmen.", "abgr": "Kann Bestandteil von Foresight sein, zielt aber auf einen wahrscheinlichen Verlauf.", "rolle": "Methode.", "rel": [], "synthese": "Die Rahmung als quer eingesetzte „Methode“ ist Kursbuch-Einordnung."}, "hs": {"t": "Horizon Scanning", "quellen": "Amanatidou u.a. 2012 (Q-0042, Konzepte und Methoden); UK GO-Science 2017 (Q-0043, institutionelles Verfahren)", "fam": "Methoden, quer eingesetzt", "x": 335, "y": 560, "meth": true, "d": "Systematisches Beobachten von Trends, schwachen Signalen und möglichen Diskontinuitäten.", "abgr": "Früherkennungsverfahren, kein vollständiger Foresight-Prozess.", "rolle": "Methode.", "rel": [], "wissensbasis": "OECD-Definition (via National Academies).", "synthese": "„Mehr als Früherkennung“ ist Kursbuch-Einordnung."}, "sz": {"t": "Szenarien / Szenarioarbeit", "quellen": "Kosow/Gaßner 2008 (Q-0038, Typologie und Gütekriterien); Steinmüller 1997 (Q-0001, Definition); Wack 1985 (Q-0008, strategische Szenariopraxis)", "fam": "Methoden, quer eingesetzt", "x": 510, "y": 560, "meth": true, "d": "Beschreibungen möglicher oder gewünschter Zukünfte und teils der Pfade dorthin; explorativ, normativ oder strategisch.", "abgr": "Bei explorativen Szenarien zählen Plausibilität und interne Konsistenz.", "rolle": "Methode; bleibt ein Knoten.", "rel": [], "wissensbasis": "Kahn/Wiener 1967 (Q-0006).", "synthese": "„Bleibt ein Knoten“ ist Kursbuch-Setzung."}, "de": {"t": "Delphi", "quellen": "Dalkey/Helmer 1963 (Q-0005, frühe Primärquelle); Linstone/Turoff 1975 (Q-0039, methodisches Standardwerk)", "fam": "Methoden, quer eingesetzt", "x": 680, "y": 560, "meth": true, "d": "Mehrstufige, meist anonyme Expertenbefragung mit Rückmeldung vorheriger Ergebnisse.", "abgr": "Verfahren der Meinungsbildung, kein Zukunftsbild an sich.", "rolle": "Methode.", "rel": [], "synthese": "„Konsens und Dissens sichtbar“ ist Kursbuch-Einordnung."}, "bc": {"t": "Backcasting", "quellen": "Robinson 1982 (Q-0040, Begriffsprägung des Terminus); Dreborg 1996 (Q-0041, normative Systematisierung)", "fam": "Methoden, quer eingesetzt", "x": 858, "y": 560, "meth": true, "d": "Vom gewünschten Zukunftszustand rückwärts nach Bedingungen und Schritten fragen.", "abgr": "Normativ; keine Fortschreibung von Trends.", "rolle": "Methode.", "rel": [], "wissensbasis": "Lovins (methodischer Vorläufer der Idee, „backwards-looking analysis“).", "synthese": "Die Rahmung als quer eingesetzte „Methode“ ist Kursbuch-Einordnung."}};
+const RELS=[{"a": "zf", "b": "fs", "l": "starke Überschneidung", "d": "Zwei Namen für weitgehend dasselbe, bewusst pluralistische Feld in verschiedenen Sprachtraditionen; keine bloße Übersetzung."}, {"a": "zf", "b": "fo", "l": "starke Überschneidung", "d": "Starke Überschneidung bei unterschiedlicher Herkunft; Foresight hat die Zukunftsforschung nicht abgelöst."}, {"a": "fo", "b": "sf", "l": "Strategiekopplung", "d": "Strategic Foresight ist Foresight, ausdrücklich an Strategie und Entscheidung gekoppelt, keine höhere Stufe."}, {"a": "sf", "b": "cf", "l": "Anwendung in Organisationen", "lx": 720, "ly": 300, "d": "Corporate Foresight ist Strategic Foresight in Organisationen, mit eigener Unternehmenstradition."}, {"a": "fo", "b": "fl", "l": "Praxis und Kompetenz", "d": "Foresight ist die Zukunftspraxis, Futures Literacy die reflexive Kompetenz im Umgang mit Zukunftsvorstellungen."}];
+const ZONES=[{"x": 64, "y": 112, "w": 186, "h": 222, "l": "Feld- und Forschungsbegriffe"}, {"x": 415, "y": 80, "w": 540, "h": 330, "l": "Foresight-Praxis und strategische Anwendungen"}, {"x": 120, "y": 405, "w": 230, "h": 95, "l": "Kompetenz"}, {"x": 70, "y": 520, "w": 885, "h": 80, "l": "Methoden, quer eingesetzt", "meth": true}];
+const FAMS=[{"l": "Feld- und Forschungsbegriffe", "cls": "", "ids": ["zf", "fs"]}, {"l": "Foresight-Praxis und strategische Anwendungen", "cls": "praxis", "ids": ["fo", "sf", "sv", "cf"]}, {"l": "Kompetenz", "cls": "komp", "ids": ["fl"]}, {"l": "Methoden, quer eingesetzt", "cls": "meth", "ids": ["fc", "hs", "sz", "de", "bc"]}];
+const VW=1000,VH=620;
+const atlas=document.getElementById('atlas');
+const svg=document.getElementById('links');
+ZONES.forEach(z=>{
+  const _fc=(FAMS.find(f=>f.l===z.l)||{}).cls||'feld'; const d=document.createElement('div'); d.className='zone '+_fc;
+  d.style.left=(z.x/VW*100)+'%'; d.style.top=(z.y/VH*100)+'%'; d.style.width=(z.w/VW*100)+'%'; d.style.height=(z.h/VH*100)+'%';
+  d.innerHTML='<span class="zl">'+z.l+'</span>'; atlas.appendChild(d);
+});
+RELS.forEach(r=>{
+  const A=NODES[r.a],B=NODES[r.b];
+  const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+  ln.setAttribute('x1',A.x);ln.setAttribute('y1',A.y);ln.setAttribute('x2',B.x);ln.setAttribute('y2',B.y);
+  ln.setAttribute('stroke','#10C79E');ln.setAttribute('stroke-width','2');ln.setAttribute('stroke-opacity','.5');
+  ln.setAttribute('vector-effect','non-scaling-stroke');
+  svg.appendChild(ln);
+});
+RELS.forEach(r=>{
+  const A=NODES[r.a],B=NODES[r.b];
+  const mx=r.lx!=null?r.lx:(A.x+B.x)/2, my=r.ly!=null?r.ly:(A.y+B.y)/2;
+  const lab=document.createElement('div'); lab.className='rlabel';
+  lab.style.left=(mx/VW*100)+'%'; lab.style.top=(my/VH*100)+'%'; lab.textContent=r.l;
+  atlas.appendChild(lab);
+});
+Object.keys(NODES).forEach(id=>{
+  const n=NODES[id];
+  const b=document.createElement('button'); b.className='nd'+(n.hub?' hub':'')+(n.meth?' meth':''); b.dataset.id=id;
+  b.style.left=(n.x/VW*100)+'%'; b.style.top=(n.y/VH*100)+'%'; b.textContent=n.t;
+  b.addEventListener('click',()=>toggleBegriff(id));
+  atlas.appendChild(b);
+});
+const mstack=document.getElementById('mstack');
+FAMS.forEach(f=>{
+  const chips=f.ids.map(id=>'<button class="mchip'+(NODES[id].hub?' hub':'')+'" data-id="'+id+'" onclick="toggleBegriff(\''+id+'\');document.getElementById(\'bkdetail\').scrollIntoView({behavior:\'smooth\',block:\'center\'})">'+NODES[id].t+'</button>').join('');
+  mstack.insertAdjacentHTML('beforeend','<div class="mfam '+f.cls+'"><div class="mfh">'+f.l+'</div><div class="mfe">'+chips+'</div></div>');
+});
+const relgrid=document.getElementById('relgrid');
+RELS.forEach(r=>{
+  relgrid.insertAdjacentHTML('beforeend','<div class="relcard"><div class="rt">'+NODES[r.a].t+' ↔ '+NODES[r.b].t+'</div><div class="rl">'+r.l+'</div><div class="rd">'+r.d+'</div></div>');
+});
+let current=null;
+function clearDetail(){
+  current=null;
+  document.querySelectorAll('.nd,.mchip').forEach(n=>n.classList.remove('sel'));
+  document.getElementById('bkdetail').innerHTML='<div class="dk">Begriff</div><h3 style="color:var(--mut)">Einen Begriff wählen</h3><p style="color:var(--sec)">Ein Klick auf einen Knoten öffnet Kurzdefinition, Abgrenzung, Rolle im Gefüge und Quellenbasis. Foresight ist der zentrale Knoten (Hub).</p>';
+}
+function toggleBegriff(id){ if(current===id){ clearDetail(); } else { showBegriff(id); } }
+function qlink(t){return String(t).replace(/Q-\d{4}/g,function(m){return '<a class="qref" href="../Meta/Quellen.html#'+m+'">'+m+'</a>';});}
+function showBegriff(id){
+  const b=NODES[id]; if(!b) return; current=id;
+  document.querySelectorAll('.nd,.mchip').forEach(n=>n.classList.toggle('sel',n.dataset&&n.dataset.id===id));
+  const rows=[['Kurzdefinition',b.d],['Abgrenzung',b.abgr],['Rolle im Gefüge',b.rolle]].filter(r=>r[1]);
+  const rel=(b.rel||[]).map(r=>'<button class="chip" data-id="'+r+'">'+NODES[r].t+'</button>').join('');
+  document.getElementById('bkdetail').innerHTML=
+    '<div class="dk">Begriff</div><h3>'+b.t+'</h3><div class="fam">'+b.fam+'</div>'+
+    rows.map(r=>'<div class="drow"><span class="rk">'+r[0]+'</span><span class="rv">'+r[1]+'</span></div>').join('')+
+    (rel?'<div class="rel"><span class="rk">Zentrale Beziehungen</span>'+rel+'</div>':'')+
+    (b.quellen?'<div class="drow"><span class="rk">Quellenbasis</span><span class="rv">'+qlink(b.quellen)+'</span></div>':'')+
+    (b.synthese?'<div class="drow synth"><span class="rk">Kursbuch-Synthese</span><span class="rv">'+b.synthese+'</span></div>':'');
+  document.querySelectorAll('#bkdetail .chip').forEach(c=>c.addEventListener('click',()=>{showBegriff(c.dataset.id);}));
+}
+showBegriff('fo');
+</script>
+</body></html>

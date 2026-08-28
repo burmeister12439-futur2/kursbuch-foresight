@@ -1,0 +1,508 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kursbuch Foresight · Karte 05 · Ich / Wir</title>
+<style>
+  :root{
+    --ink:#0E1524; --ink2:#122744; --teal:#10C79E; --teald:#0C9670;
+    --coral:#FF6A4D; --corald:#E2542E; --violet:#7A6CF0; --violetd:#5b4fd0;
+    --sun:#FFC531; --sund:#B98900; --steel:#3A6EA5; --bg:#F4F2EA; --card:#fff; --line:#E7E3D9; --sur:#FCFBF8;
+    --ink-t:#1c2431; --sec:#454e5b; --mut:#8b93a1; --uc:#9aa2ad;
+    --font:"Segoe UI",Roboto,-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink-t);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  main.wrap{padding-top:40px}
+
+  .knav{position:sticky;top:0;z-index:70;background:rgba(14,21,36,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .knav .kw{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:4px;height:46px;padding:0 14px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  .knav a{color:#c7d0da;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:999px;flex:none}
+  .knav a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .knav a.on{background:#fff;color:#0E1524}
+  .knav .kb{color:var(--teal);font-weight:800;margin-right:6px}
+
+  .hero{background:radial-gradient(1100px 460px at 84% -14%,var(--ink2) 0%,var(--ink) 62%);color:#fff;padding:40px 0 34px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:40px 40px;-webkit-mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%);mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%)}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .eyebrow .k{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#b7a9f5}
+  .step{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#b7a9f5;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:2px 9px}
+  .mk{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#b7a9f5}
+  .mk::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--violet)}
+  h1{font-size:clamp(30px,4.6vw,48px);line-height:1.04;letter-spacing:-.02em;font-weight:850;margin:0 0 8px}
+  h1 em{font-style:normal;color:var(--teal)}
+  .leit{font-size:18px;font-weight:700;color:#fff;margin:0 0 8px}
+  .lede{font-size:15.5px;color:#aebccd;max-width:820px;margin:0 0 14px}
+  .betarow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .betabadge{font-size:12px;font-weight:800;letter-spacing:.04em;padding:4px 12px;border-radius:999px;color:#0E1524;background:var(--violet)}
+  .betasmall{font-size:12.5px;color:#9fb0c2}
+
+  main{padding:26px 0 0}
+  .intro{font-size:16px;color:var(--sec);max-width:820px;margin:0 0 26px}
+  .intro b{color:var(--ink)}
+
+  .sec{margin:0 0 34px;scroll-margin-top:60px}
+  .stufe{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--violetd);margin:0 0 4px}
+  .stufe.v{color:var(--violetd)}
+  h2{font-size:clamp(21px,2.6vw,27px);font-weight:850;letter-spacing:-.01em;color:var(--ink);margin:0 0 6px}
+  .seclede{font-size:15px;color:var(--sec);max-width:820px;margin:2px 0 16px}
+
+  .etag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:3px 10px;white-space:nowrap;vertical-align:middle}
+  .etag::before{content:"";width:8px;height:8px;border-radius:50%}
+  .etag.ev{color:var(--teald);background:#eafaf5;border:1px solid #bfe9db}
+  .etag.ev::before{background:var(--teal)}
+  .etag.kb{color:var(--violetd);background:#efedfd;border:1px solid #d5cffa}
+  .etag.kb::before{background:var(--violet)}
+  .etag.uc{color:#5c6472;background:#f0f1f3;border:1px dashed #b6bdc7}
+  .etag.uc::before{background:var(--uc)}
+
+  .card{border:1px solid var(--line);background:var(--card);border-radius:16px;box-shadow:0 8px 20px rgba(20,26,36,.04)}
+  .pad{padding:17px 19px}
+
+  /* Ich/Wir verstehen */
+  .iw{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:720px){.iw{grid-template-columns:1fr}}
+  .iwbox{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:16px 18px;box-shadow:0 8px 20px rgba(20,26,36,.04);border-top:4px solid var(--violet)}
+  .iwbox h3{margin:0 0 8px;font-size:17px;font-weight:850;color:var(--ink)}
+  .iwbox p{margin:0;font-size:14.5px;color:var(--sec)}
+
+  /* Szenario-Karte */
+  .maprow{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}
+  @media(max-width:860px){.maprow{grid-template-columns:1fr}}
+  .mapwrap{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:12px;box-shadow:0 8px 20px rgba(20,26,36,.04)}
+  .mapwrap svg{width:100%;height:auto;display:block}
+  .axl{font:700 12px var(--font);fill:var(--mut)}
+  .snum{font:800 13px var(--font);fill:var(--sec)}
+  .pt{fill:#eef2f7;stroke:#c7d0da;stroke-width:1.5;cursor:pointer}
+  g.szpoint:hover .pt{stroke:var(--violet);stroke-width:2}
+  .snum{cursor:pointer}
+  .nums{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+  .nums button{cursor:pointer;border:1px solid #d9e4dd;background:#f3f8f5;color:var(--ink);border-radius:999px;width:32px;height:32px;font-weight:800;font-size:13px;font-family:inherit}
+  .nums button:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .nums button.on{background:var(--teald);color:#fff;border-color:var(--teald)}
+  .sb{border:1px solid var(--line);background:var(--sur);border-radius:14px;padding:14px 16px;min-height:96px}
+  .sb .t{font-weight:850;color:var(--ink);font-size:15.5px;margin-bottom:5px;display:flex;align-items:center;gap:9px}
+  .sb .nn{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:var(--teal);color:#fff;font-size:13px;font-weight:800;flex:none}
+  .sb .d{font-size:13.5px;color:var(--sec)}
+  .sb .hint{color:var(--mut);font-size:13.5px}
+
+  /* Ich-Profil */
+  .clar{font-size:14px;color:var(--sec);background:#efedfd;border:1px solid #d5cffa;border-radius:12px;padding:12px 15px;margin:0 0 14px}
+  .axis{border-top:1px solid var(--line);padding:14px 0}
+  .axis:first-of-type{border-top:0}
+  .axpoles{display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:800;color:var(--ink);margin:0 0 3px}
+  .axmean{font-size:12.5px;color:var(--mut);margin:0 0 9px}
+  .steps{display:flex;gap:7px;flex-wrap:wrap}
+  .step-b,.both-b{font-family:inherit;font-size:12.5px;font-weight:700;color:var(--sec);background:var(--sur);border:1.5px solid var(--line);border-radius:10px;padding:7px 12px;cursor:pointer;transition:.12s}
+  .step-b:hover,.both-b:hover{border-color:var(--coral);color:var(--corald)}
+  .step-b[aria-pressed="true"],.both-b[aria-pressed="true"]{background:var(--coral);color:#fff;border-color:var(--coral)}
+  .bothwrap{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  .bothwrap .lbl{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin-right:8px}
+  .axstate{font-size:12px;font-weight:700;color:var(--mut);margin-top:7px}
+  .axstate.set{color:var(--corald)}
+  .toolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 14px;padding:10px 14px;background:var(--sur);border:1px solid var(--line);border-radius:12px}
+  .prog{font-size:13.5px;font-weight:700;color:var(--ink)}
+  .prog span{color:var(--mut);font-weight:600}
+  .resetb{margin-left:auto;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--sec);background:transparent;border:1px solid var(--line);border-radius:10px;padding:7px 13px;cursor:pointer}
+  .resetb:hover{border-color:var(--coral);color:var(--corald)}
+  .readout{margin-top:14px;font-size:15px;color:var(--ink-t);background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px}
+  .readout b{color:var(--corald)}
+  .readout.empty{color:var(--mut)}
+
+  /* Szenario-Urteil */
+  .judge{border-top:1px solid var(--line);padding:12px 0}
+  .judge:first-of-type{border-top:0}
+  .jhead{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin:0 0 7px;display:flex;align-items:center;gap:8px}
+  .jhead .hew{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:var(--ink);color:#fff;font-size:12px;font-weight:800}
+  .jrow{display:flex;gap:6px;flex-wrap:wrap}
+  .jbtn{font-family:inherit;font-size:13px;font-weight:800;width:34px;height:34px;border:1.5px solid var(--line);background:var(--sur);color:var(--ink-t);border-radius:9px;cursor:pointer}
+  .jbtn:hover{border-color:var(--coral);color:var(--corald)}
+  .jbtn[aria-pressed="true"]{background:var(--coral);color:#fff;border-color:var(--coral)}
+
+  /* Vergleich */
+  .legend{font-size:12.5px;color:var(--sec);margin:10px 0 0;line-height:1.7}
+  .legend b{color:var(--ink)}
+  .cmpblock{border:1px solid var(--line);border-radius:14px;padding:13px 16px;margin:0 0 12px}
+  .cmp-comm{background:#f5f6f7;border:1px dashed #b6bdc7}
+  .cmp-comm .lab{color:#5c6472}
+  .cmp-me{background:#fff5f2;border:1px solid #ffd3c6}
+  .cmp-me .lab{color:var(--corald)}
+  .cmp-gr{background:#efedfd;border:1px solid #d5cffa}
+  .cmp-gr .lab{color:var(--violetd)}
+  .cmpblock .lab{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin:0 0 5px}
+  .cmpblock .tx{font-size:14px;color:var(--sec)}
+  .cmpblock .tx b{color:var(--ink)}
+
+  /* Abgrenzung / Brücke */
+  .abgr{font-size:14.5px;color:var(--sec);background:#efedfd;border:1px solid #d5cffa;border-radius:12px;padding:13px 16px}
+  .bridge{background:var(--ink);color:#dfe5ec;border-radius:18px;padding:24px 26px;margin:8px 0 40px}
+  .bridge p{font-size:16px;line-height:1.55;margin:0 0 14px;max-width:760px}
+  .bridge a{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:#0E1524;background:var(--teal);border-radius:999px;padding:9px 16px;text-decoration:none}
+  .bridge a:hover{background:#fff}
+
+  footer{margin-top:8px;background:var(--ink);color:#c7d0da;padding:30px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer .fnote{font-size:14px;max-width:680px}
+  footer b{color:#fff}
+  footer .fbrand{font-weight:800;color:var(--teal);line-height:1.3;text-align:right}
+  footer .fbrand span{display:block;font-weight:600;color:#9fb0c2;font-size:12.5px;margin-top:2px}
+  .draft{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#9fb0c2;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 10px;margin-top:10px}
+</style></head>
+<body>
+
+<nav class="knav"><div class="kw">
+  <a class="kb" href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html">Kursbuch</a>
+  <a href="../Karte01/2026-08-27_Kursbuch-Foresight_Karte01_Zeit_Rundgang-Integration-B.html">01 Zeit</a>
+  <a href="../Karte02/2026-08-27_Kursbuch-Foresight_Karte02_Begriffe_Rundgang-Integration-B.html">02 Begriffe</a>
+  <a href="../Karte03/2026-08-27_Kursbuch-Foresight_Karte03_DACH_Rundgang-Integration-B.html">03 Landschaft</a>
+  <a href="../Karte04/2026-08-27_Kursbuch-Foresight_Karte04_Praxis-Guete_Rundgang-Integration-B.html">04 Praxis &amp; Güte</a>
+  <a class="on" href="2026-08-27_Kursbuch-Foresight_Karte05_Ich-Wir_Rundgang-Integration-B.html">05 Ich / Wir</a>
+  <a href="../Karte06/2026-08-27_Kursbuch-Foresight_Karte06_Zukunft_Rundgang-Integration-B.html">06 Zukunft</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <a href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html" style="color:#b7a9f5;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.08em">← KURSBUCH</a>
+      <span class="k">Kursbuch Foresight · Karte 05 · Ich / Wir</span>
+      <span class="step">Schritt 5 von 6 · verorten</span>
+      <span class="mk">Selbstverortung</span>
+    </div>
+    <h1>Wie blicke ich auf Zukunft – <em>und wie die Community?</em></h1>
+    <p class="leit">Diese Karte verortet, sie bewertet nicht.</p>
+    <p class="lede">Zukunftsarbeit hat immer eine Perspektive. Wer sie macht, bringt eine eigene Art mit, auf Zukunft zu schauen, und steht zugleich in einer Gemeinschaft, die Zukunft unterschiedlich einschätzt. Diese Karte macht beides sichtbar: Deine eigene Art zu arbeiten und das Bild der foresight_D-Community. Ohne Rangliste, ohne richtig oder falsch.</p>
+    <div class="betarow">
+      <span class="betabadge">Implementierung 2026</span>
+      <span class="betasmall">Verorten statt bewerten.<!-- Provenienz (intern): Quellbuild K05-IMPL-20260823-B · Integration RGI-20260827-B-K05 --></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="intro">Zuerst verstehen, dann urteilen, dann vergleichen. Diese Karte erklärt erst, was mit <b>Ich</b> und <b>Wir</b> gemeint ist und was die acht Szenarien bedeuten. Danach verortest Du Dich selbst. Erst am Ende stellst Du Dein Bild neben das Bild der Community.</p>
+
+  <!-- 2 · verstehen · Ich / Wir -->
+  <section class="sec" id="verstehen-iw">
+    <span class="stufe">Verstehen</span>
+    <h2>Was heißt Ich / Wir? <span class="etag kb">Kursbuch-Interpretation</span></h2>
+    <div class="iw">
+      <div class="iwbox">
+        <h3>Ich</h3>
+        <p>Das Ich beschreibt, wie Du Zukunftsarbeit angehst: welche Haltungen und Schwerpunkte Deine Arbeit prägen. Das ist eine Beschreibung, keine Bewertung. Es gibt keine beste Art, Zukunft zu bearbeiten, nur unterschiedliche. Anders als der Gütekompass in Karte 04, der fragt, ob eine Arbeit gut gemacht ist, fragt das Ich, welche Art von Zukunftsarbeit Du betreibst.</p>
+      </div>
+      <div class="iwbox">
+        <h3>Wir</h3>
+        <p>Das Wir ist das gemeinsame Bild der foresight_D-Community. Im Szenarioprozess von foresight_D zur Zukunft des Foresights wurden acht Szenarien entwickelt. Wie die Community diese Szenarien für heute, für die erwartete und für die gewünschte Zukunft einschätzt, ist Teil dieses Bildes. Solange die konkreten Werte nicht belegt sind, werden sie ausdrücklich als unbestätigt gekennzeichnet und nicht als gesicherte Aussage dargestellt.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · verstehen · Szenarien kennenlernen -->
+  <section class="sec" id="verstehen-szen">
+    <span class="stufe">Verstehen</span>
+    <h2>Die acht Szenarien kennenlernen <span class="etag ev">Evidenz</span></h2>
+    <p class="seclede">Bevor Du Dich verortest, lerne die acht Szenarien kennen. Sie stammen aus dem Szenarioprozess von foresight_D zur Zukunft des Foresights und sind auf einer Landkarte mit zwei Achsen angeordnet: senkrecht von Markt und KI oben zu Gesellschaft und Politik unten, waagerecht von geschlossen links zu offen rechts. Tippe eine Zahl an, um das Szenario zu verstehen. Hier wird noch nichts ausgewählt.</p>
+    <div class="maprow">
+      <div class="mapwrap"><svg id="mapLearn" viewBox="0 0 470 400" role="img" aria-label="Landkarte der acht Szenarien"></svg></div>
+      <div>
+        <div class="nums" id="numsLearn"></div>
+        <div class="sb" id="sbLearn"><div class="hint">Tippe eine Szenario-Zahl an, um das Szenario zu verstehen.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · urteilen · Ich-Profil -->
+  <section class="sec" id="ich-profil">
+    <span class="stufe">Urteilen</span>
+    <h2>Mein Ich-Profil <span class="etag kb">Kursbuch-Interpretation</span></h2>
+    <p class="seclede">Jetzt verortest Du Dich selbst. Wertfrei, es gibt keinen idealen Punkt.</p>
+    <div class="clar">Die beiden Enden jeder Achse sind unterschiedliche Schwerpunkte, keine Gegensätze, die sich ausschließen. In der Praxis kann man beides tun. Die Achse fragt nur, wo Dein Schwerpunkt liegt. Wenn beides gleichermaßen zutrifft oder es von der Situation abhängt, wähle „beides / situationsabhängig".</p>
+    <div class="toolbar">
+      <span class="prog" id="ichProg"><span>0 von 6 gesetzt</span></span>
+      <button class="resetb" id="ichReset" type="button">Ich-Profil zurücksetzen</button>
+    </div>
+    <div class="card pad" id="axes"></div>
+    <div class="readout empty" id="ichReadout">Noch keine Verortung. Wähle je Achse eine Position, um Dein Profil zu sehen.</div>
+  </section>
+
+  <!-- 5 · urteilen · Szenario-Urteil -->
+  <section class="sec" id="szen-urteil">
+    <span class="stufe">Urteilen</span>
+    <h2>Mein Szenario-Urteil <span class="etag kb">eigene Position</span></h2>
+    <p class="seclede">Wähle je ein Szenario für heute, für die von Dir erwartete und für die von Dir gewünschte Zukunft. Ein erneuter Klick auf dieselbe Zahl wählt sie wieder ab.</p>
+    <div class="toolbar">
+      <span class="prog" id="judgeProg"><span>0 von 3 gesetzt</span></span>
+      <button class="resetb" id="judgeReset" type="button">Auswahl zurücksetzen</button>
+    </div>
+    <div class="card pad" id="judge"></div>
+    <div class="readout empty" id="judgeReadout">Wähle je ein Szenario für heute, erwartet und gewünscht.</div>
+  </section>
+
+  <!-- 6 · vergleichen -->
+  <section class="sec" id="vergleich">
+    <span class="stufe">Vergleichen</span>
+    <h2>Mein Bild neben dem Community-Bild</h2>
+    <p class="seclede">Die Szenario-Landkarte trägt beide Bilder: Deine Wahl in Coral, das Community-Bild in Grau und gestrichelt, weil es derzeit unbestätigt ist. Jeder Marker zeigt zusätzlich einen Buchstaben: H heute, E erwartet, W gewünscht. Darunter steht derselbe Vergleich als Text.</p>
+    <div class="maprow">
+      <div class="mapwrap">
+        <svg id="mapCompare" viewBox="0 0 470 400" role="img" aria-label="Vergleichskarte: eigene Wahl und Community"></svg>
+        <div class="legend"><b>H</b> heute · <b>E</b> erwartet · <b>W</b> gewünscht. &nbsp; Coral gefüllt: Deine Wahl (unten am Punkt). &nbsp; Grau gestrichelt: Community, unbestätigt (oben am Punkt).</div>
+      </div>
+      <div>
+        <div class="cmpblock cmp-comm" id="cmpComm">
+          <div class="lab">Community-Bild · unbestätigt</div>
+          <div class="tx">In der bisherigen Kursbuch-Fassung liegt das Community-Bild bei heute Szenario 1 (Stabile Zukunftsroutine), erwartet Szenario 4 (KI-getriebener Zukunftsmarkt), gewünscht Szenario 6 (Universelle Infrastruktur). Diese Angabe ist derzeit unbestätigt: Es liegt keine belegte Quelle mit Erhebungsdatum und Teilnehmerzahl vor. Sie ist deshalb nicht als gesicherte Community-Evidenz zu lesen und wird erst nach Bestätigung als Evidenz geführt.</div>
+        </div>
+        <div class="cmpblock cmp-me" id="cmpMe">
+          <div class="lab">Dein Bild</div>
+          <div class="tx" id="cmpMeTx">Wähle im Abschnitt „Mein Szenario-Urteil" je ein Szenario für heute, erwartet und gewünscht.</div>
+        </div>
+        <div class="cmpblock cmp-gr" id="cmpGr">
+          <div class="lab">Gestaltungsraum · Kursbuch-Interpretation</div>
+          <div class="tx" id="cmpGrTx">Zwischen dem, was erwartet, und dem, was gewünscht wird, liegt der Gestaltungsraum. Genau diese Differenz zu bearbeiten, ist der Auftrag von foresight_D (These 2).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · Abgrenzung -->
+  <section class="sec" id="abgrenzung">
+    <div class="abgr"><b>Abgrenzung zum Gütekompass (Karte 04).</b> Der Gütekompass in Karte 04 fragt: Ist die Arbeit gut gemacht und wirkt sie? Diese Karte fragt: Welche Art von Zukunftsarbeit betreibe ich, und wie sieht die Community die Zukunft? Zwei verschiedene Werkzeuge, nicht dasselbe Modell zweimal.</div>
+  </section>
+
+  <!-- 8 · Brücke -->
+  <div class="bridge">
+    <p><span style="color:#fff;font-weight:700">Erwartung und Wunsch können auseinanderfallen. Was folgt daraus? Karte 06 fragt, wie aus diesem Gestaltungsraum konkrete Zukunft wird.</span></p>
+    <a href="../Karte06/2026-08-27_Kursbuch-Foresight_Karte06_Zukunft_Rundgang-Integration-B.html">weiter zu Karte 06 · Zukunft <span>→</span></a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fnote">
+      <b>Kursbuch Foresight.</b> Karte 05 · Ich / Wir.
+      <!-- Provenienz (intern): Karte 05 · Ich / Wir · Quellbuild K05-IMPL-20260823-B · Integration RGI-20260827-B-K05 -->
+    </div>
+    <div class="fbrand">Konzept und Realisierung: Klaus Burmeister · foresightlab<span>als Beitrag zu foresight_D</span></div>
+    <div class="fmeta" style="flex-basis:100%;border-top:1px solid rgba(159,176,194,.22);margin-top:14px;padding-top:12px;font-size:12.5px;color:#9fb0c2"><a href="../Karte06/2026-08-27_Kursbuch-Foresight_Entstehung_Rundgang-Integration-B.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Entstehung</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Impressum.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Impressum</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Quellen.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Quellen</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/2026-08-27_Kursbuch-Foresight_KI-Transparenz.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">KI-Transparenz</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var NS="http://www.w3.org/2000/svg";
+  var SZEN=[
+    {n:1,t:"Stabile Zukunftsroutine",x:30,y:42,d:"Konstante, moderat professionalisierte, expertokratisch-interpretative Praxis. Foresight bleibt etablierte Expertenroutine ohne großen Transformationsanspruch; KI wird nur ergänzend genutzt."},
+    {n:2,t:"Instrumentalisierte Zukunftshoheit",x:18,y:58,d:"Geschlossene, politisch missbrauchte Foresight-Systeme. Foresight wird gezielt zur politischen Machtsicherung eingesetzt, offene Diskurse werden verdrängt."},
+    {n:3,t:"Do-it-yourself-Foresight",x:26,y:75,d:"Starke KI-Substitution und Schrumpfung des professionellen Marktes. Automatisierte Werkzeuge ersetzen klassische Leistungen; Zukunftsarbeit wird zur beiläufigen Nebenaktivität."},
+    {n:4,t:"KI-getriebener Zukunftsmarkt",x:52,y:83,d:"Privatwirtschaftlich dominierte, proprietäre KI-Plattformen. Foresight ist vor allem ein skalierbares Produkt; proprietäre Plattformen verdrängen Offenheit und Beteiligung."},
+    {n:5,t:"Enabler disruptiver Transformation",x:80,y:72,d:"Radikal offene, auf Anwender und Bürger fokussierte Formate. Zivilgesellschaftliche Akteure und offene Netzwerke tragen partizipative, transformative Zukunftsarbeit."},
+    {n:6,t:"Universelle Infrastruktur",x:86,y:52,d:"Breit institutionalisierte, koproduktive Foresight-Systeme. Foresight ist als universelle Kompetenz in Politik, Verwaltung, Wirtschaft und Zivilgesellschaft verankert."},
+    {n:7,t:"Wertegetriebene Zukunftskultur",x:82,y:20,d:"Gesellschaftlich verankerte, radikal offene und wertebasierte Praxis. Zukunftsarbeit ist breit verankert, offen und stellt normative Werte in den Kern."},
+    {n:8,t:"Technokratische Zukunftssteuerung",x:42,y:15,d:"Politikgetriebene, institutionalisierte Expertise mit gelenkten Diskursen. Staatliche Institutionen institutionalisieren Foresight stark und steuern expertokratisch."}
+  ];
+  var COMM={H:1,E:4,W:6};
+  var PL=64,PR=442,PT=44,PB=356;
+  function sx(x){return PL+x/100*(PR-PL);}
+  function sy(y){return PT+(100-y)/100*(PB-PT);}
+  function el(tag,a){var e=document.createElementNS(NS,tag);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function txt(svg,x,y,s,anchor){var t=el("text",{x:x,y:y,"text-anchor":anchor||"middle",class:"axl"});t.textContent=s;svg.appendChild(t);return t;}
+
+  function drawBase(svg,onClick){
+    svg.appendChild(el("line",{x1:PL,y1:(PT+PB)/2,x2:PR,y2:(PT+PB)/2,stroke:"#ece7db","stroke-width":1}));
+    svg.appendChild(el("line",{x1:(PL+PR)/2,y1:PT,x2:(PL+PR)/2,y2:PB,stroke:"#ece7db","stroke-width":1}));
+    txt(svg,(PL+PR)/2,PT-16,"Markt & KI");
+    txt(svg,(PL+PR)/2,PB+26,"Gesellschaft & Politik");
+    txt(svg,PL-2,(PT+PB)/2-8,"geschlossen","start");
+    txt(svg,PR+2,(PT+PB)/2-8,"offen","end");
+    SZEN.forEach(function(s){
+      var g=el("g",{class:"szpoint"});
+      g.appendChild(el("circle",{class:"pt",cx:sx(s.x),cy:sy(s.y),r:14}));
+      var t=el("text",{x:sx(s.x),y:sy(s.y)+4,"text-anchor":"middle",class:"snum"});t.textContent=s.n;g.appendChild(t);
+      if(onClick){g.addEventListener("click",function(){onClick(s.n);});}
+      svg.appendChild(g);
+    });
+  }
+
+  // ---- Verstehen: Szenarien kennenlernen ----
+  var mapLearn=document.getElementById("mapLearn");
+  drawBase(mapLearn,showLearn);
+  var numsLearn=document.getElementById("numsLearn");
+  SZEN.forEach(function(s){var b=document.createElement("button");b.type="button";b.textContent=s.n;b.title=s.t;b.addEventListener("click",function(){showLearn(s.n);});numsLearn.appendChild(b);});
+  function showLearn(n){
+    var s=SZEN[n-1];
+    document.getElementById("sbLearn").innerHTML='<div class="t"><span class="nn">'+s.n+'</span>'+s.t+'</div><div class="d">'+s.d+'</div>';
+    [].forEach.call(numsLearn.children,function(c){c.classList.toggle("on",c.textContent===String(n));});
+  }
+
+  // ---- Ich-Profil ----
+  var AX=[
+    {a:"explorativ",b:"prognostisch",m:"Schwerpunkt: mehrere mögliche Zukünfte erkunden gegenüber konkreten Vorhersagen."},
+    {a:"analytisch",b:"gestaltend",m:"Schwerpunkt: Verstehen und Analysieren gegenüber Verändern und Gestalten."},
+    {a:"unabhängig",b:"entscheidungsnah",m:"Schwerpunkt: Distanz zur Entscheidung gegenüber Nähe zur Entscheidung."},
+    {a:"gesellschaftlich",b:"marktbezogen",m:"Schwerpunkt: Gemeinwohl und Gesellschaft gegenüber Markt und Kunden."},
+    {a:"beteiligend",b:"expertenorientiert",m:"Schwerpunkt: viele Perspektiven einbeziehen gegenüber fokussierter Fachexpertise."},
+    {a:"projektbezogen",b:"institutionell verankert",m:"Schwerpunkt: einzelne Projekte gegenüber dauerhafter Struktur."}
+  ];
+  var axState=AX.map(function(){return null;}); // null | 'sa','ea','eb','sb','both'
+  var axesEl=document.getElementById("axes");
+  AX.forEach(function(ax,i){
+    var row=document.createElement("div");row.className="axis";
+    row.innerHTML='<div class="axpoles"><span>'+ax.a+'</span><span>'+ax.b+'</span></div><div class="axmean">'+ax.m+'</div>';
+    var steps=document.createElement("div");steps.className="steps";
+    var defs=[["sa","stark "+ax.a],["ea","eher "+ax.a],["eb","eher "+ax.b],["sb","stark "+ax.b]];
+    defs.forEach(function(d){
+      var b=document.createElement("button");b.type="button";b.className="step-b";b.setAttribute("aria-pressed","false");b.setAttribute("data-v",d[0]);b.textContent=d[1];
+      b.addEventListener("click",function(){setAx(i,d[0]);});
+      steps.appendChild(b);
+    });
+    row.appendChild(steps);
+    var bw=document.createElement("div");bw.className="bothwrap";
+    var lbl=document.createElement("span");lbl.className="lbl";lbl.textContent="oder";bw.appendChild(lbl);
+    var bb=document.createElement("button");bb.type="button";bb.className="both-b";bb.setAttribute("aria-pressed","false");bb.setAttribute("data-v","both");bb.textContent="beides / situationsabhängig";
+    bb.addEventListener("click",function(){setAx(i,"both");});
+    bw.appendChild(bb);row.appendChild(bw);
+    var st=document.createElement("div");st.className="axstate";st.textContent="noch nicht gesetzt";row.appendChild(st);
+    axesEl.appendChild(row);
+  });
+  function axButtons(i){return axesEl.children[i].querySelectorAll(".step-b,.both-b");}
+  function setAx(i,v){
+    if(axState[i]===v){axState[i]=null;} else {axState[i]=v;}
+    var btns=axButtons(i);
+    [].forEach.call(btns,function(b){b.setAttribute("aria-pressed",b.getAttribute("data-v")===axState[i]?"true":"false");});
+    var st=axesEl.children[i].querySelector(".axstate");
+    if(axState[i]===null){st.textContent="noch nicht gesetzt";st.classList.remove("set");}
+    else{st.textContent="gesetzt";st.classList.add("set");}
+    renderIch();
+  }
+  function phrase(i){
+    var v=axState[i],ax=AX[i];
+    if(v==="sa")return "stark "+ax.a;
+    if(v==="ea")return "eher "+ax.a;
+    if(v==="eb")return "eher "+ax.b;
+    if(v==="sb")return "stark "+ax.b;
+    if(v==="both")return "situationsabhängig ("+ax.a+" ↔ "+ax.b+")";
+    return null;
+  }
+  function renderIch(){
+    var set=axState.filter(function(v){return v!==null;}).length;
+    document.getElementById("ichProg").innerHTML='<span>'+set+" von 6 gesetzt</span>";
+    var ro=document.getElementById("ichReadout");
+    var parts=[];AX.forEach(function(a,i){var p=phrase(i);if(p)parts.push(p);});
+    if(parts.length===0){ro.className="readout empty";ro.textContent="Noch keine Verortung. Wähle je Achse eine Position, um Dein Profil zu sehen.";}
+    else{ro.className="readout";ro.innerHTML="So arbeite ich: <b>"+parts.join("</b>, <b>")+"</b>.";}
+  }
+  document.getElementById("ichReset").addEventListener("click",function(){
+    axState=AX.map(function(){return null;});
+    [].forEach.call(axesEl.children,function(row){
+      [].forEach.call(row.querySelectorAll(".step-b,.both-b"),function(b){b.setAttribute("aria-pressed","false");});
+      var st=row.querySelector(".axstate");st.textContent="noch nicht gesetzt";st.classList.remove("set");
+    });
+    renderIch();
+  });
+  renderIch();
+
+  // ---- Szenario-Urteil ----
+  var CATS=[["H","heute","HEUTE"],["E","erwartet","ERWARTET"],["W","gewünscht","GEWÜNSCHT"]];
+  var pick={H:null,E:null,W:null};
+  var judgeEl=document.getElementById("judge");
+  CATS.forEach(function(c){
+    var row=document.createElement("div");row.className="judge";
+    row.innerHTML='<div class="jhead"><span class="hew">'+c[0]+'</span>'+c[2]+'</div>';
+    var jr=document.createElement("div");jr.className="jrow";
+    for(var k=1;k<=8;k++){(function(num){
+      var b=document.createElement("button");b.type="button";b.className="jbtn";b.setAttribute("aria-pressed","false");b.setAttribute("data-n",num);b.textContent=num;b.title=SZEN[num-1].t;
+      b.addEventListener("click",function(){setPick(c[0],num);});
+      jr.appendChild(b);
+    })(k);}
+    row.appendChild(jr);judgeEl.appendChild(row);
+  });
+  function judgeRow(ci){return judgeEl.children[ci].querySelectorAll(".jbtn");}
+  function setPick(cat,num){
+    if(pick[cat]===num){pick[cat]=null;} else {pick[cat]=num;}
+    var ci=cat==="H"?0:cat==="E"?1:2;
+    [].forEach.call(judgeRow(ci),function(b){b.setAttribute("aria-pressed",(+b.getAttribute("data-n"))===pick[cat]?"true":"false");});
+    renderJudge();drawCompare();renderCompareText();
+  }
+  function renderJudge(){
+    var set=["H","E","W"].filter(function(k){return pick[k];}).length;
+    document.getElementById("judgeProg").innerHTML='<span>'+set+" von 3 gesetzt</span>";
+    var ro=document.getElementById("judgeReadout");
+    if(set===0){ro.className="readout empty";ro.textContent="Wähle je ein Szenario für heute, erwartet und gewünscht.";return;}
+    function nm(k){return pick[k]?("Szenario "+pick[k]+" ("+SZEN[pick[k]-1].t+")"):"noch offen";}
+    ro.className="readout";
+    ro.innerHTML="Dein Urteil: heute <b>"+nm("H")+"</b>, erwartet <b>"+nm("E")+"</b>, gewünscht <b>"+nm("W")+"</b>.";
+  }
+  document.getElementById("judgeReset").addEventListener("click",function(){
+    pick={H:null,E:null,W:null};
+    [].forEach.call(judgeEl.querySelectorAll(".jbtn"),function(b){b.setAttribute("aria-pressed","false");});
+    renderJudge();drawCompare();renderCompareText();
+  });
+
+  // ---- Vergleichskarte ----
+  var mapCompare=document.getElementById("mapCompare");
+  drawBase(mapCompare,null);
+  var overlay=el("g",{});mapCompare.appendChild(overlay);
+  function chip(cx,cy,letter,kind){
+    // kind: 'comm' or 'me'
+    var w=15,h=13;
+    var g=el("g",{});
+    var rect=el("rect",{x:cx-w/2,y:cy-h/2,width:w,height:h,rx:3,ry:3});
+    if(kind==="me"){rect.setAttribute("fill","#FF6A4D");rect.setAttribute("stroke","none");}
+    else{rect.setAttribute("fill","#ffffff");rect.setAttribute("stroke","#9aa2ad");rect.setAttribute("stroke-width","1.3");rect.setAttribute("stroke-dasharray","3 2");}
+    g.appendChild(rect);
+    var t=el("text",{x:cx,y:cy+3.5,"text-anchor":"middle"});
+    t.setAttribute("font-family","var(--font)");t.setAttribute("font-size","9.5");t.setAttribute("font-weight","800");
+    t.setAttribute("fill",kind==="me"?"#ffffff":"#5c6472");
+    t.textContent=letter;g.appendChild(t);
+    return g;
+  }
+  function rowFor(scn,kind){
+    // returns array of letters for this scenario for given source
+    var out=[];
+    var src=kind==="comm"?COMM:pick;
+    ["H","E","W"].forEach(function(L){ if(src[L]===scn) out.push(L); });
+    return out;
+  }
+  function drawCompare(){
+    while(overlay.firstChild)overlay.removeChild(overlay.firstChild);
+    SZEN.forEach(function(s){
+      var px=sx(s.x),py=sy(s.y);
+      // community row ABOVE the point
+      var cL=rowFor(s.n,"comm");
+      if(cL.length){
+        var startx=px-((cL.length-1)*18)/2;
+        cL.forEach(function(L,idx){ overlay.appendChild(chip(startx+idx*18, py-26, L, "comm")); });
+      }
+      // own row BELOW the point
+      var mL=rowFor(s.n,"me");
+      if(mL.length){
+        var startx2=px-((mL.length-1)*18)/2;
+        mL.forEach(function(L,idx){ overlay.appendChild(chip(startx2+idx*18, py+26, L, "me")); });
+      }
+    });
+  }
+  drawCompare();
+
+  function renderCompareText(){
+    var set=["H","E","W"].filter(function(k){return pick[k];}).length;
+    var me=document.getElementById("cmpMeTx");
+    function nm(k){return pick[k]?("Szenario "+pick[k]+" ("+SZEN[pick[k]-1].t+")"):"noch offen";}
+    if(set<3){
+      me.innerHTML='Wähle im Abschnitt „Mein Szenario-Urteil" je ein Szenario für heute, erwartet und gewünscht.';
+    } else {
+      me.innerHTML="Du siehst heute <b>"+nm("H")+"</b>, erwartest <b>"+nm("E")+"</b>, wünschst <b>"+nm("W")+"</b>.";
+    }
+    var gr=document.getElementById("cmpGrTx");
+    var base="Zwischen dem, was erwartet, und dem, was gewünscht wird, liegt der Gestaltungsraum. Genau diese Differenz zu bearbeiten, ist der Auftrag von foresight_D (These 2).";
+    if(pick.E&&pick.W){
+      if(pick.E!==pick.W){base+=" <b>Deine Differenz</b> reicht von "+SZEN[pick.E-1].t+" zu "+SZEN[pick.W-1].t+".";}
+      else{base+=" Bei Dir fallen Erwartung und Wunsch zusammen, keine Differenz.";}
+    }
+    gr.innerHTML=base;
+  }
+  renderCompareText();
+})();
+</script>
+</body></html>

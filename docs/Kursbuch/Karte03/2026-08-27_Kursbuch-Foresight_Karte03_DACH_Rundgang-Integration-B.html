@@ -1,0 +1,580 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kursbuch Foresight · Karte 03 · Landschaft DACH</title>
+<style>
+  :root{
+    --ink:#0E1524; --ink2:#122744; --teal:#10C79E; --teald:#0C9670;
+    --coral:#FF6A4D; --corald:#E2542E; --violet:#7A6CF0; --violetd:#5b4fd0;
+    --sun:#FFC531; --sund:#B98900; --steel:#3A6EA5; --bg:#F4F2EA; --card:#fff; --line:#E7E3D9; --sur:#FCFBF8;
+    --ink-t:#1c2431; --sec:#454e5b; --mut:#8b93a1; --font:"Segoe UI",Roboto,-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink-t);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  main.wrap{padding-top:40px}
+
+  .knav{position:sticky;top:0;z-index:70;background:rgba(14,21,36,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .knav .kw{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:4px;height:46px;padding:0 14px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+  .knav a{color:#c7d0da;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:999px;flex:none}
+  .knav a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .knav a.on{background:#fff;color:#0E1524}
+  .knav .kb{color:var(--teal);font-weight:800;margin-right:6px}
+
+  .hero{background:radial-gradient(1100px 460px at 84% -14%,var(--ink2) 0%,var(--ink) 62%);color:#fff;padding:40px 0 34px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:40px 40px;-webkit-mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%);mask:radial-gradient(640px 300px at 82% 0%,#000,transparent 76%)}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .eyebrow .k{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#9cd2c4}
+  .step{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9cd2c4;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:2px 9px}
+  h1{font-size:clamp(30px,4.6vw,48px);line-height:1.03;letter-spacing:-.02em;font-weight:850;margin:0 0 8px}
+  h1 em{font-style:normal;color:var(--teal)}
+  .leit{font-size:18px;font-weight:700;color:#fff;margin:0 0 8px}
+  .lede{font-size:15.5px;color:#aebccd;max-width:820px;margin:0 0 14px}
+  .betarow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .betabadge{font-size:12px;font-weight:800;letter-spacing:.04em;padding:4px 12px;border-radius:999px;color:#0E1524;background:var(--teal)}
+  .betasmall{font-size:12.5px;color:#9fb0c2}
+  .mk{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#9cd2c4}
+  .mk::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--teal)}
+
+  main{padding:24px 0 0}
+  .intro{font-size:16px;color:var(--sec);max-width:820px;margin:0 0 22px}
+  .intro b{color:var(--ink)}
+
+  .controls{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 8px 20px rgba(20,26,36,.04);margin:0 0 16px}
+  .searchrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  .search{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:12px;padding:8px 12px;background:var(--sur)}
+  .search input{border:0;background:transparent;font-family:inherit;font-size:15px;color:var(--ink-t);width:100%;outline:none}
+  .search svg{flex:none;opacity:.5}
+  .count{font-size:13px;font-weight:700;color:var(--teald);white-space:nowrap}
+  .count span{color:var(--mut);font-weight:600}
+  .reset{font-family:inherit;font-size:13px;font-weight:700;color:var(--sec);background:transparent;border:1px solid var(--line);border-radius:10px;padding:7px 13px;cursor:pointer}
+  .reset:hover{border-color:var(--teal);color:var(--teald)}
+  .fgroup{margin-top:10px}
+  .fglabel{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);margin:0 0 6px}
+  .fchips{display:flex;flex-wrap:wrap;gap:7px}
+  .fchip{font-family:inherit;font-size:12.5px;font-weight:700;border:1px solid var(--line);background:var(--sur);color:var(--sec);border-radius:999px;padding:6px 12px;cursor:pointer;transition:.12s}
+  .fchip:hover{border-color:var(--teal);color:var(--teald)}
+  .fchip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .fgroup.gland .fchip[aria-pressed="true"]{background:var(--teald);border-color:var(--teald)}
+  .fgroup.gfun .fchip[aria-pressed="true"]{background:var(--violetd);border-color:var(--violetd)}
+  .fgroup.gkomp .fchip[aria-pressed="true"]{background:var(--sund);border-color:var(--sund)}
+  .activebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}
+
+  .selstatus{font-size:14px;color:var(--sec);margin:0 0 14px}
+  .selstatus b{color:var(--teald);font-weight:800}
+  .selstatus .sdot{color:var(--mut);margin:0 4px}
+  .selstatus .selnone{color:var(--mut)}
+  .selstatus .seltag{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#0C5c48;background:#eef7f3;border:1px solid #cfe9df;border-radius:999px;padding:3px 6px 3px 12px}
+  .selstatus .selx{font-family:inherit;font-size:15px;line-height:1;font-weight:800;color:var(--teald);background:#fff;border:1px solid #bfe9db;border-radius:50%;width:20px;height:20px;cursor:pointer;padding:0}
+  .selstatus .selx:hover{color:#fff;background:var(--corald);border-color:var(--corald)}
+
+  .vtoggle{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px;margin:0 0 16px;flex-wrap:wrap}
+  .vtoggle button{font-family:inherit;font-size:13px;font-weight:800;color:var(--sec);background:transparent;border:0;border-radius:9px;padding:8px 15px;cursor:pointer}
+  .vtoggle button[aria-selected="true"]{background:var(--ink);color:#fff}
+  .view{display:none}
+  .view.on{display:block}
+
+  .agrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:720px){.agrid{grid-template-columns:1fr}}
+  .acard{border:1px solid var(--line);background:var(--card);border-radius:16px;box-shadow:0 8px 20px rgba(20,26,36,.04);overflow:hidden;display:flex;flex-direction:column}
+  .achead{width:100%;text-align:left;background:transparent;border:0;font-family:inherit;cursor:pointer;padding:15px 17px 13px;display:block}
+  .atyp{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+  .aname{font-size:18px;font-weight:850;color:var(--ink);margin:2px 0 1px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .flmark{font-size:10px;font-weight:800;letter-spacing:.02em;color:var(--violetd);border:1px solid #ddd6f5;background:#f3f1fa;border-radius:999px;padding:2px 8px}
+  .ameta{font-size:12.5px;color:var(--mut);margin:0 0 8px}
+  .aline{font-size:14.5px;color:var(--ink-t);margin:0 0 10px}
+  .apraxis{font-size:13.5px;color:var(--ink-t);margin:0 0 10px;line-height:1.5;border-left:3px solid var(--teal);padding-left:10px}
+  .apraxis .apk{display:block;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--teald);margin-bottom:1px}
+  .clabelrow{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin:2px 0 5px}
+  .achips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .pchip{font-size:11.5px;font-weight:700;border:1px solid var(--line);background:var(--sur);color:var(--teald);border-radius:999px;padding:3px 9px}
+  .fkchip{font-size:11.5px;font-weight:700;border:1px solid #ddd6f5;background:#f6f4fd;color:var(--violetd);border-radius:999px;padding:3px 9px}
+  .acaret{float:right;color:var(--mut);font-size:12px;font-weight:800;margin-left:8px;transition:.15s}
+  .amore{display:none;padding:0 17px 15px;border-top:1px solid var(--line);margin-top:2px}
+  .acard.open .amore{display:block}
+  .acard.open .acaret{transform:rotate(180deg)}
+  .drow{display:flex;gap:10px;margin:11px 0 0;font-size:13.5px}
+  .drow .rk{flex:none;width:118px;color:var(--mut);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+  .drow .rv{color:var(--sec)}
+  .aq{font-size:12.5px;color:var(--mut);margin-top:12px;border-top:1px solid var(--line);padding-top:10px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+  .aq a{font-weight:700;color:var(--teald);text-decoration:none}
+  .aq a:hover{text-decoration:underline}
+  .astatus{font-size:11.5px;font-weight:700;color:var(--teald);border:1px solid #bfe9db;background:#eafaf5;border-radius:999px;padding:2px 9px}
+  .nomatch{display:none;text-align:center;color:var(--mut);font-size:15px;padding:30px 0}
+
+  .alist{border:1px solid var(--line);background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 8px 20px rgba(20,26,36,.04)}
+  .lrow{display:grid;grid-template-columns:1.5fr .8fr .5fr 1.4fr;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line)}
+  .lrow:first-child{border-top:0}
+  .lrow.lhead{background:var(--sur);font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}
+  .lname{font-size:15px;font-weight:800;color:var(--teald);background:transparent;border:0;font-family:inherit;text-align:left;cursor:pointer;padding:0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .lname:hover{text-decoration:underline}
+  .lort,.ltyp,.lland{font-size:13.5px;color:var(--sec)}
+  .lprax{display:flex;flex-wrap:wrap;gap:5px}
+  .lprax .pchip{font-size:11px;padding:2px 8px}
+  @media(max-width:720px){
+    .lrow{grid-template-columns:1fr;gap:5px;padding:13px 15px}
+    .lrow.lhead{display:none}
+    .lort::before{content:"Ort: ";color:var(--mut);font-weight:700}
+    .lland::before{content:"Land: ";color:var(--mut);font-weight:700}
+    .ltyp::before{content:"Typ: ";color:var(--mut);font-weight:700}
+  }
+
+  .mapview .maphead{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+  .mapstatus{font-size:14.5px;font-weight:700;color:var(--ink);margin:0 0 6px}
+  .mapstatus b{color:var(--teald)}
+  .mapstatus .sub{color:var(--mut);font-weight:600}
+  .mapwrap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 8px 20px rgba(20,26,36,.04);max-width:560px;margin:10px auto 0}
+  .mapwrap svg{width:100%;height:auto;display:block}
+  .maphint{max-width:640px;margin:8px auto 0;text-align:center;font-size:12.5px;color:var(--mut)}
+  .cland{fill:#eff3ef;stroke:#c9d3ca;stroke-width:1;stroke-linejoin:round}
+  .cland.cde{fill:#e7edf4;stroke:#8ea6c3} .cland.cat{fill:#f3ece0;stroke:#c6ab77} .cland.cch{fill:#e6f0ea;stroke:#8bb39c}
+  .clandlbl{font-size:12px;font-weight:800;fill:#b7c3b9;letter-spacing:.14em}
+  .clandlbl.cde{fill:#6f8bab} .clandlbl.cat{fill:#a98d55} .clandlbl.cch{fill:#6a9a80}
+  .maplegend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:2px 0 0;font-size:12px;font-weight:700;color:var(--sec)}
+  .maplegend .lg{display:inline-flex;align-items:center;gap:6px}
+  .maplegend .sw{width:13px;height:13px;border-radius:3px;border:1px solid rgba(0,0,0,.12)}
+  .maplegend .sw.de{background:#e7edf4;border-color:#8ea6c3} .maplegend .sw.at{background:#f3ece0;border-color:#c6ab77} .maplegend .sw.ch{background:#e6f0ea;border-color:#8bb39c}
+  .chit{fill:transparent;cursor:pointer}
+  .cdot{fill:var(--teal);fill-opacity:.85;stroke:#fff;stroke-width:1.4;cursor:pointer;pointer-events:none;transition:fill-opacity .12s,r .12s}
+  g:hover .cdot,.cdot.act{fill-opacity:1;stroke:var(--teald);stroke-width:2}
+  .cnum{font-size:10px;font-weight:800;fill:#fff;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+  .clabel{font-size:10px;font-weight:700;fill:var(--sec);pointer-events:none;opacity:0;transition:opacity .12s}
+  g:hover .clabel,g:focus .clabel,.clabel.show{opacity:1}
+  .mapdetail{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:0 8px 20px rgba(20,26,36,.04);max-width:640px;margin:14px auto 0}
+  .mapdetail[hidden]{display:none}
+  .mapdetail .mdk{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  .mapdetail h3{font-size:19px;font-weight:850;margin:2px 0 2px;color:var(--ink)}
+  .mapdetail .mdc{font-size:12.5px;color:var(--teald);font-weight:700;margin-bottom:10px}
+  .mapitem{border-top:1px solid var(--line);padding:9px 0}
+  .mapitem:first-of-type{border-top:0}
+  .mapitem button{font-family:inherit;font-size:14.5px;font-weight:800;color:var(--teald);background:transparent;border:0;padding:0;cursor:pointer;text-align:left}
+  .mapitem button:hover{text-decoration:underline}
+  .mapitem .mp{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+  .mapitem .mp .pchip{font-size:11px;padding:2px 8px}
+  .ueber{font-size:13.5px;color:var(--sec);margin:0 0 4px}
+  .ueber b{color:var(--ink)}
+  .ueber button{font-family:inherit;font-size:13.5px;font-weight:800;color:var(--teald);background:transparent;border:0;padding:0;cursor:pointer}
+  .ueber button:hover{text-decoration:underline}
+
+  .modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(14,21,36,.55)}
+  .modal.on{display:flex}
+  .modalbox{background:var(--card);border-radius:18px;max-width:620px;width:100%;max-height:86vh;overflow:auto;box-shadow:0 30px 70px rgba(10,15,25,.4);padding:22px 24px;position:relative}
+  .modalclose{position:absolute;top:14px;right:16px;font-family:inherit;font-size:20px;line-height:1;font-weight:800;color:var(--mut);background:transparent;border:0;cursor:pointer}
+  .modalbox .dk{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--mut)}
+  .modalbox h3{font-size:23px;font-weight:850;margin:3px 0 2px;color:var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .modalbox .fam{font-size:13px;color:var(--mut);margin-bottom:12px}
+  .modalbox .mln{font-size:15.5px;color:var(--ink-t);margin:0 0 8px}
+
+  .block{max-width:1080px;margin:26px auto 0}
+  .readnote{background:#eef7f3;border:1px solid #cfe9df;border-left:5px solid var(--teal);border-radius:14px;padding:14px 18px;font-size:15px;color:#1c4d3f}
+  .readnote b{color:#0C5c48}
+  .leitform{background:#f3f1fa;border:1px solid #ddd6f5;border-left:5px solid var(--violet);border-radius:14px;padding:14px 18px;margin-top:12px;font-size:15.5px;font-weight:700;color:#332a58}
+
+  .bridge{max-width:1080px;margin:30px auto 0;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+  .bridge p{font-size:16px;color:var(--sec);max-width:760px;margin:0}
+  .bridge .brow{display:flex;gap:12px;flex-wrap:wrap}
+  .bridge a{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 20px;text-decoration:none;color:#0E1524;font-weight:800;font-size:15px;box-shadow:0 10px 24px rgba(20,26,36,.05)}
+  .bridge a span{color:var(--teald);font-size:18px}
+
+  footer{margin-top:40px;background:var(--ink);color:#c7d0da;padding:30px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer .fnote{font-size:14px;max-width:680px}
+  footer b{color:#fff}
+  footer .fbrand{font-weight:800;color:var(--teal);line-height:1.3;text-align:right}
+  footer .fbrand span{display:block;font-weight:600;color:#9fb0c2;font-size:12.5px;margin-top:2px}
+  .draft{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#9fb0c2;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 10px;margin-top:10px}
+</style></head>
+<body>
+
+<nav class="knav"><div class="kw">
+  <a class="kb" href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html">Kursbuch</a>
+  <a href="../Karte01/2026-08-27_Kursbuch-Foresight_Karte01_Zeit_Rundgang-Integration-B.html">01 Zeit</a>
+  <a href="../Karte02/2026-08-27_Kursbuch-Foresight_Karte02_Begriffe_Rundgang-Integration-B.html">02 Begriffe</a>
+  <a class="on" href="2026-08-27_Kursbuch-Foresight_Karte03_DACH_Rundgang-Integration-B.html">03 Landschaft</a>
+  <a href="../Karte04/2026-08-27_Kursbuch-Foresight_Karte04_Praxis-Guete_Rundgang-Integration-B.html">04 Praxis &amp; Güte</a>
+  <a href="../Karte05/2026-08-27_Kursbuch-Foresight_Karte05_Ich-Wir_Rundgang-Integration-B.html">05 Ich / Wir</a>
+  <a href="../Karte06/2026-08-27_Kursbuch-Foresight_Karte06_Zukunft_Rundgang-Integration-B.html">06 Zukunft</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <a href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html" style="color:#9cd2c4;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.08em">← KURSBUCH</a>
+      <span class="k">Kursbuch Foresight · Karte 03 · Landschaft</span>
+      <span class="step">Schritt 3 von 6 · kartieren</span>
+      <span class="mk">Kartierung</span>
+    </div>
+    <h1>Wer macht <em>Foresight?</em></h1>
+    <p class="leit">Die Landschaft der institutionellen Zukunftsarbeit im deutschsprachigen Raum.</p>
+    <p class="lede">Institutionen, Programme und Netzwerke, in denen Zukunftsarbeit heute betrieben wird – von Zukunftsforschung über Strategische Vorausschau bis zur Trend- und Szenarioarbeit, in Deutschland, Österreich und der Schweiz.</p>
+    <div class="betarow">
+      <span class="betabadge">Kartierung 2026 · deutschsprachiger Raum</span>
+      <span class="betasmall">Kuratierte, quellenbasierte Auswahl. Kein Anspruch auf Vollständigkeit.<!-- Provenienz (intern): Quellbuild K03-DACH-20260826-J · Integration RGI-20260827-B-K03-R2 --></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="intro">Zukunftsarbeit hat viele Häuser. In Forschungsinstituten, Ministerien und Verwaltungen, in Unternehmen, Beratungen und Netzwerken wird heute systematisch über kommende Entwicklungen nachgedacht, mit unterschiedlichen Begriffen und Methoden. Die einen nennen es Zukunftsforschung, andere Foresight, Strategische Vorausschau, Corporate Foresight oder Trend- und Szenarioarbeit. Diese Karte macht die <b>Landschaft im deutschsprachigen Raum</b> sichtbar und lässt sich nach <b>Land</b>, <b>Funktion</b>, <b>Organisationstyp</b>, <b>Praxislinie</b> oder <b>Zukunftskompetenz</b> betrachten. Es ist immer nur eine dieser fünf Perspektiven aktiv; die Suche ergänzt sie unabhängig.</p>
+
+  <div class="controls" id="controls">
+    <div class="searchrow">
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Suche: Name, Einheit, Ort, Selbstbezeichnung …" aria-label="Akteure durchsuchen">
+      </label>
+      <span class="count" id="count"></span>
+      <button class="reset" id="reset" type="button">zurücksetzen</button>
+    </div>
+    <div class="fgroup gland"><div class="fglabel">Land</div><div class="fchips" id="f-land"></div></div>
+    <div class="fgroup gfun"><div class="fglabel">Was tun sie?</div><div class="fchips" id="f-fun"></div></div>
+    <div class="fgroup"><div class="fglabel">Organisationstyp</div><div class="fchips" id="f-typ"></div></div>
+    <div class="fgroup"><div class="fglabel">Praxislinie</div><div class="fchips" id="f-praxis"></div></div>
+    <div class="fgroup gkomp"><div class="fglabel">Zukunftskompetenz</div><div class="fchips" id="f-komp"></div></div>
+  </div>
+
+  <div class="selstatus" id="selstatus"></div>
+
+  <div class="vtoggle" role="tablist" aria-label="Ansicht wählen">
+    <button id="v-cards" role="tab" aria-selected="true" type="button">Karten</button>
+    <button id="v-list" role="tab" aria-selected="false" type="button">Liste</button>
+    <button id="v-map" role="tab" aria-selected="false" type="button">DACH-Karte</button>
+  </div>
+
+  <section class="view on" id="view-cards"><div class="agrid" id="agrid"></div></section>
+
+  <section class="view" id="view-list">
+    <div class="alist" id="alist"></div>
+  </section>
+
+  <section class="view mapview" id="view-map">
+    <div class="maphead">Standorte in unserer Kartierung · DE · AT · CH</div>
+    <div class="maplegend" aria-hidden="true"><span class="lg"><span class="sw de"></span>Deutschland</span><span class="lg"><span class="sw at"></span>Österreich</span><span class="lg"><span class="sw ch"></span>Schweiz</span></div>
+    <div class="mapstatus" id="mapstatus"></div>
+    <div class="ueber" id="ueber"></div>
+    <div class="mapwrap" id="mapwrap"></div>
+    <p class="maphint">Standortkarte. Klick auf einen Standort öffnet unten die dort sichtbaren Akteure. Akteure mit mehreren belegten Standorten erscheinen an mehreren Punkten, zählen aber nur einmal.</p>
+    <div class="mapdetail" id="mapdetail" hidden></div>
+  </section>
+
+  <div class="nomatch" id="nomatch">Keine Akteure passen zu dieser Auswahl. <b>Zurücksetzen</b> zeigt wieder alle.</div>
+
+  <div class="block">
+    <div class="readnote"><b>Zur Kartierung.</b> Diese Fassung zeigt genau 54 kuratierte, quellenbasierte Akteure aus Deutschland, Österreich und der Schweiz. Jeder Akteur ist ein Datensatz; Selbstbezeichnung und redaktionelle Zuordnung bleiben getrennt. Aufnahmegrund, Primärquelle und Hinweise stehen je Akteur in der aufklappbaren Detailebene.</div>
+    <div class="leitform">Futures Literacy und Futures Capability sind eine Zukunftskompetenz, keine Praxislinie. Sie erscheinen als Marker an den betreffenden Akteuren und als eigene Filterperspektive Zukunftskompetenz.</div>
+  </div>
+
+  <div class="bridge">
+    <p>Die Landschaft zeigt, wer Zukunftsarbeit trägt. Doch was macht diese Arbeit eigentlich gut?</p>
+    <div class="brow">
+      <a href="../Karte04/2026-08-27_Kursbuch-Foresight_Karte04_Praxis-Guete_Rundgang-Integration-B.html">weiter zu Karte 04 · Praxis &amp; Güte <span>→</span></a>
+    </div>
+  </div>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Akteursdetail">
+  <div class="modalbox" id="modalbox"></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fnote">
+      <b>Kursbuch Foresight.</b> Der Projektpfad: D2030-Szenarien („Deutschland neu denken" 2018, „Neue Horizonte 2045" 2023–2024) → foresight_D → Kursbuch Foresight → update futures_02 auf der Futura Biennale 2027 → „Grundrisse" 2028.
+      <!-- Provenienz (intern): Karte 03 · Landschaft DACH · Kartierung 2026 · Quellbuild K03-DACH-20260826-J · Integration RGI-20260827-B-K03-R2 -->
+    </div>
+    <div class="fbrand">Konzept und Realisierung: Klaus Burmeister · foresightlab<span>als Beitrag zu foresight_D</span></div>
+    <div class="fmeta" style="flex-basis:100%;border-top:1px solid rgba(159,176,194,.22);margin-top:14px;padding-top:12px;font-size:12.5px;color:#9fb0c2"><a href="../Karte06/2026-08-27_Kursbuch-Foresight_Entstehung_Rundgang-Integration-B.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Entstehung</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Impressum.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Impressum</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Quellen.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Quellen</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/2026-08-27_Kursbuch-Foresight_KI-Transparenz.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">KI-Transparenz</a></div>
+  </div>
+</footer>
+
+<script>
+window.KURSBUCH_K03_DACH = [{"id":"K03-001","name":"IZT","einheit":"Institut für Zukunftsstudien und Technologiebewertung","ort":"Berlin","laender":["DE"],"orgtyp":"Forschungsinstitut","selbst":"Zukunftsforschung; Technikfolgenabschätzung","praxis":["Zukunftsforschung","Szenarioarbeit"],"funktionen":"forscht; entwickelt Szenarien; berät","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Berlin"],"zk":"—","kpraxis":"Zukunftsforschung und Technikfolgenabschätzung mit Schwerpunkt Nachhaltigkeit; Szenarien und Beratung.","grund":"Kontinuierliche institutionelle Zukunftsforschung und Technikfolgenabschätzung mit Schwerpunkt Nachhaltigkeit","quelle":"https://www.izt.de/","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"izt institut für zukunftsstudien und technologiebewertung zukunftsforschung; technikfolgenabschätzung berlin"},{"id":"K03-002","name":"Fraunhofer ISI","einheit":"Abteilung Foresight","ort":"Karlsruhe","laender":["DE"],"orgtyp":"Forschungsinstitut","selbst":"Foresight","praxis":["Foresight","Strategic Foresight"],"funktionen":"forscht; scannt; entwickelt Szenarien; berät","fklassen":["forschen & analysieren","scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Karlsruhe"],"zk":"—","kpraxis":"Foresight-Forschung und Policy-Foresight mit Horizon Scanning, Delphi, Szenarien und Roadmapping.","grund":"Institutionalisierte Foresight-Forschung und Policy-Foresight mit Horizon Scanning, Delphi, Szenarien und Roadmapping","quelle":"https://www.isi.fraunhofer.de/de/competence-center/foresight.html","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"fraunhofer isi abteilung foresight foresight karlsruhe"},{"id":"K03-003","name":"Z_punkt","einheit":"Z_punkt The Foresight Company","ort":"Köln","laender":["DE"],"orgtyp":"Beratung","selbst":"The Foresight Company; Strategic Foresight; Innovation Foresight","praxis":["Corporate Foresight","Strategic Foresight"],"funktionen":"berät; scannt; entwickelt Szenarien; betreibt Corporate Foresight","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","Foresight institutionalisieren"],"orte":["Köln"],"zk":"—","kpraxis":"Corporate, Strategic, Innovation, Public und Organisational Foresight; Trendanalyse und Szenario-Entwicklung.","grund":"Eigenständige deutschsprachige Corporate-, Strategic-, Innovation-, Public- und Organisational-Foresight-Praxis mit Trendanalyse und Szenario-Entwicklung","quelle":"https://z-punkt.de/en/leistungen/strategic-foresight","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"z_punkt z_punkt the foresight company the foresight company; strategic foresight; innovation foresight köln"},{"id":"K03-004","name":"D2030 e.V.","einheit":"D2030 e.V.","ort":"Berlin","laender":["DE"],"orgtyp":"NGO und Zivilgesellschaft","selbst":"Open Foresight; Szenarien; Zukunftsdialoge","praxis":["Foresight","Szenarioarbeit"],"funktionen":"entwickelt Szenarien; beteiligt Öffentlichkeit; vernetzt","fklassen":["Szenarien & Zukunftsbilder entwickeln","beteiligen & aushandeln","vernetzen & professionalisieren"],"orte":["Berlin"],"zk":"—","kpraxis":"Partizipative Szenarioarbeit: „Deutschland neu denken\" – 8 Szenarien; „Neue Horizonte 2045\" – 7 Zukunftsbilder; Futures Lounge als kontinuierliches Open-Foresight-Format.","grund":"Zwei große partizipative Szenariozyklen für Deutschland: „Deutschland 2030 – Eine Landkarte für die Zukunft\" (2016–2018; veröffentlicht als „Deutschland neu denken\") und „Neue Horizonte 2045 – Missionen für Deutschland\" / D2045 (ab 2023). Open-Foresight-Prozesse mit Szenariotechnik, Zukunftsdialogen und gesellschaftlicher Beteiligung.","quelle":"https://d2030.de/futures-lounge-d2030/","status":"GRÜN · Bestand K03-C","hinweis":"2018: acht explorative Deutschland-2030-Szenarien. D2045/Neue Horizonte 2045: sieben Zukunftsbilder für Deutschland.","studien":[{"t":"Deutschland 2030 – Eine Landkarte für die Zukunft (Deutschland neu denken)","meta":"2016–2018, acht Szenarien","url":"https://d2030.de/projekte/szenarien-deutschland-2030-eine-landkarte-fuer-die-zukunft/"},{"t":"Neue Horizonte 2045 – Missionen für Deutschland","meta":"Studienreport 2024, sieben Zukunftsbilder","url":"https://www.d2030.de/wp-content/uploads/2024/09/D2045_Neue-Horizonte-Studienreport.pdf","proj":"https://d2030.de/projekte/das-aktuelle-szenarioprojekt-neue-horizonte-2045/"}],"_s":"d2030 e.v. d2030 e.v. open foresight; szenarien; zukunftsdialoge berlin"},{"id":"K03-005","name":"Institut Futur","einheit":"Arbeitsbereich Zukunftsforschung, Freie Universität Berlin","ort":"Berlin","laender":["DE"],"orgtyp":"Universität und Hochschule","selbst":"Zukunftsforschung","praxis":["Zukunftsforschung","Futures Studies"],"funktionen":"forscht; lehrt","fklassen":["forschen & analysieren","lehren & Zukunftskompetenz entwickeln"],"orte":["Berlin"],"zk":"—","kpraxis":"Forschung und Lehre zur Zukunftsforschung; Träger des weiterbildenden Masterstudiengangs Zukunftsforschung an der FU Berlin.","grund":"Kontinuierliche Forschung und Hochschullehre im Feld","quelle":"https://www.fu-berlin.de/studium/studienangebot/master/zukunftsforschung/index.html","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"institut futur arbeitsbereich zukunftsforschung, freie universität berlin zukunftsforschung berlin"},{"id":"K03-006","name":"BAKS","einheit":"Kompetenzzentrum Strategische Vorausschau","ort":"Berlin","laender":["DE"],"orgtyp":"Regierung, Verwaltung und Parlament","selbst":"Strategische Vorausschau","praxis":["Strategische Vorausschau"],"funktionen":"betreibt Strategische Vorausschau; lehrt; berät","fklassen":["strategisch beraten","Foresight institutionalisieren","lehren & Zukunftskompetenz entwickeln"],"orte":["Berlin"],"zk":"—","kpraxis":"Staatliche Strategische Vorausschau im Sicherheitskontext; verankert Vorausschau-Methoden in Bundesbehörden.","grund":"Institutionalisierte staatliche Vorausschau im Sicherheitskontext; verankert Vorausschau-Methoden in Bundesministerien und -behörden","quelle":"https://www.baks.bund.de/de/ueber-uns-kompetenzzentrum-strategische-vorausschau/kompetenzzentrum-strategische-vorausschau","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"baks kompetenzzentrum strategische vorausschau strategische vorausschau berlin"},{"id":"K03-007","name":"SWP","einheit":"Stiftung Wissenschaft und Politik","ort":"Berlin","laender":["DE"],"orgtyp":"Thinktank und Stiftung","selbst":"methodische Vorausschau; Was wäre, wenn?","praxis":["Foresight","Szenarioarbeit"],"funktionen":"forscht; berät; scannt","fklassen":["forschen & analysieren","scannen & beobachten","strategisch beraten"],"orte":["Berlin"],"zk":"—","kpraxis":"Methodische Foresight-Reihe seit 2011 in der Außen- und Sicherheitspolitik („Was wäre, wenn?\").","grund":"Kontinuierliche methodische Foresight-Reihe seit 2011 in Außen- und Sicherheitspolitik","quelle":"https://www.swp-berlin.org/themen/dossiers/foresight-vorausschau-auf-moegliche-ueberraschungen","status":"GRÜN · Bestand K03-C","hinweis":"Nicht als Strategic Foresight etikettieren ohne eigenen Beleg.","_s":"swp stiftung wissenschaft und politik methodische vorausschau; was wäre, wenn? berlin"},{"id":"K03-008","name":"Zukunftsinstitut","einheit":"Zukunftsinstitut","ort":"Frankfurt am Main / Wien","laender":["DE","AT"],"orgtyp":"Unternehmen","selbst":"Zukunftsforschung; Megatrend Research; Future Performance Center","praxis":["Trendforschung","Megatrendforschung"],"funktionen":"forscht; scannt; berät","fklassen":["forschen & analysieren","scannen & beobachten","strategisch beraten"],"orte":["Frankfurt am Main","Wien"],"zk":"—","kpraxis":"Trend- und Megatrendforschung; Megatrends als Analyseraster für Organisationen.","grund":"Eigenständige Trend- und Megatrendlinie; Megatrends als Analyseraster für Organisationen","quelle":"https://www.zukunftsinstitut.de/zukunftsthemen/megatrends","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"zukunftsinstitut zukunftsinstitut zukunftsforschung; megatrend research; future performance center frankfurt am main / wien"},{"id":"K03-009","name":"2b AHEAD","einheit":"2b AHEAD ThinkTank","ort":"Leipzig","laender":["DE"],"orgtyp":"Beratung","selbst":"wissenschaftliche Zukunftsforschung; ThinkTank","praxis":["Strategic Foresight","Trendforschung"],"funktionen":"scannt; entwickelt Szenarien; berät","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Leipzig"],"zk":"—","kpraxis":"Kommerzieller Foresight-ThinkTank mit wissenschaftlicher Zukunftsforschung, Strategic Foresight, Trendforschung und Szenarioarbeit.","grund":"Strategisch gesetzter kommerzieller Foresight-Akteur; eigene Methodik und Marktpräsenz","quelle":"https://2bahead.com/en","status":"GRÜN · Bestand K03-C · strategisch gesetzt","hinweis":"Eigenangaben zu Marktführerschaft nicht übernehmen.","_s":"2b ahead 2b ahead thinktank wissenschaftliche zukunftsforschung; thinktank leipzig"},{"id":"K03-010","name":"VDI/VDE Innovation + Technik","einheit":"VDI/VDE Innovation + Technik GmbH / iit","ort":"Berlin","laender":["DE"],"orgtyp":"Unternehmen","selbst":"Foresight; Innovations- und Zukunftsanalysen","praxis":["Strategic Foresight","Strategische Vorausschau"],"funktionen":"berät; scannt; betreibt Strategische Vorausschau","fklassen":["scannen & beobachten","strategisch beraten","Foresight institutionalisieren"],"orte":["Berlin"],"zk":"—","kpraxis":"Operative Foresight-Zyklen (iit) und Innovations-/Zukunftsanalysen.","grund":"Operative Foresight-Zyklen (iit) und Innovations- und Zukunftsanalysen","quelle":"https://www.vdivde-it.de/de/auftrag/aufbau-des-foresight-innerhalb-von-innovativ-thueringen","status":"GRÜN · Bestand K03-C","hinweis":"Getrennt vom VDI Technologiezentrum führen.","_s":"vdi/vde innovation + technik vdi/vde innovation + technik gmbh / iit foresight; innovations- und zukunftsanalysen berlin"},{"id":"K03-011","name":"Bundeskanzleramt · Strategische Vorausschau","einheit":"Referat Strategische Vorausschau und Planung","ort":"Berlin","laender":["DE"],"orgtyp":"Regierung, Verwaltung und Parlament","selbst":"Strategische Vorausschau und Planung","praxis":["Strategische Vorausschau"],"funktionen":"betreibt Strategische Vorausschau","fklassen":["Foresight institutionalisieren"],"orte":["Berlin"],"zk":"—","kpraxis":"Strategische Vorausschau und Planung im Regierungskern.","grund":"Vorausschau im Regierungskern","quelle":"https://www.bundesregierung.de/resource/blob/974430/773044/6ef4dd6410b2ba122adf8969e0edd5ac/druckversion-organigramm-bkamt-data.pdf","status":"GRÜN · Bestand K03-C","hinweis":"Organisationsbezeichnung beim nächsten Build nochmals gegen aktuellen Organisationsplan prüfen.","_s":"bundeskanzleramt · strategische vorausschau referat strategische vorausschau und planung strategische vorausschau und planung berlin"},{"id":"K03-012","name":"BMFTR · Foresight","einheit":"Strategische Vorausschau (Foresight)","ort":"Berlin / Bonn","laender":["DE"],"orgtyp":"Regierung, Verwaltung und Parlament","selbst":"Strategische Vorausschau; Foresight","praxis":["Strategische Vorausschau","Foresight"],"funktionen":"betreibt Strategische Vorausschau; fördert","fklassen":["Foresight institutionalisieren"],"orte":["Berlin","Bonn"],"zk":"—","kpraxis":"Bundesakteur und Auftraggeber für Foresight; Vorausschau auf rund 15 Jahre.","grund":"Zentraler Bundesakteur und Auftraggeber für Foresight; Vorausschau auf rund 15 Jahre","quelle":"https://www.bmftr.bund.de/DE/Forschung/Gesellschaft/StrategischeVorausschau/strategischevorausschau_node.html","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"bmftr · foresight strategische vorausschau (foresight) strategische vorausschau; foresight berlin / bonn"},{"id":"K03-013","name":"DLR Projektträger · Strategische Vorausschau","einheit":"Strategische Vorausschau","ort":"Bonn / Berlin","laender":["DE"],"orgtyp":"Beratung","selbst":"Strategische Vorausschau","praxis":["Strategische Vorausschau","Foresight"],"funktionen":"betreibt Strategische Vorausschau; berät; entwickelt Szenarien","fklassen":["Szenarien & Zukunftsbilder entwickeln","strategisch beraten","Foresight institutionalisieren"],"orte":["Bonn","Berlin"],"zk":"—","kpraxis":"Vorausschau-Beratung für Bundesressorts mit Trendanalyse, Szenarien und Roadmaps.","grund":"Vorausschau-Beratung für Bundesressorts mit Trendanalyse, Szenarien und Roadmaps","quelle":"https://projekttraeger.dlr.de/media/strategic-foresight/index.html","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"dlr projektträger · strategische vorausschau strategische vorausschau strategische vorausschau bonn / berlin"},{"id":"K03-014","name":"TAB","einheit":"Büro für Technikfolgen-Abschätzung beim Deutschen Bundestag","ort":"Berlin / Karlsruhe","laender":["DE"],"orgtyp":"Regierung, Verwaltung und Parlament","selbst":"Technikfolgen-Abschätzung; Horizon Scanning","praxis":["Foresight","Szenarioarbeit"],"funktionen":"forscht; scannt; berät; entwickelt Szenarien","fklassen":["forschen & analysieren","scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Berlin","Karlsruhe"],"zk":"—","kpraxis":"Parlamentarische Technikfolgen-Abschätzung seit 1990 mit Horizon Scanning und Resilienz-Radar.","grund":"Parlamentarische Technikfolgen-Abschätzung seit 1990 mit Horizon Scanning und Resilienz-Radar","quelle":"https://www.tab-beim-bundestag.de/ueber-uns.php","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"tab büro für technikfolgen-abschätzung beim deutschen bundestag technikfolgen-abschätzung; horizon scanning berlin / karlsruhe"},{"id":"K03-015","name":"Bayerisches Foresight-Institut","einheit":"Technische Hochschule Ingolstadt","ort":"Ingolstadt","laender":["DE"],"orgtyp":"Universität und Hochschule","selbst":"Foresight; Strategien für Zukünfte","praxis":["Foresight","Strategic Foresight"],"funktionen":"forscht; lehrt; berät","fklassen":["forschen & analysieren","strategisch beraten","lehren & Zukunftskompetenz entwickeln"],"orte":["Ingolstadt"],"zk":"—","kpraxis":"2022 gegründetes Foresight-Institut der THI Ingolstadt in Forschung und Lehre.","grund":"2022 gegründetes Foresight-Institut der THI Ingolstadt in Forschung und Lehre","quelle":"https://www.thi.de/forschung/bayerisches-foresight-institut/","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"bayerisches foresight-institut technische hochschule ingolstadt foresight; strategien für zukünfte ingolstadt"},{"id":"K03-016","name":"Fraunhofer FKIE / INT","einheit":"Abteilung INT · Corporate Technology Foresight","ort":"Euskirchen","laender":["DE"],"orgtyp":"Forschungsinstitut","selbst":"Corporate Technology Foresight","praxis":["Foresight","Strategic Foresight"],"funktionen":"forscht; scannt; berät","fklassen":["forschen & analysieren","scannen & beobachten","strategisch beraten"],"orte":["Euskirchen"],"zk":"—","kpraxis":"Corporate Technology Foresight: systematische Früherkennung und Bewertung von Technologieentwicklungen.","grund":"Corporate Technology Foresight: systematische Früherkennung und Bewertung von Technologieentwicklungen","quelle":"https://www.fkie.fraunhofer.de/en/departments/int/corporate-technology-foresight.html","status":"GRÜN · Bestand K03-C","hinweis":"Früheres eigenständiges Fraunhofer INT heute als Abteilung INT im FKIE führen.","_s":"fraunhofer fkie / int abteilung int · corporate technology foresight corporate technology foresight euskirchen"},{"id":"K03-017","name":"Netzwerk Zukunftsforschung","einheit":"Netzwerk Zukunftsforschung e.V.","ort":"deutschsprachiger Raum","laender":["DE","AT","CH"],"orgtyp":"Netzwerk und Verband","selbst":"Netzwerk der Zukunftsforschung","praxis":["Zukunftsforschung","Futures Studies"],"funktionen":"vernetzt; professionalisiert; fördert","fklassen":["vernetzen & professionalisieren"],"orte":[],"zk":"—","kpraxis":"Gemeinnütziges Community- und Professionalisierungsnetzwerk der Zukunftsforschung im deutschsprachigen Raum.","grund":"Gemeinnütziges Community- und Professionalisierungsnetzwerk der Zukunftsforschung im deutschsprachigen Raum","quelle":"https://netzwerk-zukunftsforschung.de/","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"netzwerk zukunftsforschung netzwerk zukunftsforschung e.v. netzwerk der zukunftsforschung deutschsprachiger raum"},{"id":"K03-018","name":"ScMI","einheit":"ScMI AG · Scenario Management International","ort":"Paderborn","laender":["DE"],"orgtyp":"Beratung","selbst":"Scenario Management","praxis":["Szenarioarbeit","Strategic Foresight"],"funktionen":"entwickelt Szenarien; berät; lehrt","fklassen":["Szenarien & Zukunftsbilder entwickeln","strategisch beraten","lehren & Zukunftskompetenz entwickeln"],"orte":["Paderborn"],"zk":"—","kpraxis":"Szenario-Management als strategischer Ansatz für Strategie-, Change- und Innovationsmanagement.","grund":"Szenario-Management als strategischer Ansatz für Strategie-, Change- und Innovationsmanagement","quelle":"https://www.scmi.de/en/company/scenario-management","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"scmi scmi ag · scenario management international scenario management paderborn"},{"id":"K03-019","name":"foresightlab","einheit":"foresightlab","ort":"Berlin","laender":["DE"],"orgtyp":"Beratung","selbst":"foresight und Transformation","praxis":["Zukunftsforschung","Foresight","Szenarioarbeit"],"funktionen":"forscht; entwickelt Szenarien; berät; beteiligt Öffentlichkeit","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","beteiligen & aushandeln"],"orte":["Berlin"],"zk":"—","kpraxis":"Kontinuierliche Szenarienarbeit, u. a. „Szenarien zum Rechtspopulismus in Deutschland 2035\" und „Neue Horizonte 2045\".","grund":"Kontinuierliche Szenarienarbeit, unter anderem Szenarien zum Rechtspopulismus in Deutschland 2035 und Neue Horizonte 2045","quelle":"https://foresightlab.de/aktuell/","status":"GRÜN · Bestand K03-C","hinweis":"Nach denselben Kriterien wie alle anderen führen.","_s":"foresightlab foresightlab foresight und transformation berlin"},{"id":"K03-020","name":"TRENDONE","einheit":"TRENDONE GmbH","ort":"Hamburg","laender":["DE"],"orgtyp":"Beratung","selbst":"Corporate Foresight; Strategic Foresight; Trend Management","praxis":["Trendforschung","Strategic Foresight","Corporate Foresight"],"funktionen":"scannt; berät; betreibt Corporate Foresight","fklassen":["scannen & beobachten","strategisch beraten","Foresight institutionalisieren"],"orte":["Hamburg"],"zk":"—","kpraxis":"Trendmanagement und Corporate/Strategic Foresight; Trend Radar.","grund":"Trendmanagement und Corporate- und Strategic Foresight; Trend Radar","quelle":"https://www.trendone.com/en/consulting","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"trendone trendone gmbh corporate foresight; strategic foresight; trend management hamburg"},{"id":"K03-021","name":"Rohrbeck Heger","einheit":"Rohrbeck Heger · Foresight + Strategy","ort":"Berlin","laender":["DE"],"orgtyp":"Beratung","selbst":"Foresight + Strategy","praxis":["Corporate Foresight","Strategic Foresight"],"funktionen":"berät; betreibt Corporate Foresight; entwickelt Szenarien","fklassen":["Szenarien & Zukunftsbilder entwickeln","strategisch beraten","Foresight institutionalisieren"],"orte":["Berlin"],"zk":"—","kpraxis":"Corporate Foresight als Kernangebot; Aufbau dedizierter Foresight-Funktionen.","grund":"Spezialisierte Corporate-Foresight-Beratung; Aufbau dedizierter Foresight-Funktionen","quelle":"https://www.rohrbeckheger.com/what-we-do","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"rohrbeck heger rohrbeck heger · foresight + strategy foresight + strategy berlin"},{"id":"K03-022","name":"Themis Foresight","einheit":"Themis Foresight GmbH","ort":"Berlin","laender":["DE"],"orgtyp":"Beratung","selbst":"Think Tank and Foresight company; futures researchers","praxis":["Strategic Foresight","Zukunftsforschung"],"funktionen":"forscht; entwickelt Szenarien; berät","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Berlin"],"zk":"—","kpraxis":"Spezialisierte Foresight- und Zukunftsforschungsberatung mit laufenden Zukunftsprojekten, darunter 2035-Studien; gegründet 2021.","grund":"Spezialisierte Foresight- und Zukunftsforschungsberatung mit laufenden Zukunftsprojekten, darunter 2035-Studien; gegründet 2021","quelle":"https://themis-foresight.com/en/about/","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"themis foresight themis foresight gmbh think tank and foresight company; futures researchers berlin"},{"id":"K03-023","name":"Future Impacts Consulting","einheit":"Future Impacts Consulting / German Node des Millennium Project","ort":"Köln","laender":["DE"],"orgtyp":"Beratung","selbst":"Foresight Consulting","praxis":["Zukunftsforschung","Foresight"],"funktionen":"forscht; entwickelt Szenarien; berät; vernetzt","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","vernetzen & professionalisieren"],"orte":["Köln"],"zk":"—","kpraxis":"Foresight-Beratung; betreibt den German Node des Millennium Project.","grund":"Foresight-Beratung; betreibt den German Node des Millennium Project","quelle":"https://future-impacts.de/","status":"GRÜN · Bestand K03-C · Name präzisiert","hinweis":"Nicht doppelt als „Future Impacts“ und „Future Impacts Consulting“ führen.","_s":"future impacts consulting future impacts consulting / german node des millennium project foresight consulting köln"},{"id":"K03-024","name":"4strat","einheit":"4strat GmbH","ort":"Berlin / Graz","laender":["DE","AT"],"orgtyp":"Unternehmen","selbst":"Strategy Foresight Tools","praxis":["Strategic Foresight","Szenarioarbeit"],"funktionen":"scannt; entwickelt Szenarien; berät","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Berlin","Graz"],"zk":"—","kpraxis":"Foresight Strategy Cockpit: Plattform zum Sammeln, Bewerten und Visualisieren von Trends, Risiken und Szenarien.","grund":"Foresight Strategy Cockpit: Plattform zum Sammeln, Bewerten und Visualisieren von Trends, Risiken und Szenarien","quelle":"https://www.4strat.com/","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"4strat 4strat gmbh strategy foresight tools berlin / graz"},{"id":"K03-025","name":"Prognos","einheit":"Prognos AG","ort":"Basel / Berlin / Düsseldorf","laender":["CH","DE"],"orgtyp":"Beratung","selbst":"Providing Orientation; wissenschaftlich fundiert","praxis":["Szenarioarbeit"],"funktionen":"forscht; entwickelt Szenarien; berät","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Basel","Berlin","Düsseldorf"],"zk":"—","kpraxis":"Verbindet Szenarien und modellbasierte Forecasts; Brückenakteur CH/DE.","grund":"Verbindet Szenarien und modellbasierte Forecasts; Brückenakteur CH/DE","quelle":"https://www.prognos.com/en/foresight-forecasts","status":"GRÜN · Bestand K03-C","hinweis":"Nicht automatisch Strategic Foresight zuschreiben.","_s":"prognos prognos ag providing orientation; wissenschaftlich fundiert basel / berlin / düsseldorf"},{"id":"K03-026","name":"GPPi · Futures and Strategic Foresight","einheit":"Programm Strategic Foresight, Global Public Policy Institute","ort":"Berlin","laender":["DE"],"orgtyp":"Thinktank und Stiftung","selbst":"Strategic Foresight","praxis":["Strategic Foresight","Szenarioarbeit"],"funktionen":"forscht; entwickelt Szenarien; berät","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Berlin"],"zk":"—","kpraxis":"Strategic-Foresight-Programm mit Szenario-Foresight, Gaming und Frühwarnung im Governance-Kontext.","grund":"Strategic-Foresight-Programm mit Szenario-Foresight, Gaming und Frühwarnung im Governance-Kontext","quelle":"https://gppi.net/issue-area/strategic-foresight","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"gppi · futures and strategic foresight programm strategic foresight, global public policy institute strategic foresight berlin"},{"id":"K03-027","name":"PROFORE","einheit":"PROFORE Gesellschaft für Zukunft mbH","ort":"Leipzig","laender":["DE"],"orgtyp":"Beratung","selbst":"dezentrales Zukunftsinstitut; professionelle Zukunftsforschung","praxis":["Zukunftsforschung","Strategic Foresight","Szenarioarbeit"],"funktionen":"forscht; entwickelt Szenarien; berät; lehrt","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","lehren & Zukunftskompetenz entwickeln"],"orte":["Leipzig"],"zk":"—","kpraxis":"Zukunftsforschung in drei Säulen: Foresight-Forschung, Szenarien und Analysen, Foresight-Weiterbildung.","grund":"Strategisch gesetzt; Foresight-Forschung, Szenarien und Analysen sowie Foresight-Weiterbildung in drei Säulen","quelle":"https://www.profore-zukunft.de/","status":"GRÜN · Bestand K03-C · strategisch gesetzt","hinweis":"Personennähe sichtbar halten.","_s":"profore profore gesellschaft für zukunft mbh dezentrales zukunftsinstitut; professionelle zukunftsforschung leipzig"},{"id":"K03-028","name":"Schaltzeit","einheit":"Schaltzeit GmbH","ort":"Berlin","laender":["DE"],"orgtyp":"Beratung","selbst":"Strategieberatung für Zukunft und Innovation","praxis":["Strategic Foresight","Szenarioarbeit"],"funktionen":"scannt; entwickelt Szenarien; berät; beteiligt Öffentlichkeit","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","beteiligen & aushandeln"],"orte":["Berlin"],"zk":"—","kpraxis":"Strategic-Foresight-Prozesse mit Horizon Scanning, Trend Studies und explorativen wie normativen Szenarien; eigene Plattform PEACOQ.","grund":"Kontinuierliche Foresight-Prozesse und eigene Plattform","quelle":"https://schaltzeit.com/en/foresight/","status":"GRÜN · Bestand K03-C","hinweis":"","_s":"schaltzeit schaltzeit gmbh strategieberatung für zukunft und innovation berlin"},{"id":"K03-029","name":"Foresight Solutions","einheit":"Foresight Solutions","ort":"Frankfurt am Main","laender":["DE"],"orgtyp":"Beratung","selbst":"Foresight-Experte; Zukunftsanalysen","praxis":["Zukunftsforschung","Strategic Foresight"],"funktionen":"forscht; berät; entwickelt Szenarien","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Frankfurt am Main"],"zk":"—","kpraxis":"Zukunftsanalysen für Unternehmen, Verbände und öffentlichen Sektor; Verbindung von Beratung, Advanced Foresight Group und Lehre im FU-Master Zukunftsforschung.","grund":"Strategisch gesetzt; personennaher, aber kontinuierlicher Foresight-Akteur","quelle":"https://www.foresight-solutions.com/team/","status":"GRÜN · Bestand K03-C · strategisch gesetzt","hinweis":"Rechtsform nicht erfinden.","_s":"foresight solutions foresight solutions foresight-experte; zukunftsanalysen frankfurt am main"},{"id":"K03-030","name":"Ellery Studio","einheit":"Ellery Studio","ort":"Berlin","laender":["DE"],"orgtyp":"Beratung","selbst":"Agency for Foresight Consulting Services and Future Thinking","praxis":["Foresight","Trendforschung","Szenarioarbeit"],"funktionen":"scannt; entwickelt Szenarien; berät; beteiligt Öffentlichkeit","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","beteiligen & aushandeln"],"orte":["Berlin"],"zk":"—","kpraxis":"Foresight in einer Designagentur: Signal- und Trendforschung, Szenarien; Community Speculative Futures Berlin.","grund":"Design- und Strategieagentur mit institutionalisierter Foresight-Praxis: Signal- und Trendforschung, Szenarien; Community Speculative Futures Berlin","quelle":"https://en.ellerystudio.com/foresight","status":"GRÜN · Bestand K03-C","hinweis":"Foresight neben Designkern sichtbar halten.","_s":"ellery studio ellery studio agency for foresight consulting services and future thinking berlin"},{"id":"K03-031","name":"Fraunhofer IAO / CeRRI","einheit":"Center for Responsible Research and Innovation CeRRI, Fraunhofer IAO","ort":"Berlin","laender":["DE"],"orgtyp":"Forschungsinstitut","selbst":"Foresight; Strategic Foresight; Societal Foresight","praxis":["Foresight","Strategic Foresight","Szenarioarbeit"],"funktionen":"forscht; scannt; entwickelt Szenarien; berät; lehrt","fklassen":["forschen & analysieren","scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","lehren & Zukunftskompetenz entwickeln"],"orte":["Berlin"],"zk":"—","kpraxis":"Foresight mit Horizon Scanning, Delphi, Zukunftsbildern und Roadmapping.","grund":"Breite institutionalisierte Foresight-Praxis mit Horizon Scanning, Delphi, Zukunftsbildern und Roadmapping","quelle":"https://www.cerri.iao.fraunhofer.de/de/leistungsspektrum/foresight.html","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"CeRRI nicht als zweiten Akteur neben IAO zählen.","_s":"fraunhofer iao / cerri center for responsible research and innovation cerri, fraunhofer iao foresight; strategic foresight; societal foresight berlin"},{"id":"K03-032","name":"VDI Technologiezentrum","einheit":"VDI Technologiezentrum GmbH / VDI Research","ort":"Düsseldorf / Berlin","laender":["DE"],"orgtyp":"Unternehmen","selbst":"Zukunftskompetenzen; Technologieprognosen; Vorausschau","praxis":["Zukunftsforschung","Foresight"],"funktionen":"forscht; scannt; berät; fördert","fklassen":["forschen & analysieren","scannen & beobachten","strategisch beraten"],"orte":["Düsseldorf","Berlin"],"zk":"—","kpraxis":"Technologieanalyse und systematische internationale Vorausschau.","grund":"Eigenständiger Zukunfts-/Technologieanalyse-Akteur mit systematischer internationaler Vorausschau","quelle":"https://www.vditz.de/service/publikationen/details/internationale-technologieprognosen","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"Unbedingt getrennt von VDI/VDE-IT führen.","_s":"vdi technologiezentrum vdi technologiezentrum gmbh / vdi research zukunftskompetenzen; technologieprognosen; vorausschau düsseldorf / berlin"},{"id":"K03-033","name":"PD – Berater der öffentlichen Hand","einheit":"Team Strategie / Strategische Vorausschau","ort":"Düsseldorf / Berlin","laender":["DE"],"orgtyp":"Beratung","selbst":"Strategische Vorausschau; Strategie und Transformation","praxis":["Strategische Vorausschau","Strategic Foresight"],"funktionen":"berät; betreibt Strategische Vorausschau; lehrt","fklassen":["strategisch beraten","Foresight institutionalisieren","lehren & Zukunftskompetenz entwickeln"],"orte":["Düsseldorf","Berlin"],"zk":"—","kpraxis":"Strategische Vorausschau für Bund, Länder und Kommunen.","grund":"Institutionalisierte Vorausschau für Bund, Länder, Kommunen und öffentliche Unternehmen","quelle":"https://www.pd-g.de/unsere-expertise-im-bereich-strategie","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"pd – berater der öffentlichen hand team strategie / strategische vorausschau strategische vorausschau; strategie und transformation düsseldorf / berlin"},{"id":"K03-034","name":"urbanista","einheit":"urbanista","ort":"Hamburg","laender":["DE"],"orgtyp":"Beratung","selbst":"Urban Foresight; Spaces & Strategy; Co-Creation","praxis":["Foresight","Szenarioarbeit"],"funktionen":"scannt; entwickelt Szenarien; berät; beteiligt Öffentlichkeit","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","beteiligen & aushandeln"],"orte":["Hamburg"],"zk":"—","kpraxis":"Urban Foresight: Szenarien und Zukunftsstrategien für Städte.","grund":"Eigenständige Urban-Foresight-Linie: Szenarien und Zukunftsstrategien für Städte und Regionen","quelle":"https://urbanista.de/","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"urbanista urbanista urban foresight; spaces & strategy; co-creation hamburg"},{"id":"K03-035","name":"Spatial Foresight Germany","einheit":"Spatial Foresight Germany GmbH","ort":"Berlin","laender":["DE"],"orgtyp":"Beratung","selbst":"Spatial Foresight; territorial foresight","praxis":["Foresight","Szenarioarbeit"],"funktionen":"forscht; entwickelt Szenarien; berät; beteiligt Stakeholder","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","beteiligen & aushandeln"],"orte":["Berlin"],"zk":"—","kpraxis":"Raumbezogene Foresight und europäische Zukunftsszenarien.","grund":"Territoriale/raumbezogene Foresight-Linie mit europäischen Zukunftsszenarien und Policy-Beratung","quelle":"https://www.spatialforesight.eu/contact.html","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"Praxisbeleg zusätzlich über territoriale Szenario-Projekte; Name ist nicht nur Markenetikett.","_s":"spatial foresight germany spatial foresight germany gmbh spatial foresight; territorial foresight berlin"},{"id":"K03-036","name":"Stiftung für Zukunftsfragen","einheit":"Stiftung für Zukunftsfragen · eine Initiative von BAT","ort":"Hamburg","laender":["DE"],"orgtyp":"Thinktank und Stiftung","selbst":"Forschung; Zukunftsfragen; Zukunftserwartungen","praxis":["Zukunftsforschung"],"funktionen":"forscht; beobachtet; erstellt Zukunftsprognosen; kommuniziert","fklassen":["forschen & analysieren","scannen & beobachten"],"orte":["Hamburg"],"zk":"—","kpraxis":"Empirische Gesellschafts-, Freizeit- und Zukunftsforschung.","grund":"Langjährige empirische Gesellschafts-, Freizeit- und Zukunftsforschung; bildet eine andere Tradition als Strategic Foresight ab","quelle":"https://www.stiftungfuerzukunftsfragen.de/forschung/","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"Nicht als Strategic Foresight umetikettieren.","_s":"stiftung für zukunftsfragen stiftung für zukunftsfragen · eine initiative von bat forschung; zukunftsfragen; zukunftserwartungen hamburg"},{"id":"K03-037","name":"Kritische Zukunftsforschung (KZF)","einheit":"Community-Projekt Kritische Zukunftsforschung","ort":"Deutschland / virtuell","laender":["DE"],"orgtyp":"Netzwerk und Verband","selbst":"Kritische Zukunftsforschung; Community-Projekt","praxis":["Zukunftsforschung","Futures Studies"],"funktionen":"forscht/reflektiert; vernetzt; entwickelt Methoden; beteiligt Community","fklassen":["forschen & analysieren","beteiligen & aushandeln","vernetzen & professionalisieren"],"orte":[],"zk":"—","kpraxis":"Critical Futures Studies: Dekonstruktion von Zukunftsbildern und Feldkritik.","grund":"Bringt Critical Futures Studies, Dekonstruktion von Zukunftsbildern und methodische Feldkritik in die Karte","quelle":"https://kritische-zukunftsforschung.de/","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"Keine Rechtsform oder feste Institution erfinden.","_s":"kritische zukunftsforschung (kzf) community-projekt kritische zukunftsforschung kritische zukunftsforschung; community-projekt deutschland / virtuell"},{"id":"K03-038","name":"DB Systel · Digital Foresight","einheit":"Strategisches Trendmanagement / Digital Foresight, DB Systel GmbH","ort":"Frankfurt am Main","laender":["DE"],"orgtyp":"Unternehmen","selbst":"Digital Foresight; strategisches Trendmanagement","praxis":["Corporate Foresight","Trendforschung"],"funktionen":"scannt; bewertet Trends; berät intern; betreibt Corporate Foresight","fklassen":["forschen & analysieren","scannen & beobachten","strategisch beraten","Foresight institutionalisieren"],"orte":["Frankfurt am Main"],"zk":"—","kpraxis":"Digital.Trend.Radar und Corporate Foresight für die Deutsche Bahn.","grund":"Kontinuierlicher Digital.Trend.Radar und strategische Übersetzung in die Deutsche Bahn","quelle":"https://www.dbsystel.de/dbsystel/Consulting-und-Innovation/Trendanalysen-9108472","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"db systel · digital foresight strategisches trendmanagement / digital foresight, db systel gmbh digital foresight; strategisches trendmanagement frankfurt am main"},{"id":"K03-039","name":"Siemens · Foresight Series","einheit":"Siemens AG · Tech Trends 2030: A Siemens Foresight Series","ort":"München / Berlin","laender":["DE"],"orgtyp":"Unternehmen","selbst":"A Siemens Foresight Series","praxis":["Foresight","Szenarioarbeit"],"funktionen":"scannt; entwickelt Szenarien; kommuniziert; unterstützt Strategie","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["München","Berlin"],"zk":"—","kpraxis":"Corporate Foresight über die Tech-Trends- und Szenario-Serie.","grund":"Aktuelle Corporate-Foresight-Praxis anhand eigener Tech-Trends- und Szenario-Serie","quelle":"https://www.siemens.com/de-de/company/insights/tech-trends-2030-next-era-industrial-robotics/","status":"GRÜN mit Benennungsauflage","hinweis":"Keine dedizierte Foresight-Abteilung behaupten; Akteur ist Siemens, Beleg ist die Foresight Series.","_s":"siemens · foresight series siemens ag · tech trends 2030: a siemens foresight series a siemens foresight series münchen / berlin"},{"id":"K03-040","name":"Evonik / Creavis · Foresight","einheit":"Foresight-Team der Innovationseinheit Creavis, Evonik","ort":"Marl / Essen","laender":["DE"],"orgtyp":"Unternehmen","selbst":"Foresight; Foresight-Team","praxis":["Corporate Foresight","Foresight"],"funktionen":"scannt; analysiert; entwickelt Zukunftsbilder; betreibt Corporate Foresight","fklassen":["forschen & analysieren","scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","Foresight institutionalisieren"],"orte":["Marl","Essen"],"zk":"—","kpraxis":"Corporate-Foresight-Team bei Creavis; Zukunftsbilder.","grund":"Aktuell explizit belegtes Corporate-Foresight-Team bei Creavis; strategisch gesetzt","quelle":"https://elements.evonik.com/de/articles/1_2026/foresight-ai.html","status":"GRÜN · neu geprüft 25.08.2026 · strategisch gesetzt","hinweis":"Aktueller Beleg vom 24.08.2026: Björn Theis = Leiter Foresight.","_s":"evonik / creavis · foresight foresight-team der innovationseinheit creavis, evonik foresight; foresight-team marl / essen"},{"id":"K03-041","name":"Volkswagen Group · Zukunftsforschung","einheit":"Forschung und Entwicklung / Zukunftsforschung, Volkswagen Group","ort":"Wolfsburg","laender":["DE"],"orgtyp":"Unternehmen","selbst":"Zukunftsforschung","praxis":["Zukunftsforschung"],"funktionen":"forscht; scannt; unterstützt langfristige F&E","fklassen":["forschen & analysieren","scannen & beobachten","strategisch beraten"],"orte":["Wolfsburg"],"zk":"—","kpraxis":"Zukunftsforschung als Teil der F&E-Kette (Konzernebene).","grund":"Strategisch gesetzter Großunternehmen-Akteur; Zukunftsforschung ist 2025/26 ausdrücklich Teil der F&E-Kette","quelle":"https://geschaeftsbericht2025.volkswagen-group.com/konzernlagebericht/steuerung-und-kennzahlen.html","status":"GRÜN mit Benennungsauflage · strategisch gesetzt","hinweis":"Keine eigenständige heutige Abteilung erfinden; Akteur auf Konzernebene führen.","_s":"volkswagen group · zukunftsforschung forschung und entwicklung / zukunftsforschung, volkswagen group zukunftsforschung wolfsburg"},{"id":"K03-042","name":"Robert-Jungk-Bibliothek für Zukunftsfragen (JBZ)","einheit":"Robert-Jungk-Bibliothek / Robert-Jungk-Stiftung","ort":"Salzburg","laender":["AT"],"orgtyp":"Thinktank und Stiftung","selbst":"kritische und kreative Zukunftsforschung","praxis":["Zukunftsforschung","Szenarioarbeit"],"funktionen":"forscht; publiziert; entwickelt Szenarien; lehrt; beteiligt Öffentlichkeit","fklassen":["forschen & analysieren","Szenarien & Zukunftsbilder entwickeln","lehren & Zukunftskompetenz entwickeln","beteiligen & aushandeln"],"orte":["Salzburg"],"zk":"—","kpraxis":"Zukunftswerkstatt, Szenarien und öffentliche Zukunftsdebatte.","grund":"Historisch und aktuell zentraler österreichischer Akteur; Zukunftswerkstatt, Szenarien, öffentliche Zukunftsdebatte","quelle":"https://jungk-bibliothek.org/die-jbz-2/","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"robert-jungk-bibliothek für zukunftsfragen (jbz) robert-jungk-bibliothek / robert-jungk-stiftung kritische und kreative zukunftsforschung salzburg"},{"id":"K03-043","name":"AIT · Societal Futures","einheit":"Center for Innovation Systems and Policy / Research Field Societal Futures, AIT","ort":"Wien","laender":["AT"],"orgtyp":"Forschungsinstitut","selbst":"Societal Futures; Public Foresight","praxis":["Foresight","Szenarioarbeit"],"funktionen":"forscht; scannt; entwickelt Szenarien; berät Politik","fklassen":["forschen & analysieren","scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Wien"],"zk":"—","kpraxis":"Public Foresight und gesellschaftliche Zukünfte für Innovationspolitik.","grund":"Public Foresight und gesellschaftliche Zukünfte für Innovationspolitik","quelle":"https://www.ait.ac.at/themen/societal-futures","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"ait · societal futures center for innovation systems and policy / research field societal futures, ait societal futures; public foresight wien"},{"id":"K03-044","name":"ITA · ÖAW","einheit":"Institut für Technikfolgen-Abschätzung, Österreichische Akademie der Wissenschaften","ort":"Wien","laender":["AT"],"orgtyp":"Forschungsinstitut","selbst":"Foresight – Zukunftswissen für die Gegenwart; Technikfolgen-Abschätzung","praxis":["Foresight","Szenarioarbeit"],"funktionen":"forscht; scannt; berät Parlament; beteiligt Öffentlichkeit","fklassen":["forschen & analysieren","scannen & beobachten","strategisch beraten","beteiligen & aushandeln"],"orte":["Wien"],"zk":"—","kpraxis":"Foresight und TA; Horizon Scanning für das österreichische Parlament.","grund":"Kontinuierliche Foresight- und TA-Praxis; Horizon Scanning für das österreichische Parlament","quelle":"https://www.oeaw.ac.at/ita/themen/foresight-zukunftswissen-fuer-die-gegenwart","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"ita · öaw institut für technikfolgen-abschätzung, österreichische akademie der wissenschaften foresight – zukunftswissen für die gegenwart; technikfolgen-abschätzung wien"},{"id":"K03-045","name":"MCI · UNESCO Chair Futures Capability","einheit":"UNESCO Chair in Futures Capability for Innovation and Entrepreneurship, MCI","ort":"Innsbruck","laender":["AT"],"orgtyp":"Universität und Hochschule","selbst":"Futures Capability; Futures Literacy","praxis":[],"funktionen":"forscht; lehrt; entwickelt Futures-Literacy-Kompetenzen; vernetzt","fklassen":["forschen & analysieren","lehren & Zukunftskompetenz entwickeln","vernetzen & professionalisieren"],"orte":["Innsbruck"],"zk":"Futures Literacy / Futures Capability","kpraxis":"Futures Literacy / Futures Capability in Forschung und Hochschulbildung.","grund":"Eigenständige Futures-Literacy-/Futures-Capability-Linie in Forschung und Hochschulbildung","quelle":"https://research.mci.edu/de/unesco-chair-futures-capability","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"Futures Literacy bewusst NICHT als Praxislinie führen; eigenes Kompetenzfeld vorsehen.","_s":"mci · unesco chair futures capability unesco chair in futures capability for innovation and entrepreneurship, mci futures capability; futures literacy innsbruck"},{"id":"K03-046","name":"PH Niederösterreich · UNESCO Chair Futures Literacy","einheit":"UNESCO Chair in Learning and Teaching Futures Literacy in the Anthropocene / Zentrum Zukünfte·Bildung","ort":"Baden","laender":["AT"],"orgtyp":"Universität und Hochschule","selbst":"Futures Literacy; Zukünftebildung","praxis":[],"funktionen":"forscht; lehrt; entwickelt didaktische Zukunftskompetenz; beteiligt","fklassen":["forschen & analysieren","lehren & Zukunftskompetenz entwickeln","beteiligen & aushandeln"],"orte":["Baden"],"zk":"Futures Literacy / Futures Capability","kpraxis":"Futures Literacy in Pädagog:innenbildung und Zukünftebildung.","grund":"Verankert Futures Literacy systematisch in Pädagog:innenbildung und Zukünftebildung","quelle":"https://www.ph-noe.ac.at/de/forschung/projekte/aktuelle-forschungsprojekte","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"Futures Literacy bewusst NICHT als Praxislinie führen; eigenes Kompetenzfeld vorsehen.","_s":"ph niederösterreich · unesco chair futures literacy unesco chair in learning and teaching futures literacy in the anthropocene / zentrum zukünfte·bildung futures literacy; zukünftebildung baden"},{"id":"K03-047","name":"swissfuture","einheit":"Schweizerische Vereinigung für Zukunftsforschung","ort":"Emmenbrücke / Schweiz","laender":["CH"],"orgtyp":"Netzwerk und Verband","selbst":"Zukunftsforschung; Foresight; Früherkennung","praxis":["Zukunftsforschung","Strategic Foresight","Szenarioarbeit"],"funktionen":"vernetzt; professionalisiert; lehrt; publiziert","fklassen":["lehren & Zukunftskompetenz entwickeln","vernetzen & professionalisieren"],"orte":["Emmenbrücke"],"zk":"—","kpraxis":"Schweizer Community und Professionalisierungsinstanz der Zukunftsforschung.","grund":"Zentrale Schweizer Community und Professionalisierungsinstanz","quelle":"https://www.swissfuture.ch/","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"swissfuture schweizerische vereinigung für zukunftsforschung zukunftsforschung; foresight; früherkennung emmenbrücke / schweiz"},{"id":"K03-048","name":"GDI · Strategic Foresight","einheit":"Gottlieb Duttweiler Institut","ort":"Rüschlikon / Zürich","laender":["CH"],"orgtyp":"Thinktank und Stiftung","selbst":"Strategic Foresight; Trendforschung","praxis":["Strategic Foresight","Trendforschung"],"funktionen":"forscht; scannt; berät; entwickelt Szenarien","fklassen":["forschen & analysieren","scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Rüschlikon","Zürich"],"zk":"—","kpraxis":"Geschäftsbereich Strategic Foresight und langjährige Trendforschung.","grund":"Expliziter Geschäftsbereich Strategic Foresight plus langjährige Trendforschung","quelle":"https://gdi.ch/unser-angebot/foresight/strategic-foresight","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"gdi · strategic foresight gottlieb duttweiler institut strategic foresight; trendforschung rüschlikon / zürich"},{"id":"K03-049","name":"Schweizerische Bundeskanzlei · Lage- und Umfeldanalyse","einheit":"Politische Planung / Lage- und Umfeldanalyse","ort":"Bern","laender":["CH"],"orgtyp":"Regierung, Verwaltung und Parlament","selbst":"langfristige Lage- und Umfeldanalyse; strategische Vorausschau","praxis":["Strategische Vorausschau","Szenarioarbeit"],"funktionen":"scannt; entwickelt Szenarien; betreibt Strategische Vorausschau; berät Regierung","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","Foresight institutionalisieren"],"orte":["Bern"],"zk":"—","kpraxis":"10–15-jährige Vorausschau; Perspektiven Schweiz 2040 für die Bundesratsplanung.","grund":"Kontinuierliche 10–15-jährige Vorausschau und Perspektiven Schweiz 2040 als Grundlage der Bundesratsplanung","quelle":"https://www.bk.admin.ch/de/lage-und-umfeldanalyse","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"schweizerische bundeskanzlei · lage- und umfeldanalyse politische planung / lage- und umfeldanalyse langfristige lage- und umfeldanalyse; strategische vorausschau bern"},{"id":"K03-050","name":"armasuisse S+T · Technology Foresight","einheit":"Research Programme 7 Technology Foresight / Deftech, armasuisse Science and Technology","ort":"Thun","laender":["CH"],"orgtyp":"Regierung, Verwaltung und Parlament","selbst":"Technology Foresight; Deftech","praxis":["Foresight","Szenarioarbeit"],"funktionen":"scannt; entwickelt Szenarien; forscht; berät","fklassen":["forschen & analysieren","scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Thun"],"zk":"—","kpraxis":"Technology Foresight mit weak signals, Szenarien und Design Fiction (Deftech).","grund":"Dediziertes Technology-Foresight-Programm mit weak signals, Szenarien und Design Fiction","quelle":"https://www.ar.admin.ch/en/technology-foresight","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"","_s":"armasuisse s+t · technology foresight research programme 7 technology foresight / deftech, armasuisse science and technology technology foresight; deftech thun"},{"id":"K03-051","name":"Universität St.Gallen · Strategic Foresight","einheit":"Institut für Systemisches Management und Public Governance / Strategic-Foresight-Lehre und Forschung","ort":"St. Gallen","laender":["CH"],"orgtyp":"Universität und Hochschule","selbst":"Strategic Foresight","praxis":["Strategic Foresight"],"funktionen":"forscht; lehrt","fklassen":["forschen & analysieren","lehren & Zukunftskompetenz entwickeln"],"orte":["St. Gallen"],"zk":"—","kpraxis":"Strategic-Foresight-Forschung und -Lehre an der HSG.","grund":"Belegte Strategic-Foresight-Forschung und Lehre an der HSG","quelle":"https://www.unisg.ch/de/newsdetail/news/hoffnungsbarometer-2026-zeigt-die-schweiz-als-ein-land-im-inneren-spannungszustand/","status":"GRÜN mit Benennungsauflage","hinweis":"Kein eigenständiges Strategic-Foresight-Institut erfinden; Andreas Krafft ist Titularprofessor für Strategic Foresight am IMP-HSG.","_s":"universität st.gallen · strategic foresight institut für systemisches management und public governance / strategic-foresight-lehre und forschung strategic foresight st. gallen"},{"id":"K03-052","name":"The Futuring Alliance","einheit":"The Futuring Alliance","ort":"Basel / Berlin / Baden-Württemberg","laender":["CH","DE"],"orgtyp":"Beratung","selbst":"Worldforming; foresight; strategy; innovation; systems thinking","praxis":["Foresight","Strategic Foresight"],"funktionen":"berät; scannt; entwickelt Zukunftspfade; baut Kompetenzen und Ökosysteme","fklassen":["scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten","lehren & Zukunftskompetenz entwickeln","vernetzen & professionalisieren"],"orte":["Basel","Berlin"],"zk":"—","kpraxis":"Beratung, Zukunftspfade sowie Aufbau von Foresight-Kompetenzen und Ökosystemen für transformative Innovation.","grund":"Junger, aber klar positionierter DACH-Akteur für foresight-driven transformative innovation","quelle":"https://www.futuring-alliance.com/","status":"GRÜN mit Rechtsform-Hinweis","hinweis":"Primärpraxis belegt; Rechtsform/gesellschaftsrechtliche Einheit nicht aus Sekundärquellen erfinden.","_s":"the futuring alliance the futuring alliance worldforming; foresight; strategy; innovation; systems thinking basel / berlin / baden-württemberg"},{"id":"K03-053","name":"Swiss Re Institute · Emerging Risks / SONAR","einheit":"Swiss Re Institute","ort":"Zürich","laender":["CH"],"orgtyp":"Unternehmen","selbst":"Emerging Risks; SONAR","praxis":["Foresight"],"funktionen":"forscht; scannt; entwickelt Risikoszenarien; berät intern/Branche","fklassen":["forschen & analysieren","scannen & beobachten","Szenarien & Zukunftsbilder entwickeln","strategisch beraten"],"orte":["Zürich"],"zk":"—","kpraxis":"Emerging-Risk-Früherkennung; SONAR als etablierte Reihe.","grund":"Institutionalisierte Emerging-Risk-Früherkennung als spezialisierte Corporate-Vorausschau","quelle":"https://www.swissre.com/institute/research/topics-and-risk-dialogues/risk-dialogue-insurance-markets/emerging-risks.html","status":"GRÜN mit Programmhinweis","hinweis":"Aktuelle Emerging-Risks-Praxis ist belegt; SONAR als etablierte Reihe sichtbar machen, aber nicht zwingend als einzige aktuelle Programmbezeichnung.","_s":"swiss re institute · emerging risks / sonar swiss re institute emerging risks; sonar zürich"},{"id":"K03-054","name":"ZGF – Zentrum für gesellschaftlichen Fortschritt e.V.","einheit":"Zentrum für gesellschaftlichen Fortschritt e.V.","ort":"Frankfurt am Main","laender":["DE"],"orgtyp":"NGO und Zivilgesellschaft","selbst":"Zukünftebildung; Futures Literacy; Zukünftelabore","praxis":[],"funktionen":"forscht; entwickelt und evaluiert Zukünftelabore; stärkt Futures-Literacy-Kompetenzen; beteiligt","fklassen":["forschen & analysieren","lehren & Zukunftskompetenz entwickeln","beteiligen & aushandeln"],"orte":["Frankfurt am Main"],"zk":"Futures Literacy / Futures Capability","kpraxis":"Zukünftelabore, Zukünftebildung und Entwicklung von Futures-Literacy-Kompetenzen.","grund":"Institutionalisierte deutschsprachige Futures-Literacy-Praxis; Zukünftelabore, Zukünftebildung und Kompetenzentwicklung.","quelle":"ZGF","status":"GRÜN · neu geprüft 25.08.2026","hinweis":"Futures Literacy / Futures Capability bewusst NICHT als Praxislinie führen.","_s":"zgf – zentrum für gesellschaftlichen fortschritt e.v. zentrum für gesellschaftlichen fortschritt e.v. zukünftebildung; futures literacy; zukünftelabore frankfurt am main"}];
+</script>
+<script>
+(function(){
+  var A = (window.KURSBUCH_K03_DACH||[]);
+
+  var LAND_ORDER=['DE','AT','CH'];
+  var LAND_LABEL={DE:'Deutschland',AT:'Österreich',CH:'Schweiz'};
+  var FUN_LABEL={'forschen & analysieren':'Forschung & Analyse','scannen & beobachten':'Scanning & Beobachtung','Szenarien & Zukunftsbilder entwickeln':'Szenarien & Zukunftsbilder','strategisch beraten':'Strategische Beratung','Foresight institutionalisieren':'Foresight-Verankerung','lehren & Zukunftskompetenz entwickeln':'Lehre & Zukunftskompetenz','beteiligen & aushandeln':'Beteiligung & Aushandlung','vernetzen & professionalisieren':'Vernetzung & Standards'};
+  var FUN_ORDER=[
+    'forschen & analysieren','scannen & beobachten','Szenarien & Zukunftsbilder entwickeln',
+    'strategisch beraten','Foresight institutionalisieren','lehren & Zukunftskompetenz entwickeln',
+    'beteiligen & aushandeln','vernetzen & professionalisieren'
+  ];
+  var TYP_ORDER=['Beratung','Unternehmen','Forschungsinstitut','Regierung, Verwaltung und Parlament','Thinktank und Stiftung','Universität und Hochschule','Netzwerk und Verband','NGO und Zivilgesellschaft'];
+  var PRAXIS_ORDER=['Szenarioarbeit','Foresight','Strategic Foresight','Zukunftsforschung','Strategische Vorausschau','Trendforschung','Corporate Foresight','Futures Studies','Megatrendforschung'];
+  var KOMP_ORDER=['Futures Literacy / Futures Capability'];
+
+  // Schematische DACH-Geografie: Koordinaten aus dem Feld ort abgeleitet (nur belegte, eindeutig verortbare Orte).
+  var CITY={
+    'Berlin':[383.6,211.3],'Hamburg':[218.2,132.9],'Karlsruhe':[141.1,478.4],'Köln':[70.6,330.5],'Bonn':[79.6,347.5],'Frankfurt am Main':[154.6,394.5],'Leipzig':[333.6,301.0],'Ingolstadt':[287.6,496.7],'Euskirchen':[61.4,353.1],'Paderborn':[158.3,272.2],'Düsseldorf':[62.1,309.5],'München':[295.2,544.7],'Marl':[77.8,275.4],'Essen':[73.2,293.8],'Wolfsburg':[256.6,218.7],'Wien':[528.0,538.1],'Graz':[482.2,625.6],'Salzburg':[366.6,569.5],'Innsbruck':[286.6,610.5],'Baden':[520.3,555.5],'Basel':[101.6,588.5],'Zürich':[147.3,595.4],'Rüschlikon':[149.3,614.3],'Emmenbrücke':[134.1,625.6],'Bern':[94.2,634.1],'Thun':[104.0,650.3],'St. Gallen':[188.3,598.7]
+  };
+  var LABELPOS={
+    'Köln':'left','Bonn':'right','Euskirchen':'below','Düsseldorf':'left','Marl':'left','Essen':'left',
+    'Frankfurt am Main':'below','Bonn':'right','Zürich':'right','Rüschlikon':'below','Basel':'left',
+    'Baden':'right','Wien':'above','Emmenbrücke':'left','Thun':'below','Bern':'left'
+  };
+  var DE_PATH="M418.3,117.2 L429.6,155.9 L416.1,176.2 L433.7,203.3 L445.7,244.0 L441.9,270.2 L461.8,318.7 L440.1,326.7 L427.3,317.9 L415.2,332.4 L380.4,347.1 L362.4,366.1 L327.1,382.6 L335.6,405.2 L340.7,437.3 L365.5,455.6 L392.9,488.3 L375.8,523.3 L358.3,533.0 L365.2,582.5 L360.7,595.4 L345.6,579.9 L322.3,577.5 L287.7,591.2 L244.9,587.9 L238.0,608.0 L213.5,586.9 L198.8,591.1 L146.9,567.8 L136.9,584.3 L95.7,583.8 L101.8,529.6 L126.3,477.6 L56.5,463.6 L33.6,443.7 L36.3,410.3 L26.6,393.2 L32.1,341.8 L24.0,262.1 L53.1,262.1 L65.4,233.5 L77.5,163.8 L68.4,138.1 L77.9,122.0 L118.4,117.9 L127.4,134.7 L160.4,97.2 L149.3,68.7 L147.0,25.5 L183.7,35.6 L214.7,24.0 L215.6,53.4 L264.6,71.1 L264.1,98.1 L313.4,83.8 L340.6,63.0 L395.4,93.0 L418.3,117.2 Z";
+  var CH_PATH="M198.8,591.1 L200.7,604.6 L193.3,623.2 L215.2,637.0 L240.0,639.1 L236.1,670.3 L214.8,683.1 L178.9,673.6 L168.4,704.2 L145.3,706.6 L136.9,694.6 L109.7,720.4 L86.3,724.0 L65.5,707.7 L48.8,674.4 L25.6,686.3 L26.4,651.9 L61.8,609.1 L60.3,589.8 L82.4,596.8 L95.7,583.8 L136.9,584.3 L146.9,567.8 L198.8,591.1 Z";
+  var AT_PATH="M556.9,545.6 L553.2,576.6 L525.9,576.8 L535.3,593.3 L519.2,642.2 L510.0,655.1 L467.6,657.0 L443.1,674.2 L403.1,668.3 L333.7,648.7 L322.9,622.2 L275.0,635.4 L269.3,649.9 L240.0,639.1 L215.2,637.0 L193.3,623.2 L200.7,604.6 L198.8,591.1 L213.5,586.9 L238.0,608.0 L244.9,587.9 L287.7,591.2 L322.3,577.5 L345.6,579.9 L360.7,595.4 L365.2,582.5 L358.3,533.0 L375.8,523.3 L392.9,488.3 L428.9,512.7 L456.2,481.6 L473.2,476.0 L510.9,499.2 L533.6,495.2 L556.0,509.6 L552.1,519.2 L556.9,545.6 Z";
+
+  var sel={kind:null,value:null};   // Primaerfilter (genau einer aktiv oder keiner)
+  var query='';                      // Suchtext, unabhaengiger zweiter Zustand
+  var CHIPS=[];
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var ZK_FL='Futures Literacy / Futures Capability';
+  function hasZK(a){return a.zk && a.zk!=='—' && a.zk!=='';}
+  function flTag(a){return hasZK(a)?'<span class="flmark" title="Zukunftskompetenz-Dimension, keine Praxislinie">'+esc(a.zk)+'</span>':'';}
+  function praxHTML(a){return (a.praxis||[]).map(function(p){return '<span class="pchip">'+esc(p)+'</span>';}).join('');}
+  function funHTML(a){return (a.fklassen||[]).map(function(p){return '<span class="fkchip">'+esc(FUN_LABEL[p]||p)+'</span>';}).join('');}
+  function ortLand(a){var lbl=(a.laender||[]).map(function(c){return LAND_LABEL[c]||c;}).join(' / ');return esc(a.ort)+(lbl?' · '+esc(lbl):'');}
+  function byId(id){for(var i=0;i<A.length;i++){if(A[i].id===id)return A[i];}return null;}
+  function host(u){try{return String(u).replace(/^https?:\/\//,'').replace(/\/.*$/,'');}catch(e){return u;}}
+  function quelleHTML(a){var q=a.quelle||''; return /^https?:\/\//.test(q)?('<a href="'+esc(q)+'" target="_blank" rel="noopener">Primärquelle: '+esc(host(q))+' ↗</a>'):('<span>Primärquelle: '+esc(q)+'</span>');}
+  function studienHTML(a){ if(!(a.studien&&a.studien.length)) return ''; return '<div class="clabelrow">Studien</div>'+a.studien.map(function(s){return '<div class="drow"><span class="rk"></span><span class="rv"><a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.t)+' ↗</a> <span style="color:var(--mut)">· '+esc(s.meta)+'</span>'+(s.proj?' <span style="color:var(--mut)">· </span><a href="'+esc(s.proj)+'" target="_blank" rel="noopener">Projektseite ↗</a>':'')+'</span></div>';}).join(''); }
+
+  function present(order, getter){
+    var set={}; A.forEach(function(a){ [].concat(getter(a)).forEach(function(v){ if(v) set[v]=(set[v]||0)+1; }); });
+    return order.filter(function(v){return set[v];}).map(function(v){return {v:v,n:set[v]};});
+  }
+  function syncChips(){
+    CHIPS.forEach(function(c){ c.el.setAttribute('aria-pressed', (sel.kind===c.kind && String(sel.value)===String(c.value))?'true':'false'); });
+  }
+  function selectFilter(kind,value){
+    if(sel.kind===kind && String(sel.value)===String(value)){ sel={kind:null,value:null}; }
+    else { sel={kind:kind,value:value}; }
+    // Suchtext bleibt unabhaengig erhalten
+    syncChips(); apply();
+  }
+  function renderChips(containerId, items, kind, labelFn){
+    var c=document.getElementById(containerId);
+    items.forEach(function(it){
+      var b=document.createElement('button');
+      b.className='fchip'; b.type='button'; b.setAttribute('aria-pressed','false');
+      b.textContent=(labelFn?labelFn(it.v):it.v)+' ('+it.n+')';
+      b.addEventListener('click',function(){ selectFilter(kind,it.v); });
+      c.appendChild(b);
+      CHIPS.push({el:b,kind:kind,value:it.v});
+    });
+  }
+  renderChips('f-land', present(LAND_ORDER,function(a){return a.laender;}), 'land', function(v){return LAND_LABEL[v]||v;});
+  renderChips('f-fun', present(FUN_ORDER,function(a){return a.fklassen;}), 'funktion', function(v){return FUN_LABEL[v]||v;});
+  renderChips('f-typ', present(TYP_ORDER,function(a){return a.orgtyp;}), 'typ');
+  renderChips('f-praxis', present(PRAXIS_ORDER,function(a){return a.praxis;}), 'praxis');
+  renderChips('f-komp', present(KOMP_ORDER,function(a){return hasZK(a)?a.zk:null;}), 'kompetenz');
+
+  // ---- cards view ----
+  var grid=document.getElementById('agrid');
+  A.slice().sort(function(x,y){return x.name.localeCompare(y.name,'de');}).forEach(function(a){
+    var metaline=esc(a.einheit)+' · '+ortLand(a);
+    var card=document.createElement('div'); card.className='acard';
+    card.innerHTML=
+      '<button class="achead" type="button" aria-expanded="false">'+
+        '<span class="acaret">▾</span>'+
+        '<div class="atyp">'+esc(a.orgtyp)+'</div>'+
+        '<div class="aname">'+esc(a.name)+flTag(a)+'</div>'+
+        '<div class="ameta">'+metaline+'</div>'+
+        '<div class="aline">'+esc(a.selbst)+'</div>'+
+        (a.kpraxis?'<div class="apraxis"><span class="apk">Konkrete Praxis</span> '+esc(a.kpraxis)+'</div>':'')+
+        (a.praxis&&a.praxis.length?'<div class="clabelrow">Praxislinien</div><div class="achips">'+praxHTML(a)+'</div>':'')+
+        '<div class="clabelrow">Was sie tun</div><div class="achips">'+funHTML(a)+'</div>'+
+      '</button>'+
+      '<div class="amore">'+
+        '<div class="drow"><span class="rk">Aufnahmegrund</span><span class="rv">'+esc(a.grund)+'</span></div>'+
+        '<div class="drow"><span class="rk">Funktionen</span><span class="rv">'+esc(a.funktionen)+'</span></div>'+
+        (a.hinweis?'<div class="drow"><span class="rk">Hinweis</span><span class="rv">'+esc(a.hinweis)+'</span></div>':'')+
+        studienHTML(a)+
+        '<div class="aq">'+quelleHTML(a)+'</div>'+
+      '</div>';
+    card.querySelector('.achead').addEventListener('click',function(){var o=card.classList.toggle('open');card.querySelector('.achead').setAttribute('aria-expanded',o?'true':'false');});
+    card._a=a; grid.appendChild(card);
+  });
+  var cards=[].slice.call(grid.children);
+
+  // ---- list view (alphabetical) ----
+  var listWrap=document.getElementById('alist');
+  listWrap.insertAdjacentHTML('beforeend','<div class="lrow lhead"><div>Name</div><div>Ort</div><div>Land</div><div>Praxislinien</div></div>');
+  var sorted=A.slice().sort(function(x,y){return x.name.localeCompare(y.name,'de');});
+  var listRows=[];
+  sorted.forEach(function(a){
+    var row=document.createElement('div'); row.className='lrow';
+    row.innerHTML='<button class="lname" type="button" data-id="'+esc(a.id)+'">'+esc(a.name)+flTag(a)+'</button>'+
+      '<div class="lort">'+esc(a.ort)+'</div>'+
+      '<div class="lland">'+esc((a.laender||[]).map(function(c){return LAND_LABEL[c]||c;}).join(' / '))+'</div>'+
+      '<div class="lprax">'+(a.praxis&&a.praxis.length?praxHTML(a):'<span style="color:var(--mut);font-size:12.5px">–</span>')+'</div>';
+    row.querySelector('.lname').addEventListener('click',function(){openDetail(a.id);});
+    row._a=a; listWrap.appendChild(row); listRows.push(row);
+  });
+
+  // ---- map view ----
+  var mapwrap=document.getElementById('mapwrap');
+  var citiesOrder=Object.keys(CITY);
+  var cityActors={}; citiesOrder.forEach(function(c){cityActors[c]=[];});
+  var ueberActors=[];
+  A.forEach(function(a){
+    var orte=(a.orte||[]).filter(function(o){return CITY[o];});
+    if(orte.length){ orte.forEach(function(o){ cityActors[o].push(a); }); }
+    else { ueberActors.push(a); }
+  });
+  var svgNS='http://www.w3.org/2000/svg';
+  var svg=document.createElementNS(svgNS,'svg'); svg.setAttribute('viewBox','0 0 581 748'); svg.setAttribute('role','img'); svg.setAttribute('aria-label','Schematische Standortkarte der kartierten Akteure in Deutschland, Österreich und der Schweiz');
+  [['DE',DE_PATH,[239.5,294.1]],['AT',AT_PATH,[458.7,561.1]],['CH',CH_PATH,[135.4,645.5]]].forEach(function(co){
+    var p=document.createElementNS(svgNS,'path'); p.setAttribute('d',co[1]); p.setAttribute('class','cland c'+co[0].toLowerCase()); svg.appendChild(p);
+    var t=document.createElementNS(svgNS,'text'); t.setAttribute('x',co[2][0]); t.setAttribute('y',co[2][1]); t.setAttribute('class','clandlbl c'+co[0].toLowerCase()); t.setAttribute('text-anchor','middle'); t.textContent=co[0]; svg.appendChild(t);
+  });
+  var cityNodes={};
+  citiesOrder.forEach(function(c){
+    var xy=CITY[c];
+    var g=document.createElementNS(svgNS,'g'); g.style.cursor='pointer'; g.setAttribute('tabindex','0'); g.setAttribute('role','button'); g.setAttribute('aria-label',c);
+    var hit=document.createElementNS(svgNS,'circle'); hit.setAttribute('cx',xy[0]); hit.setAttribute('cy',xy[1]); hit.setAttribute('class','chit'); hit.setAttribute('r',16);
+    var circ=document.createElementNS(svgNS,'circle'); circ.setAttribute('cx',xy[0]); circ.setAttribute('cy',xy[1]); circ.setAttribute('class','cdot');
+    var num=document.createElementNS(svgNS,'text'); num.setAttribute('x',xy[0]); num.setAttribute('y',xy[1]); num.setAttribute('class','cnum');
+    var lab=document.createElementNS(svgNS,'text'); lab.setAttribute('class','clabel'); lab.textContent=c;
+    var tt=document.createElementNS(svgNS,'title'); tt.textContent=c+' – Klick zeigt die Akteure';
+    g.appendChild(tt); g.appendChild(hit); g.appendChild(circ); g.appendChild(num); g.appendChild(lab);
+    g.addEventListener('click',function(){showCity(c,true);});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();showCity(c,true);}});
+    svg.appendChild(g);
+    cityNodes[c]={circ:circ,num:num,lab:lab,g:g,hit:hit};
+  });
+  mapwrap.appendChild(svg);
+  var mapdetail=document.getElementById('mapdetail');
+  var ueberEl=document.getElementById('ueber');
+  var statusEl=document.getElementById('mapstatus');
+  var _lastCity=null;
+
+  function placeLabel(c,r){
+    var xy=CITY[c], pos=LABELPOS[c]||'below', lab=cityNodes[c].lab;
+    if(pos==='left'){ lab.setAttribute('x',xy[0]-r-5); lab.setAttribute('y',xy[1]+3); lab.setAttribute('text-anchor','end'); }
+    else if(pos==='right'){ lab.setAttribute('x',xy[0]+r+5); lab.setAttribute('y',xy[1]+3); lab.setAttribute('text-anchor','start'); }
+    else if(pos==='above'){ lab.setAttribute('x',xy[0]); lab.setAttribute('y',xy[1]-r-6); lab.setAttribute('text-anchor','middle'); }
+    else { lab.setAttribute('x',xy[0]); lab.setAttribute('y',xy[1]+r+12); lab.setAttribute('text-anchor','middle'); }
+  }
+
+  function showCity(c,scroll){
+    _lastCity=c;
+    var list=cityActors[c].filter(function(a){return _vis.has(a.id);});
+    citiesOrder.forEach(function(k){cityNodes[k].circ.classList.toggle('act',k===c);cityNodes[k].lab.classList.toggle('show',k===c);});
+    if(!list.length){
+      mapdetail.hidden=false;
+      mapdetail.innerHTML='<div class="mdk">Standort</div><h3>'+esc(c)+'</h3><div class="mdc">keine sichtbaren Akteure in der aktuellen Auswahl</div>';
+      if(scroll) mapdetail.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    var items=list.map(function(a){return '<div class="mapitem"><button type="button" data-id="'+esc(a.id)+'">'+esc(a.name)+flTag(a)+'</button><div class="mp">'+(a.praxis&&a.praxis.length?praxHTML(a):funHTML(a))+'</div></div>';}).join('');
+    mapdetail.hidden=false;
+    mapdetail.innerHTML='<div class="mdk">Standort</div><h3>'+esc(c)+' · '+list.length+' sichtbare/r Akteur/e</h3><div class="mdc">in der aktuellen Auswahl unserer Kartierung</div>'+items;
+    [].slice.call(mapdetail.querySelectorAll('.mapitem button')).forEach(function(b){b.addEventListener('click',function(){openDetail(b.getAttribute('data-id'));});});
+    if(scroll) mapdetail.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  function clearCity(){ _lastCity=null; mapdetail.hidden=true; mapdetail.innerHTML=''; citiesOrder.forEach(function(k){cityNodes[k].circ.classList.remove('act');cityNodes[k].lab.classList.remove('show');}); }
+
+  // ---- detail modal ----
+  var modal=document.getElementById('modal'), modalbox=document.getElementById('modalbox');
+  function openDetail(id){
+    var a=byId(id); if(!a)return;
+    modalbox.innerHTML=
+      '<button class="modalclose" type="button" aria-label="schließen">×</button>'+
+      '<div class="dk">Akteur</div>'+
+      '<h3>'+esc(a.name)+flTag(a)+'</h3>'+
+      '<div class="fam">'+esc(a.orgtyp)+' · '+esc(a.einheit)+' · '+ortLand(a)+'</div>'+
+      '<div class="mln">'+esc(a.selbst)+'</div>'+
+      (a.praxis&&a.praxis.length?'<div class="clabelrow">Praxislinien</div><div class="achips" style="margin-bottom:6px">'+praxHTML(a)+'</div>':'')+
+      '<div class="clabelrow">Was sie tun</div><div class="achips" style="margin-bottom:6px">'+funHTML(a)+'</div>'+
+      '<div class="drow"><span class="rk">Aufnahmegrund</span><span class="rv">'+esc(a.grund)+'</span></div>'+
+      '<div class="drow"><span class="rk">Funktionen</span><span class="rv">'+esc(a.funktionen)+'</span></div>'+
+      (a.hinweis?'<div class="drow"><span class="rk">Hinweis</span><span class="rv">'+esc(a.hinweis)+'</span></div>':'')+
+      studienHTML(a)+
+      '<div class="aq">'+quelleHTML(a)+'</div>';
+    modalbox.querySelector('.modalclose').addEventListener('click',closeDetail);
+    modal.classList.add('on');
+  }
+  function closeDetail(){modal.classList.remove('on');}
+  modal.addEventListener('click',function(e){if(e.target===modal)closeDetail();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDetail();});
+
+  // ---- filtering ----
+  var _vis=new Set();
+  var countEl=document.getElementById('count'), noMatch=document.getElementById('nomatch');
+  var selstatusEl=document.getElementById('selstatus');
+  function primaryMatch(a){
+    switch(sel.kind){
+      case 'land': return (a.laender||[]).indexOf(sel.value)>=0;
+      case 'funktion': return (a.fklassen||[]).indexOf(sel.value)>=0;
+      case 'typ': return a.orgtyp===sel.value;
+      case 'praxis': return (a.praxis||[]).indexOf(sel.value)>=0;
+      case 'kompetenz': return a.zk===sel.value;   // liest ausschliesslich das Feld Zukunftskompetenz
+      default: return true;   // kein Primaerfilter aktiv
+    }
+  }
+  // Ergebnis = Primaerfilter-Match UND Suchtext-Match. Suchumfang: Name, Einheit, Selbstbezeichnung, Ort (a._s).
+  function matches(a){ return primaryMatch(a) && (query==='' || (a._s||'').indexOf(query)>=0); }
+  function clearAll(){ sel={kind:null,value:null}; query=''; document.getElementById('q').value=''; syncChips(); apply(); }
+  function apply(){
+    _vis=new Set(); var n=0;
+    cards.forEach(function(c){ var ok=matches(c._a); c.style.display=ok?'':'none'; if(ok){n++; _vis.add(c._a.id);} });
+    listRows.forEach(function(r){ r.style.display=_vis.has(r._a.id)?'':'none'; });
+    // map markers
+    var pts=0, visCities=[];
+    citiesOrder.forEach(function(c){
+      var vis=cityActors[c].filter(function(a){return _vis.has(a.id);}).length;
+      var node=cityNodes[c];
+      if(vis>0){
+        pts+=vis; visCities.push(c);
+        node.g.style.display='';
+        var r=6+Math.sqrt(vis)*3.4; node.circ.setAttribute('r',r);
+        node.hit.setAttribute('r', Math.max(r+9,15));
+        node.num.textContent=vis; node.num.style.display= vis>1?'':'none';
+        placeLabel(c,r);
+      } else { node.g.style.display='none'; }
+    });
+    var ub=ueberActors.filter(function(a){return _vis.has(a.id);});
+    var geoActors=n-ub.length;
+    statusEl.innerHTML='<b>'+n+' von '+A.length+'</b> Akteuren sichtbar <span class="sub">· '+geoActors+' geografisch verortet an '+pts+' Standortpunkten · '+ub.length+' überregional</span>';
+    if(ub.length){
+      var names=ub.map(function(a){return '<button type="button" data-id="'+esc(a.id)+'">'+esc(a.name)+'</button>';}).join(', ');
+      ueberEl.innerHTML='<b>Überregional:</b> '+names+'. Dem deutschsprachigen Raum bzw. keinem eindeutigen Ort zugeordnet und deshalb nicht punktgenau verortet.';
+      [].slice.call(ueberEl.querySelectorAll('button')).forEach(function(b){b.addEventListener('click',function(){openDetail(b.getAttribute('data-id'));});});
+      ueberEl.style.display='';
+    } else { ueberEl.style.display='none'; }
+    countEl.innerHTML=n+' von '+A.length+' <span>· in unserer Kartierung</span>';
+    noMatch.style.display=n?'none':'block';
+    var qraw=document.getElementById('q').value.trim();
+    var parts=[];
+    if(sel.kind==='land'){ parts.push('Land: '+esc(LAND_LABEL[sel.value]||sel.value)); }
+    else if(sel.kind==='funktion'){ parts.push('Funktion: '+esc(FUN_LABEL[sel.value]||sel.value)); }
+    else if(sel.kind==='typ'){ parts.push('Organisationstyp: '+esc(sel.value)); }
+    else if(sel.kind==='praxis'){ parts.push('Praxislinie: '+esc(sel.value)); }
+    else if(sel.kind==='kompetenz'){ parts.push('Zukunftskompetenz: '+esc(sel.value)); }
+    if(qraw){ parts.push('Suche: '+esc(qraw)); }
+    var hasSel=parts.length>0;
+    selstatusEl.innerHTML='<b>'+n+' von '+A.length+'</b> Akteuren sichtbar <span class="sdot">·</span> '+
+      (hasSel?'<span class="seltag">'+parts.join(' · ')+' <button type="button" class="selx" aria-label="Auswahl und Suche entfernen">×</button></span>':'<span class="selnone">keine Auswahl aktiv</span>');
+    if(hasSel){ var sx=selstatusEl.querySelector('.selx'); if(sx) sx.addEventListener('click',function(){ clearCity(); clearAll(); }); }
+    if(_lastCity){
+      if(cityActors[_lastCity].some(function(a){return _vis.has(a.id);})) showCity(_lastCity,false);
+      else clearCity();
+    }
+  }
+
+  document.getElementById('q').addEventListener('input',function(e){
+    query=e.target.value.trim().toLowerCase();   // Suchtext, laesst den aktiven Primaerfilter unberuehrt
+    apply();
+  });
+  document.getElementById('reset').addEventListener('click',function(){ clearCity(); clearAll(); setView('cards'); });
+
+  // ---- view toggle ----
+  var views={cards:document.getElementById('view-cards'),list:document.getElementById('view-list'),map:document.getElementById('view-map')};
+  var tabs={cards:document.getElementById('v-cards'),list:document.getElementById('v-list'),map:document.getElementById('v-map')};
+  function setView(v){
+    for(var k in views){ views[k].classList.toggle('on',k===v); tabs[k].setAttribute('aria-selected',k===v?'true':'false'); }
+  }
+  tabs.cards.addEventListener('click',function(){setView('cards');});
+  tabs.list.addEventListener('click',function(){setView('list');});
+  tabs.map.addEventListener('click',function(){setView('map');});
+
+  apply();
+})();
+</script>
+</body></html>

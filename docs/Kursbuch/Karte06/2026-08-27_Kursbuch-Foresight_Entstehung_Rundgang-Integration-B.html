@@ -1,0 +1,162 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>foresight_D · Entstehung und Prozess · Kursbuch Foresight</title>
+<style>
+  :root{
+    --ink:#0E1524; --ink2:#122744; --teal:#10C79E; --teald:#0C9670;
+    --coral:#FF6A4D; --corald:#E2542E; --violet:#7A6CF0; --violetd:#5b4fd0;
+    --sun:#FFC531; --sund:#B98900; --steel:#3A6EA5; --bg:#F4F2EA; --card:#fff; --line:#E7E3D9; --sur:#FCFBF8;
+    --ink-t:#1c2431; --sec:#454e5b; --mut:#8b93a1; --uc:#9aa2ad;
+    --font:"Segoe UI",Roboto,-apple-system,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink-t);line-height:1.65}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  /* Slim back-bar (keine Hauptnavigation) */
+  .topbar{position:sticky;top:0;z-index:70;background:rgba(14,21,36,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topbar .tw{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;height:46px;padding:0 16px}
+  .topbar a{color:#c7d0da;text-decoration:none;font-size:12.5px;font-weight:700;padding:6px 10px;border-radius:999px}
+  .topbar a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .topbar .back{color:#b7a9f5}
+  .topbar .kb{color:var(--teal);font-weight:800}
+
+  .hero{background:radial-gradient(1000px 440px at 82% -20%,var(--ink2) 0%,var(--ink) 64%);color:#fff;padding:44px 0 38px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:44px 44px;-webkit-mask:radial-gradient(520px 280px at 84% 0%,#000,transparent 78%);mask:radial-gradient(520px 280px at 84% 0%,#000,transparent 78%)}
+  .hero .wrap{position:relative;z-index:1}
+  .hero .kicker{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8ea3c4;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px 11px;margin:0 0 16px}
+  h1{font-size:clamp(28px,4.4vw,44px);line-height:1.06;letter-spacing:-.02em;font-weight:850;margin:0 0 12px}
+  .hero .sub{font-size:clamp(15px,2vw,18px);font-weight:600;color:#c3cfdb;max-width:720px;margin:0}
+
+  main{padding:34px 0 0}
+  .intro{font-size:16.5px;color:var(--sec);max-width:740px;margin:0 0 30px}
+  .intro b{color:var(--ink)}
+
+  /* Prozesslinie */
+  .line{position:relative;margin:0 0 8px;padding-left:34px}
+  .line::before{content:"";position:absolute;left:12px;top:6px;bottom:26px;width:2px;background:linear-gradient(var(--teal),#d9d3c6)}
+  .station{position:relative;margin:0 0 30px}
+  .station .dot{position:absolute;left:-34px;top:0;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px var(--bg)}
+  .station .per{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teald);margin:2px 0 3px}
+  .station h2{font-size:clamp(19px,2.3vw,24px);font-weight:850;color:var(--ink);margin:0 0 8px;line-height:1.15}
+  .station p{font-size:15.5px;color:var(--sec);margin:0 0 10px;max-width:720px}
+  .station p b{color:var(--ink)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+  .chips span{font-size:12px;font-weight:700;color:var(--sec);background:var(--sur);border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+  .wends{margin:8px 0 10px;padding:0;list-style:none}
+  .wends li{position:relative;font-size:15px;color:var(--sec);margin:0 0 8px;padding-left:16px;max-width:720px}
+  .wends li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+  .wends li b{color:var(--ink)}
+  .fund{font-size:15.5px;color:var(--ink-t);background:#efedfd;border:1px solid #d5cffa;border-radius:12px;padding:12px 15px;max-width:720px;margin:6px 0 0}
+  .fund b{color:var(--violetd)}
+  .quelle{font-size:13px;color:var(--mut);background:var(--sur);border:1px solid var(--line);border-radius:12px;padding:12px 15px;max-width:720px;margin:8px 0 0}
+  .quelle b{color:var(--ink)}
+
+  /* Schluss */
+  .kein{background:var(--ink);color:#eaf1f7;border-radius:18px;padding:28px 30px;margin:14px 0 34px}
+  .kein .k{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 10px}
+  .kein h3{font-size:clamp(21px,2.6vw,26px);font-weight:850;color:#fff;margin:0 0 10px}
+  .kein p{font-size:16px;color:#c3cfdb;margin:0 0 18px;max-width:680px}
+  .kein a{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:#0E1524;background:var(--teal);border-radius:999px;padding:9px 16px;text-decoration:none}
+  .kein a:hover{background:#fff}
+
+  footer{margin-top:8px;background:var(--ink);color:#9fb0c2;padding:24px 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline}
+  footer .fnote{font-size:13px;max-width:600px}
+  footer b{color:#e7edf3}
+  footer .fbrand{font-weight:800;color:var(--teal);line-height:1.3;text-align:right;font-size:13.5px}
+  footer .fbrand span{display:block;font-weight:600;color:#7f93a8;font-size:12px;margin-top:2px}
+  footer .bid{display:block;font-size:11px;color:#6f8199;margin-top:8px;letter-spacing:.04em}
+</style></head>
+<body>
+
+<nav class="topbar"><div class="tw">
+  <a class="back" href="../Start/2026-08-27_Kursbuch-Foresight_Start_Rundgang-Integration-B.html">← Kursbuch Foresight</a>
+  <a class="kb" href="2026-08-27_Kursbuch-Foresight_Karte06_Zukunft_Rundgang-Integration-B.html">Karte 06 · Zukunft</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">foresight_D · Hintergrund</span>
+    <h1>foresight_D · Entstehung und Prozess</h1>
+    <p class="sub"><b style="color:#fff">Wie sind diese Thesen entstanden?</b> Von Neue Horizonte 2045 über DATIpilot und den foresight_D-Szenarioprozess zum heutigen Prozesszwischenstand.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="intro"><b>foresight_D ist kein Einzelprojekt.</b> Es ist eine Linie, die 2023 begann und noch nicht zu Ende ist. Vier Stationen führen von einem Szenarioprozess über eine Förderabsage bis zu den elf Thesen, die den heutigen Prozesszwischenstand markieren.</p>
+
+  <div class="line">
+
+    <!-- A -->
+    <section class="station">
+      <span class="dot">A</span>
+      <div class="per">2023 – 2024</div>
+      <h2>Neue Horizonte 2045</h2>
+      <p>Der Szenarioprozess „Neue Horizonte 2045" startete Anfang 2023 mit dem Zukunftshorizont 2045, getragen von D2030 und rund 50 Zukunftsforschenden. Er war offen angelegt, im Sinne von Open Foresight, und wurde im September 2024 abgeschlossen. Der Ablauf folgte acht Phasen: Schlüsselfaktoren identifizieren, Projektionen entwickeln, Szenarien erstellen, Szenarien bewerten, Robustheit gegen Disruptionen prüfen, Zielkonflikte analysieren, Veranstaltungen und Diskurs, Missionswerkstätten.</p>
+      <p>Es entstanden sieben Zukunftsbilder:</p>
+      <div class="chips">
+        <span>#1 Grünes Wachstum</span><span>#2 Nachhaltiger Systemumstieg</span><span>#3 Radikale Kompromisse</span><span>#4 Ökoliberale Transformation</span><span>#5 Techno-Optimismus</span><span>#6 Alternative Stabilitäten</span><span>#7 Sicherheit zuerst</span>
+      </div>
+      <p>Ergebnis war der <a href="https://www.d2030.de/wp-content/uploads/2024/09/D2045_Neue-Horizonte-Studienreport.pdf" target="_blank" rel="noopener">Studienreport „Neue Horizonte 2045 · Missionen für Deutschland" ↗</a> (<a href="https://d2030.de/projekte/das-aktuelle-szenarioprojekt-neue-horizonte-2045/" target="_blank" rel="noopener">Projektseite ↗</a>), veröffentlicht am 17. September 2024, samt Zukunftslandkarte und Ausstellungsbroschüre; Unternehmenspartner waren EnBW, AOK PLUS und Deutsche Bahn. Zurück blieb ein eingespieltes, breit aufgestelltes Team.</p>
+    </section>
+
+    <!-- B -->
+    <section class="station">
+      <span class="dot">B</span>
+      <div class="per">2024</div>
+      <h2>DATIpilot</h2>
+      <p>Das Team bewarb sich 2024 als Foresight-Community bei DATIpilot, dem Pilotprogramm der Deutschen Agentur für Transfer und Innovation, im Modul „Innovationscommunities". Der Titel der Skizze gab dem Vorhaben seinen Namen: <b>foresight_D</b>.</p>
+      <p>Die Bewerbung war erfolglos: Aus knapp 500 Skizzen wählte die Jury 20 Communities aus, bekanntgegeben am 30. Mai 2024; foresight_D war nicht darunter. Der erhaltene Monitoring-Bogen der DATI hält unter anderem fest, dass die Projektidee ohne Förderung und ohne wesentliche Änderungen weiterverfolgt wird. Die Idee wurde daraufhin ehrenamtlich und mit eigenen Mitteln fortgeführt.</p>
+    </section>
+
+    <!-- C -->
+    <section class="station">
+      <span class="dot">C</span>
+      <div class="per">2025 – 2026</div>
+      <h2>foresight_D-Szenarioprozess</h2>
+      <p>Ab August 2025 lief der Szenarioprozess, diesmal mit einer neuen Frage: Wie entwickelt sich Foresight in Deutschland selbst? In zwölf Schritten arbeiteten gut 50 Kolleginnen und Kollegen, überwiegend aus dem Szenarioteam von „Neue Horizonte 2045" und aus dem Kreis der DATI-Bewerbung. Drei Wendepunkte prägten den Prozess:</p>
+      <ul class="wends">
+        <li><b>Die Umfrage lieferte den Befund.</b> 22 Fachleute aus Ministerien, Thinktanks, Wissenschaft und Zivilgesellschaft antworteten; 77 Prozent bejahten, dass es eine Foresight-Community gibt, beschrieben zugleich als klein, informell, zersplittert und institutionell schwach.</li>
+        <li><b>Der Workshop lieferte das Gerüst.</b> Am 16. Oktober 2025 wurden im Industriesalon Schöneweide die Schlüsselfaktoren bestimmt, unter anderem politisches Klima, Offenheit für Foresight, Zukunftskompetenzen, Selbstverständnis, Institutionalisierung, Finanzierung, Branche und Künstliche Intelligenz. Daraus entstanden acht Szenarien für 2035.</li>
+        <li><b>Die Kommentierung veränderte die Thesen.</b> Aus acht Thesen der Präsentation wurden nach den Rückmeldungen elf. Neu hinzu kamen vor allem drei Gedanken: über die eigene Domäne hinausdenken, ein Überangebot an Zukünften als mögliches Problem und die Machtperspektive.</li>
+      </ul>
+      <div class="chips">
+        <span>#1 Stabile Zukunftsroutine</span><span>#2 Instrumentalisierte Zukunftshoheit</span><span>#3 Do-it-yourself-Foresight</span><span>#4 KI-getriebener Zukunftsmarkt</span><span>#5 Enabler disruptiver Transformation</span><span>#6 Universelle Infrastruktur</span><span>#7 Wertegetriebene Zukunftskultur</span><span>#8 Technokratische Zukunftssteuerung</span>
+      </div>
+      <div class="fund"><b>Verortung im Prozesszwischenstand:</b> Im dokumentierten Prozesszwischenstand werden die Szenarien dreifach verortet: Gegenwart #1, erwartet #4, gewünscht #6. Die genaue Erhebungsgrundlage ist derzeit nicht hinreichend belegt. Die daraus abgeleitete Lücke zwischen Erwartung und Wunsch ist eine Kursbuch- und Prozessinterpretation: der Raum, in dem Gestaltung möglich ist.</div>
+    </section>
+
+    <!-- D -->
+    <section class="station">
+      <span class="dot">D</span>
+      <div class="per">2026</div>
+      <h2>Prozesszwischenstand</h2>
+      <p>Am 12. Juni 2026 trafen die Ergebnisse auf ihr Publikum: auf der Fachtagung „Strategische Vorausschau im Regierungshandeln" in Berlin. Dort stellte Alexander Fink (D2030) die Szenarien und die Thesen aus foresight_D vor. Damit wurde die Selbstbefragung der Zunft Teil einer Tagung über das Regierungshandeln.</p>
+      <p>Der derzeitige Arbeitsstand sind <b>elf Thesen (Arbeitsstand 17. April 2026)</b>, vorgestellt auf der Fachtagung am 12. Juni 2026. Die Weiterarbeit ist bereits terminiert: Am 2. September 2026 bringt D2030 die elf Thesen in die Futures Lounge, ihren ersten Auftritt vor einem Publikum, das nicht am Prozess beteiligt war.</p>
+      <div class="quelle"><b>Prozess und Dokumentation auseinanderhalten:</b> foresight_D ist der gemeinsame Prozess. Die Präsentation von Dr. Alexander Fink / D2030 auf der Fachtagung Strategische Vorausschau (12. Juni 2026) ist die Dokumentationsquelle eines konkreten Zwischenstands, nicht der Prozess selbst.</div>
+    </section>
+
+  </div>
+
+  <!-- Kein Endpunkt -->
+  <div class="kein">
+    <div class="k">Kein Endpunkt</div>
+    <h3>Die elf Thesen sind ein Prozesszwischenstand.</h3>
+    <p>Die nächste Fassung entsteht aus Diskussion, Kritik und Ergänzung.</p>
+    <a href="2026-08-27_Kursbuch-Foresight_Karte06_Zukunft_Rundgang-Integration-B.html">← zurück zu Karte 06 · Zukunft</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fnote">
+      <b>Kursbuch Foresight.</b> foresight_D · Entstehung und Prozess. Grundlage: „foresight_D-Prozess · Der Weg, der Prozess und die Produkte" (Arbeitspapier v6, 17. August 2026).<!-- Provenienz (intern): Quellbuild K06-ENTSTEHUNG-20260824-A2 · Integration RGI-20260827-B-K06-ENTSTEHUNG-R1 -->
+    </div>
+    <div class="fbrand">Konzept und Realisierung: Klaus Burmeister · foresightlab<span>als Beitrag zu foresight_D</span></div>
+    <div class="fmeta" style="flex-basis:100%;border-top:1px solid rgba(159,176,194,.22);margin-top:14px;padding-top:12px;font-size:12.5px;color:#9fb0c2"><a href="2026-08-27_Kursbuch-Foresight_Entstehung_Rundgang-Integration-B.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Entstehung</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Impressum.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Impressum</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/Quellen.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">Quellen</a><span style="opacity:.5;padding:0 9px">·</span><a href="../Meta/2026-08-27_Kursbuch-Foresight_KI-Transparenz.html" style="color:#c7d0da;text-decoration:none;border-bottom:1px solid rgba(159,176,194,.4);padding-bottom:1px">KI-Transparenz</a></div>
+  </div>
+</footer>
+
+</body></html>

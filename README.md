@@ -13,11 +13,13 @@ Dieser öffentliche Stand dient zunächst der Diskussion im Kernteam.
 
 ## Zum Kursbuch
 
-[→ Kursbuch Foresight öffnen](https://burmeister12439-futur2.github.io/kursbuch-foresight/)
+[→ Kursbuch Foresight öffnen](https://foresight.klaus-burmeister.de/)
 
 ## Hinweis
 
 Das Kursbuch befindet sich in Entwicklung. Inhalte, Navigation und Darstellung werden weiter überarbeitet.
+
+Technische und operative Projektstruktur: siehe HANDBUCH.md.
 
 Konzept und Realisierung: Klaus Burmeister · foresightlab  
 als Beitrag zu foresight_D

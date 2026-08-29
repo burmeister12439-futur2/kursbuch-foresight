@@ -3,8 +3,7 @@
 Dieses Handbuch beschreibt ausschließlich den **Projektadapter** für das
 Kursbuch Foresight: wo publiziert wird, über welchen Weg, mit welchen
 Freigabe-Gates und welchen Prüfregeln. Es verändert die Publikation selbst
-nicht. Für dieses Repository gilt bei Widerspruch zu allgemeinen Konventionen
-dieses Handbuch.
+nicht. Dieses Handbuch konkretisiert die projektübergreifenden Prinzipien für das Kursbuch Foresight. Bei einem Widerspruch gelten die projektübergreifenden Prinzipien; der Projektadapter ist entsprechend zu korrigieren.
 
 Leitprinzip: **robust · einfach · überprüfbar · anpassungsfähig**
 

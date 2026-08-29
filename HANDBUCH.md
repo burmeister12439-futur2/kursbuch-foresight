@@ -7,6 +7,17 @@ nicht. Dieses Handbuch konkretisiert die projektübergreifenden Prinzipien für 
 
 Leitprinzip: **robust · einfach · überprüfbar · anpassungsfähig**
 
+## Projektstart (verbindlich)
+
+Vor jedem Arbeitsschritt am Kursbuch gilt ein Doppel-Read, in dieser Reihenfolge:
+
+1. zuerst `HANDBUCH.md` lesen
+2. danach `ENTWICKLUNGSAGENDA.md` lesen
+
+Ein Auftrag wie „weiter mit Kursbuch" darf erst **nach** diesem Doppel-Read in einen nächsten Arbeitsschritt übersetzt werden.
+
+**Vorrangregel:** freigegebener Stand / `HANDBUCH.md` steht vor Entwicklungsabsicht / `ENTWICKLUNGSAGENDA.md`. Bei einem Widerspruch gilt der freigegebene Stand.
+
 ## Live-Adresse
 
 Die veröffentlichte Fassung liegt unter:

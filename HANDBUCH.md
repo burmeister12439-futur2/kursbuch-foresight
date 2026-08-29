@@ -76,3 +76,16 @@ Vier Gates, in dieser Reihenfolge:
 Dieses Handbuch wird **nur** aktualisiert, wenn sich **dauerhaft** etwas an
 Architektur, Rollen, Prüfweg oder Deployment ändert — nicht für einzelne
 Inhalts- oder Buildschritte.
+
+## Git/GitHub-Arbeitsregel
+
+Bei Git-/GitHub-Arbeiten gilt:
+
+- Claude-Sandbox, lokaler Mac, GitHub-Remote und ChatGPT-Connector sind getrennte Zustände und dürfen nicht miteinander gleichgesetzt werden.
+- Vor jeder Änderung wird zuerst der tatsächliche Ausgangsstand festgestellt.
+- Danach wird genau ein Arbeitsweg gewählt und bis zum Ende verfolgt.
+- Leitregel: **ein Ziel · ein Branch · ein SHA · ein nächster Schritt**.
+- Keine Parallelpfade und keine Werkzeugwechsel innerhalb eines laufenden Schritts.
+- Terminalblöcke enthalten ausschließlich ausführbare Befehle, keinen Begleittext.
+- Ein lokal vorhandener Commit gilt nicht als remote vorhanden.
+- „Erledigt“ darf erst gemeldet werden, wenn der relevante Remote-Stand geprüft wurde.

@@ -24,13 +24,19 @@ Die veröffentlichte Fassung liegt unter:
 
 **https://foresight.klaus-burmeister.de/**
 
+Diese Adresse führt ohne Zwischenschritt auf die Startseite. Es gilt:
+**Adressen tragen keine Versionsnummern.** Eine Datei kann `_v3` oder ein Datum
+im Namen führen, eine öffentliche Adresse nie, weil sie sonst mit der nächsten
+Fassung bricht. Wird die Startseite ersetzt, ändert sich der Inhalt von
+`docs/index.html`, nicht die Adresse.
+
 ## Publikationsverzeichnis und Struktur
 
 `docs/` ist das **GitHub-Pages-Publikationsverzeichnis**. Nur was in `docs/`
 liegt, wird veröffentlicht.
 
-- `docs/index.html` — Einstieg/Weiterleitung
-- `docs/Kursbuch/Start/` — Startseite des Rundgangs
+- `docs/index.html`: die Startseite des Rundgangs selbst, zugleich die öffentliche Adresse
+- `docs/Kursbuch/Start/`: die frühere Adresse der Startseite, seit dem 01.09.2026 nur noch eine Weiche auf `/`
 - `docs/Kursbuch/Karte01/` bis `docs/Kursbuch/Karte06/` — die sechs Karten
 - `docs/Kursbuch/Meta/` — begleitende Meta-Seiten
 - `docs/CNAME` — muss **exakt** `foresight.klaus-burmeister.de` enthalten (eine Zeile, kein weiterer Eintrag)
